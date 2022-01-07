@@ -60,13 +60,7 @@ const SignIn = (props) => {
   return (
     <>
       <Container className=" signin-container col-7 ">
-        <div className="logoSignIn">
-          <img
-            id="logo-hero"
-            src="/assets/DonZLogo.png"
-            alt="Logo Don Zipriano"
-          />
-        </div>
+          <p className="text-center p-5 bg-success">logo</p>
 
         <h2 className="registrate">Ingresar</h2>
         <Formik
@@ -120,7 +114,7 @@ const SignIn = (props) => {
               />
             </div>
             <div className="btn-container">
-              <button className="text-light p-2 m-2 btn-sign" type="submit">
+              <button className="text-light p-2 m-2 bg-dark" type="submit">
                 Ingresar
               </button>
             </div>

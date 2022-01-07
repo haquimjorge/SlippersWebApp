@@ -4,6 +4,7 @@ import Input from "../components/Input";
 import MainHome from "../components/MainHome";
 import Dire from "../components/Dire";
 import Footer from "../components/Footer";
+import SignIn from "../components/SignIn";
 
 const Home = () => {
   return (
