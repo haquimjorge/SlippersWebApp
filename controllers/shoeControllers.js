@@ -42,15 +42,7 @@ const shoeControllers ={
             console.error(e);
         }
     },
-    addToFav: async (req,res)=>{
-        try{
-            // funcion para guardar el id del zapato que llega desde el body, dentro de la lista de favoritos del usuario
-
-        }catch(e){
-            res.json({ success: false, error: e, response:null });
-            console.error(e);
-        }
-    }
+    
 
 }
 
