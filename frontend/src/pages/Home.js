@@ -9,11 +9,12 @@ import SignIn from "../components/SignIn";
 const Home = () => {
   return (
     <>
-      <Navbar />
-      <Input />
-      <MainHome />
-      <Dire />
-      <Footer />
+      <Navbar/>
+      <Input/>
+      <SignIn/>
+      <MainHome/>
+      <Dire/>
+      <Footer/>
     </>
   );
 };

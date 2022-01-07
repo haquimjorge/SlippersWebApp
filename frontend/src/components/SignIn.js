@@ -71,6 +71,7 @@ const SignIn = (props) => {
           validationSchema={Yup.object({
             email: Yup.string()
               .email("Email invalido")
+              .matches(/(\W|^)[\w.-]{0,25}.(com|cl|ar|col|pe|ven|br)(\W|$)/, "Email Invalido")
               .trim()
               .required("Este campo es obligatorio"),
             password: Yup.string()
