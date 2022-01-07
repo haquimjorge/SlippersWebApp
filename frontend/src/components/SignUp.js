@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import NavBar from "../components/NavBar";
+
 import Footer from "../components/Footer";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import FormR from "react-bootstrap/Form";
@@ -88,7 +88,7 @@ const SignUp = (props) => {
 
   return (
     <>
-      <NavBar />
+
       <Container className=" signin-container col-7 ">
        
         
