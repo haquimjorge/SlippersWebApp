@@ -19,27 +19,24 @@ function Footer() {
             </a>
           </li>
         </ul>
-        <div className="logo-footer">
-          <img src="./assets/logo3.png" />
-        </div>
       </div>
       <div className="contenedor-redes">
         <div className="iconos-redes">
-          <div className="logo-footer">
+          <a href="#" className="iconoItem-redes">
+            <img src="./assets/facebook.png" />
+          </a>
+          <a href="#" className="iconoItem-redes">
+            <img src="./assets/instagram.png" />
+          </a>
+          <a href="#" className="logo-footer">
             <img src="./assets/logo3.png" />
-          </div>
-          <div className="logo-footer">
-            <img src="./assets/logo3.png" />
-          </div>
-          <div className="logo-footer">
-            <img src="./assets/logo3.png" />
-          </div>
-          <div className="logo-footer">
-            <img src="./assets/logo3.png" />
-          </div>
-          <div className="logo-footer">
-            <img src="./assets/logo3.png" />
-          </div>
+          </a>
+          <a href="#" className="iconoItem-redes">
+            <img src="./assets/twi.png" />
+          </a>
+          <a href="mailto:Slippers@outlook.com" className="iconoItem-redes">
+            <img src="./assets/mail.png" />
+          </a>
         </div>
       </div>
     </>

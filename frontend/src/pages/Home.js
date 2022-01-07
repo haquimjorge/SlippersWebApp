@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Input from "../components/Input";
 import MainHome from "../components/MainHome";
-import Dire from "../components/Dire";
+import PromoHome from "../components/PromoHome";
 import Footer from "../components/Footer";
 
 const Home = () => {
@@ -13,7 +13,7 @@ const Home = () => {
       </div>
       <Input />
       <MainHome />
-      <Dire />
+      <PromoHome />
       <Footer />
     </>
   );

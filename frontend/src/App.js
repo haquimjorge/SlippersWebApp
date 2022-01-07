@@ -1,11 +1,9 @@
-// import Home from "./pages/Home";
-import Shop from "./pages/Shop";
+import Contacts from "./pages/Contacts";
 
 function App() {
   return (
     <>
-      {/* <Home /> */}
-      <Shop />
+      <Contacts />
     </>
   );
 }
