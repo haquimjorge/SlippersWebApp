@@ -14,11 +14,6 @@ function Navbar() {
             </li>
             <li>
               <a className="botones-menu" href="#">
-                Slippers
-              </a>
-            </li>
-            <li>
-              <a className="botones-menu" href="#">
                 Shopp
               </a>
             </li>

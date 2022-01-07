@@ -1,17 +1,3 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-} */
-
 * {
   margin: 0;
   padding: 0;
@@ -23,9 +9,15 @@ code {
 .portada {
   background-repeat: no-repeat;
   background-position: center;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-image: url(../public/assets/07.jpg);
+}
+
+@media (min-width: 250px) and (max-width: 850px) {
+  .portada {
+    background-position: left;
+  }
 }
 
 .container-menu {
@@ -46,6 +38,12 @@ code {
 .menu {
   display: flex;
   align-items: center;
+}
+
+@media (min-width: 250px) and (max-width: 850px) {
+  .menu {
+    flex-direction: column;
+  }
 }
 
 .botones-menu {
@@ -73,12 +71,20 @@ li {
   justify-content: space-evenly;
   align-items: center;
   padding: 3%;
-  width: 100vw;
+  width: 100%;
   height: 50px;
   background-color: rgba(0, 0, 0, 0.952);
   text-transform: uppercase;
   font-size: 25px;
   color: whitesmoke;
+}
+
+@media (min-width: 250px) and (max-width: 850px) {
+  .input-contenedor-home {
+    font-size: 15px;
+    flex-direction: column;
+    height: 90px;
+  }
 }
 
 .input-contenedor-home input {
@@ -97,6 +103,12 @@ li {
   text-transform: uppercase;
   color: whitesmoke;
   font-size: 18px;
+}
+
+@media (min-width: 250px) and (max-width: 850px) {
+  .input-contenedor-home button {
+    font-size: 15px;
+  }
 }
 
 /* MAIN HOME */
@@ -164,4 +176,40 @@ main {
 .contenedor-redes .logo-footer img {
   width: 50px;
   height: 50px;
+}
+
+/* DIRECCION */
+
+.contenedor-direccion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5% 0 0 5%;
+  width: 100%;
+  height: 100vh;
+  background-image: url(../public/assets/01.jpg);
+  background-position: center;
+  opacity: 95%;
+  color: whitesmoke;
+}
+
+.contenedor-direccion h1 {
+  padding-bottom: 1%;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 3px orangered;
+}
+.contenedor-direccion h2 {
+  font-size: 23px;
+}
+.contenedor-direccion h3 {
+  padding: 4% 0 2% 0;
+}
+
+.contenedor-direccion h4 {
+  text-transform: uppercase;
+  padding-bottom: 1%;
+}
+
+.contenedor-direccion h5 {
+  text-transform: uppercase;
 }
