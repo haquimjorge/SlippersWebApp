@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const bcryptjs =require("bcryptjs") //encripta y desencripta
+const jwt = require('jsonwebtoken'); //crea y valida el token
 
 const userControllers = {
   addToFav: async (req, res) => {
@@ -34,8 +36,9 @@ const userControllers = {
           email, 
           password: passwordHashed, 
           photo, 
-          country,
           google
+
+          // podrian agregarse mas de acuardo al modelo de User en la base de datos
         }) 
           console.log(newUser) //imprimimos el nuevo usuario
           
