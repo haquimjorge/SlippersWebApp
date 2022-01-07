@@ -8,7 +8,9 @@ import Footer from "../components/Footer";
 const Home = () => {
   return (
     <>
-      <Navbar />
+      <div className="portada">
+        <Navbar />
+      </div>
       <Input />
       <MainHome />
       <Dire />
