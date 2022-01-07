@@ -1,5 +1,3 @@
-import Input from "./Input";
-
 function MainHome() {
   return (
     <>
