@@ -5,12 +5,15 @@ import MainHome from "../components/MainHome";
 import Dire from "../components/Dire";
 import Footer from "../components/Footer";
 
+
+
 const Home = () => {
   return (
     <>
       <Navbar />
       <Input />
       <MainHome />
+      
       <Dire />
       <Footer />
     </>

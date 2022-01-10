@@ -1,4 +1,6 @@
 import Input from "./Input";
+import Carousel from "../components/Carousel";
+
 
 function MainHome() {
   return (
@@ -7,6 +9,7 @@ function MainHome() {
         <div className="div-titulo">
           <p>Get to know all the models and styles that are in</p>
           <h1 className="titulo">Slippers</h1>
+          <Carousel/>
         </div>
       </main>
     </>
