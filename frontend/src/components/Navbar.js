@@ -1,4 +1,19 @@
-function Navbar() {
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
+import { connect } from "react-redux";
+import userActions from "../redux/actions/userActions";
+import { Link } from "react-router-dom";
+import User from "../assets/user.png";
+import Image from "react-bootstrap/Image";
+
+function Navbar(props) {
+    const token = localStorage.getItem('token')
+    let imagenUsuario = (
+      <Image
+        className="user-icon"
+        src={props.user ? props.user.image : User}
+      ></Image>
+    );
   return (
     <>
       <div className="container-menu">
@@ -22,6 +37,27 @@ function Navbar() {
             </a>
           </li>
         </ul>
+        <DropdownButton id="dropdown-basic-button" title={imagenUsuario}>
+            {props.user ? (
+                <>
+              <Dropdown.Item as={Link} to="/account">
+                Account
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => props.logOut()}>
+              Sign Out
+            </Dropdown.Item>
+            </>
+            ) : (
+                <>
+              <Dropdown.Item as={Link} to="/signin">
+                Sign In
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/signup">
+              Sign Up
+            </Dropdown.Item>
+            </>
+            )}
+          </DropdownButton>
         <a type="button" href="#">
           <img
             className="carrito"
@@ -34,4 +70,14 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {
+    return {
+      user: state.userReducer.user,
+    };
+  };
+  
+  const mapDispatchToProps = {
+    logOut: userActions.logOut,
+  };
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

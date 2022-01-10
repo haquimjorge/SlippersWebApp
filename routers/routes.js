@@ -5,6 +5,7 @@ const shoeControllers = require("../controllers/shoeControllers");
 const userControllers = require("../controllers/userControllers");
 const passport = require("../config/passport");
 const {uploadShoe, getShoes, modifyShoe, deleteShoe} = shoeControllers
+const {googleLogin,signUpUser, signInUser,authUser} = userControllers
 
 // Rutas para el controlador de zapatos
 
@@ -18,16 +19,17 @@ Router.route("/shoe/:shoeId")
 
 
 // Rutas para el controlador de usuarios
-Router.route("/auth/signup")
-.get(userControllers.readUsers)
-.post(validator, userControllers.signUpUser)
+Router.route("/auth/google")
+.post(validator, googleLogin)
 
+Router.route("/auth/signup")
+.post(validator, signUpUser)
 
 Router.route("/auth/signin")
-.post( userControllers.signInUser) 
+.post(signInUser) 
 
 Router.route("/auth")
-.get(passport.authenticate("jwt", {session: false}), userControllers.token)
+.get(passport.authenticate("jwt", {session: false}), authUser)
 //chequea el token y si esta todo bien pasa a la accion: loguearse.
 
 module.exports = Router;
