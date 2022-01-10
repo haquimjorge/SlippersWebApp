@@ -4,9 +4,11 @@ const validator = require("../config/validator")
 const shoeControllers = require("../controllers/shoeControllers");
 const userControllers = require("../controllers/userControllers");
 const categoryControllers = require("../controllers/categoryControllers")
+const subCategoryControllers = require("../controllers/subCategoryControllers")
 const passport = require("../config/passport");
 const {uploadShoe, getShoes, modifyShoe, deleteShoe} = shoeControllers
 const {createCategory, listCategory, readCategory, updateCategory, removeCategory} = categoryControllers
+const {createSubCategory, listSubCategory, readSubCategory, updateSubCategory, removeSubCategory} = subCategoryControllers
 
 // Rutas para el controlador de zapatos
 
@@ -43,6 +45,18 @@ Router.route("/category/:slug")
 .get(readCategory)
 .put(updateCategory)
 .delete(removeCategory)
+
+// Sub Category
+Router.route("/subcategory")
+.post(createSubCategory)
+
+Router.route("/subcategories")
+.get(listSubCategory)
+
+Router.route("/subcategory/:slug")
+.get(readSubCategory)
+.put(updateSubCategory)
+.delete(removeSubCategory)
 
 
 
