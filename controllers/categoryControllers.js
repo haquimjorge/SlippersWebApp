@@ -45,5 +45,3 @@ const categoryControllers = {
 };
 
 module.exports = categoryControllers;
-
-

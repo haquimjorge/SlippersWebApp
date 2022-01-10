@@ -3,8 +3,10 @@ const Router = express.Router();
 const validator = require("../config/validator")
 const shoeControllers = require("../controllers/shoeControllers");
 const userControllers = require("../controllers/userControllers");
+const categoryControllers = require("../controllers/categoryControllers")
 const passport = require("../config/passport");
 const {uploadShoe, getShoes, modifyShoe, deleteShoe} = shoeControllers
+const {createCategory, listCategory, readCategory, updateCategory, removeCategory} = categoryControllers
 
 // Rutas para el controlador de zapatos
 
@@ -41,5 +43,7 @@ Router.route("/category/:slug")
 .get(readCategory)
 .put(updateCategory)
 .delete(removeCategory)
+
+
 
 module.exports = Router;
