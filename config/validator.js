@@ -49,10 +49,13 @@ const validator = (req, res, next) => {
     country: joi.required(),
     googleUser: joi.boolean(),
   });
-  const validation = schema.validate(req.body, { abortEarly: false });
+  const validation = schema.validate(req.body, {
+    abortEarly: false
+  });
   let passwordValidation = passwordComplex(complexOptions).validate(
-    req.body.password,
-    { abortEarly: false }
+    req.body.password, {
+    abortEarly: false
+  }
   );
   if (validation.error) {
     return res.json({
