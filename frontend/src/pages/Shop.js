@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import Menu from "../components/Menu";
 import Input from "../components/Input";
 import Footer from "../components/Footer";
 import MainShop from "../components/MainShop";
@@ -7,7 +7,7 @@ import MainShop from "../components/MainShop";
 const Shop = () => {
   return (
     <>
-      <Navbar />
+      <Menu />
       <Input />
       <MainShop />
       <Footer />

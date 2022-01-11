@@ -6,6 +6,7 @@ function Navbar() {
           <div className="logo-menu">
             <img src="./assets/logo3.png" />
           </div>
+
           <li>
             <a className="botones-menu" href="#">
               Home
@@ -22,6 +23,7 @@ function Navbar() {
             </a>
           </li>
         </ul>
+
         <a type="button" href="#">
           <img
             className="carrito"
