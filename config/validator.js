@@ -14,11 +14,9 @@ const validator = (req, res, next) => {
       .string()
       .required()
       .trim()
-      .min(3)
       .max(30)
       .pattern(new RegExp("[A-Za-z]"))
       .messages({
-        "string.min": "Name must contain at least 3 letters",
         "string.max": "Name must not exceed 15 letters",
         "string.empty": "Name cannot be empty",
         "string.pattern.base": "Name can only contain letters",
@@ -27,16 +25,14 @@ const validator = (req, res, next) => {
       .string()
       .required()
       .trim()
-      .min(3)
       .max(35)
       .pattern(new RegExp("[A-Za-z]"))
       .messages({
-        "string.min": "Last name must contain at least 3 letters",
         "string.max": "Last name must not exceed 15 letters",
         "string.empty": "Last name cannot be empty",
         "string.pattern.base": "Last name can only contain letters",
       }),
-    email: joi.string().max(30).min(6).required().trim().email().messages({
+    email: joi.string().max(40).min(5).required().trim().email().messages({
       "string.email": "Please provide a valid email address",
       "string.empty": "Email cannot be empty",
     }),
@@ -46,7 +42,7 @@ const validator = (req, res, next) => {
       "string.empty": "Password cannot be empty",
     }),
     image: joi.required(),
-    country: joi.required(),
+    gender:joi.string(),
     googleUser: joi.boolean(),
   });
   const validation = schema.validate(req.body, {

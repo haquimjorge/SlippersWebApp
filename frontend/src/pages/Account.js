@@ -1,18 +1,17 @@
 import React from "react";
 import Menu from "../components/Menu";
 import Footer from "../components/Footer";
-import MainContacts from "../components/MainContacts";
 
-const Contacts = () => {
+const Account = () => {
   return (
     <>
       <div className="menu-contacts">
         <Menu />
-        <MainContacts />
+        <p>mi cuenta</p>
       </div>
       <Footer />
     </>
   );
 };
 
-export default Contacts;
+export default Account;

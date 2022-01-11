@@ -1,39 +1,48 @@
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+
 function Footer() {
   return (
     <>
-      <div className="container-menu-footer">
-        <ul className="menu">
-          <li>
-            <a className="botones-menu" href="#">
+      <Navbar className="container-menu-footer" expand="lg">
+        <Container>
+          <Nav className="m-auto">
+            <Nav.Link
+              className="botones-menu text-light text-center"
+              href="#home"
+            >
               Home
-            </a>
-          </li>
-          <li>
-            <a className="botones-menu" href="#">
-              Shopp
-            </a>
-          </li>
-          <li>
-            <a className="botones-menu" href="#">
+            </Nav.Link>
+            <Nav.Link
+              className="botones-menu text-light text-center"
+              href="#link"
+            >
+              Shop
+            </Nav.Link>
+            <Nav.Link
+              className="botones-menu text-light text-center"
+              href="#link"
+            >
               Contacts
-            </a>
-          </li>
-        </ul>
-      </div>
+            </Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
       <div className="contenedor-redes">
         <div className="iconos-redes">
-          <a href="#" className="iconoItem-redes">
+          <div className="iconoItem-redes">
             <img src="./assets/facebook.png" />
-          </a>
-          <a href="#" className="iconoItem-redes">
+          </div>
+          <div className="iconoItem-redes">
             <img src="./assets/instagram.png" />
-          </a>
-          <a href="#" className="logo-footer">
+          </div>
+          <div className="logo-footer">
             <img src="./assets/logo3.png" />
-          </a>
-          <a href="#" className="iconoItem-redes">
+          </div>
+          <div className="iconoItem-redes">
             <img src="./assets/twi.png" />
-          </a>
+          </div>
           <a href="mailto:Slippers@outlook.com" className="iconoItem-redes">
             <img src="./assets/mail.png" />
           </a>

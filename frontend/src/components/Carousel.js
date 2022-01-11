@@ -5,14 +5,14 @@ import "../../node_modules/swiper/modules/effect-coverflow/effect-coverflow.min.
 import "../../node_modules/swiper/modules/navigation/navigation.min.css";
 import "../../node_modules/swiper/modules/pagination/pagination.min.css";
 import "../styles.css";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import shoeActions from "../redux/actions/shoeActions";
 import SwiperCore, {
   EffectCoverflow,
   Pagination,
-  Navigation
+  Navigation,
 } from "swiper/core";
-import Logo from "../assets/logo2.png"
+import Logo from "../assets/logo2.png";
 // import Img1 from "../assets/img1.jpg";
 // import Img2 from "../assets/img2.jpg";
 // import Img3 from "../assets/img3.jpg";
@@ -23,16 +23,14 @@ import Logo from "../assets/logo2.png"
 SwiperCore.use([EffectCoverflow, Pagination, Navigation]);
 
 function Carousel(props) {
-
-  const { arrayShoes } = props
+  const { arrayShoes } = props;
 
   useEffect(() => {
     props.arrayShoes();
   }, [arrayShoes]);
 
-
   return (
-    <div className="container">
+    <div className="container-carousel">
       <div className="title_wrapper">
         <div className="title_">
           <span>New</span>Models
@@ -49,10 +47,10 @@ function Carousel(props) {
           stretch: 0,
           depth: 100,
           modifier: 1,
-          slideShadows: true
+          slideShadows: true,
         }}
         pagination={{
-          clickable: true
+          clickable: true,
         }}
         className="mySwiper"
       >
@@ -83,13 +81,12 @@ function Carousel(props) {
 
 const mapStateToProps = (state) => {
   return {
-    allShoes: state.shoeReducer.shoes
-  }
-}
+    allShoes: state.shoeReducer.shoes,
+  };
+};
 
 const mapDispatchToProps = {
-  arrayShoes: shoeActions.getShoes
+  arrayShoes: shoeActions.getShoes,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Carousel);
-
