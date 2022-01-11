@@ -26,7 +26,6 @@ const Shop = (props) => {
   return (
     <>
       <Menu />
-      {/*<Input />*/}
       <div className="input-contenedor-home">
         <label htmlFor="search">Search :</label>
         <input
@@ -39,8 +38,6 @@ const Shop = (props) => {
         />
         <button type="submit">Ok</button>
       </div>
-
-      <Input />
       <MainShop />
       <Footer />
     </>

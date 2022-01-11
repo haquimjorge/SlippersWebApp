@@ -41,6 +41,7 @@ ul {
 .botones-menu {
   text-shadow: 1px 1px 1px gold;
   font-size: 20px;
+  text-decoration: none;
 }
 
 .hamburguesa {
@@ -51,13 +52,14 @@ ul {
 .carrito img {
   object-fit: cover;
   width: 35px;
+  /* margin-left: 20px; */
 }
 
 .usuario img {
   object-fit: cover;
   border-radius: 20%;
   box-shadow: 2px 2px 4px gold;
-  width: 40px;
+  width: 30px;
   opacity: 85%;
 }
 
@@ -269,13 +271,19 @@ main {
   font-size: 15px;
 }
 
+/* SIGN */
+
+.fondo-menu-sign {
+  background-color: black;
+}
+
 .sign-logo {
   width: 15rem;
   height: 15rem;
 }
 
 .signin-container {
-  background-image: linear-gradient(to bottom, #2e2e2e, #0c0c0c);
+  background-image: linear-gradient(to bottom, #181818, #0c0c0c);
 }
 
 .sign-here {
@@ -283,10 +291,12 @@ main {
   font-size: 18px;
   transition: 0.1s;
 }
+
 .sign-here:hover {
   color: #7e671a;
   transition: 0.1s;
 }
+
 .sign-button {
   transition: 0.1s;
   box-shadow: inset 0px 34px 0px -15px #d1b46b;
@@ -327,7 +337,7 @@ main {
   text-decoration: none !important;
 }
 .user-icon {
-  width: 2rem;
+  width: 3rem;
   border-radius: 20px;
 }
 
@@ -383,4 +393,24 @@ main {
   .sign-radio-container {
     flex-direction: column;
   }
+}
+
+/* DROPDOWN USER */
+
+.contenedor-dropdown {
+  text-align: center;
+  background-color: rgb(0, 0, 0);
+  padding: 10%;
+  margin-top: -8px;
+  margin-bottom: -8px;
+}
+
+.contenedor-dropdown .dropdown-item {
+  color: gold;
+}
+
+.contenedor-dropdown .dropdown-item:hover {
+  background-color: rgb(0, 0, 0);
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px gold;
 }
