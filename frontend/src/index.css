@@ -396,9 +396,16 @@ main {
   }
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 920px) {
   .sign-radio-container {
     flex-direction: column;
+  }
+  .sign-input-imageurl{
+      width: 100% !important;
+  }
+  .signup-radio-container{
+      display: flex !important;
+      justify-content: space-around !important;
   }
 }
 

@@ -41,7 +41,7 @@ const RadioInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <div className="d-flex flex-column w-100 justify-content-center">
-      <div className=" d-flex justify-content-around align-items-center">
+      <div className=" d-flex justify-content-around align-items-center  signup-radio-container">
         <h4 className="ps-3 m-0 w-100 text-light ">Gender</h4>
         <div className="d-flex justify-content-around w-100 me-2">
           <label className=" text-center p-2 border text-light mb-3 d-flex flex-column w-100">
@@ -215,7 +215,7 @@ const SignUp = (props) => {
             <div className="d-flex sign-radio-container">
               <RadioInput name="gender" />
               <StringInput
-                className="col-6"
+                className="col-6 sign-input-imageurl"
                 label="Image Url"
                 name="image"
                 type="text"
