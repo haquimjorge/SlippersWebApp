@@ -10,11 +10,13 @@ import {
 import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import CategoryForm from "../../../components/CategoryForm";
+import LocalSearch from "../../../components/LocalSearch";
 
 const CategoryCreate = () => {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
     loadCategories();
@@ -62,6 +64,9 @@ const CategoryCreate = () => {
     }
   };
 
+  const searched = (keyword) => (category) =>
+    category.name.toLowerCase().includes(keyword);
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -79,6 +84,7 @@ const CategoryCreate = () => {
             name={name}
             setName={setName}
           />
+
           <ToastContainer
             position="bottom-center"
             autoClose={5000}
@@ -90,8 +96,10 @@ const CategoryCreate = () => {
             draggable
             pauseOnHover
           />
+          <LocalSearch keyword={keyword} setKeyword={setKeyword} />
           <hr />
-          {categories.map((category) => (
+          <h4>List of Categories</h4>
+          {categories.filter(searched(keyword)).map((category) => (
             <div className="alert alert-secondary" key={category._id}>
               {category.name}{" "}
               <span
