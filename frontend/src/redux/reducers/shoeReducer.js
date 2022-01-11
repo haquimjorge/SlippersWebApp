@@ -1,5 +1,6 @@
 const initialState = {
-    shoes: null
+    shoes: null,
+    filteredShoes: null
 }
 
 const shoeReducer = (state = initialState, action) => {
@@ -8,6 +9,11 @@ const shoeReducer = (state = initialState, action) => {
             return {
                 ...state,
                 shoes: action.payload,
+            }
+        case "filterShoes":
+            return {
+                ...state,
+                filteredShoes:action.payload
             }
         default:
             return state;
