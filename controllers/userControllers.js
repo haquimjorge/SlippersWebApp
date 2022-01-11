@@ -1,6 +1,40 @@
 const User = require("../models/User");
 const bcryptjs =require("bcryptjs") //encripta y desencripta
 const jwt = require('jsonwebtoken'); //crea y valida el token
+const nodemailer = require("nodemailer");
+var crypto = require("crypto");
+
+const sendEmail = async(email,uniqueString)=>{
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port:'465',
+        secure: true,
+        auth:{
+            user: 'SlippersWebApp@gmail.com',
+            pass: `${process.env.MAIL_PASS}`
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    })
+    let sender = 'SlippersWebApp@gmail.com'
+    let mailOptions = {
+        from : sender,
+        to:email,
+        subject: "Slippers - Please verify your account",
+        html: `
+        <div>
+            <img style="display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 15rem;
+            height:15rem;" src='https://i.imgur.com/NifPrJC.png' alt='logo slippers'/>
+            <h2 style="text-align:center;  font-size: 1.5rem;">Thanks for registering with us!</h2>
+            <p style="text-align:center; font-size: 1.2rem;">Please, follow <a href="http://localhost:3000/verify/${uniqueString}">this</a> link to verify your account</p>
+        </div>`
+    }
+    await transporter.sendMail(mailOptions)
+}
 
 const userControllers = {
   addToFav: async (req, res) => {
@@ -74,16 +108,18 @@ const userControllers = {
         res.json({success:false, error:"Email already registered", response: null}) //si el usuario ya existe
       }else{
         const passwordHashed = bcryptjs.hashSync(password,10) //salt = string o num. 10 x defecto. num de pasos para encriptar 
+        var uniqueString = crypto.randomBytes(15).toString('hex')
         const user = await new User( //creamos un nuevo usuario
         {name, 
           lastName, 
           email, 
           password: passwordHashed, 
           image,
-          gender
+          gender,
+          uniqueString
         }).save()
-        const token = jwt.sign({user}, process.env.SECRET_KEY) //creamos el token
-        res.json({success:true, response: user, error: null, token:token}) //si el usuario no existe
+        await sendEmail(email,uniqueString)
+        res.json({success:true, message:"Verification sent. Please check your email", response:null,error:null})
       }
 
       }catch(error){ //si hay un error
@@ -105,6 +141,13 @@ const userControllers = {
           let user = await User.findOne({ email });
     
           if (user) {
+            if(!user.emailVerified){
+                return res.json({
+                    success: false,
+                    response: null,
+                    error: "Please verify your email",
+                  });
+              }
             let samePassword = user
               ? bcryptjs.compareSync(password, user.password)
               : false;
@@ -147,7 +190,29 @@ const userControllers = {
         } catch (e) {
         res.json({ success: false, response: null, error: e });
         }
+    },
+    verifyEmail : async(req,res)=>{
+        const {uniqueString} = req.params
+        const user = await User.findOne({uniqueString})
+        if(user){
+            user.emailVerified=true
+            await user.save()
+          const token = jwt.sign({ user }, process.env.SECRET_KEY);
+          res.json({
+            success: true,
+            response: user,
+            error: null,
+            token: token,
+            message: "¡Account verification successfully! Logging in with your account automatically"
+          });
+        }else if(!user){
+            res.json({success:false,response:null,error:'Your email could not be verified', message:null})
+        }else{
+            res.json({success:false,response:null,error:'Your email could not be verified', message:null})
+        }
+  
     }
+    
 };
 
 module.exports = userControllers

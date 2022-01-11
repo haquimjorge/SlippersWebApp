@@ -69,6 +69,19 @@ const userActions ={
             return { error: "Unauthorized user, try login again" };
           }
         };
+      },
+      verifyEmail : (uniqueString)=>{
+          return async (dispatch)=>{
+              let response = await axios.get("http://localhost:4000/api/verify/"+uniqueString)
+              if (response.data.response) {
+                localStorage.setItem("token", response.data.token);
+              }
+              dispatch({
+                type: "SAVE_USER",
+                payload: {info: response.data},
+              });
+    
+          }
       }
 }
 

@@ -12,6 +12,11 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminNav from "./components/AdminNav"
 import CategoryCreate from "./pages/admin/category/CategoryCreate";
 import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
+import Verify from './pages/Verify'
+import withRouter from "./utilities/withRouter";
+
+
+const VerifyDinamic = withRouter(Verify)
 
 function App(props) {
     const { authUser } = props;
@@ -37,6 +42,7 @@ function App(props) {
         : <Route path="/account" element={<Account />}/>}    
         <Route path="/shop" element={<Shop />} exact />  
         <Route path="/contacts" element={<Contacts />} exact />
+        <Route path="/verify/:uniqueString" element={<VerifyDinamic />}/>
         <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>
