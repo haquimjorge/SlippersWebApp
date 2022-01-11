@@ -18,7 +18,7 @@ const categoryActions = {
     },
     updateCategory = async (slug, category) => {
         return await axios.put(
-            `http://localhost:4000/api/category/${slug}`
+            `http://localhost:4000/api/category/${slug}`, category
         )
     },
     createCategory = async (category) => {
