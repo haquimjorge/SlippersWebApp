@@ -8,6 +8,10 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import userActions from "./redux/actions/userActions";
 import Account from "./pages/Account"
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminNav from "./components/AdminNav"
+import CategoryCreate from "./pages/admin/category/CategoryCreate";
+import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
 import Verify from './pages/Verify'
 import withRouter from "./utilities/withRouter";
 
@@ -26,6 +30,9 @@ function App(props) {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} exact />
+        <Route path="/admin" element={<AdminNav />} exact />
+        <Route path="/admin/category" element={<CategoryCreate/>} exact />
+        <Route path="/admin/category/:slug" element={<CategoryUpdate/>} exact />
         {!token 
         ? <>
         <Route path="/signin" element={<SignIn />} exact /> 
