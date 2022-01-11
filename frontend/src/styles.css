@@ -110,3 +110,11 @@
     height: 5px;
     border-radius: 5px;
   }
+
+  .card-shoe:hover{
+    box-shadow: 0 0 12px #ffa845;
+    transition: .3s;
+  }
+
+
+  
