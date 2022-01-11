@@ -13,11 +13,10 @@ import YupPassword from "yup-password";
 import { Formik, Form, useField } from "formik";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
-
 import { useFormik, Field } from "formik";
-
+import Menu from "../components/Menu";
 import { Link } from "react-router-dom";
-import SignInPic from "../assets/sign-in.jpg"
+import SignInPic from "../assets/sign-in.jpg";
 import userActions from "../redux/actions/userActions";
 
 const StringInput = ({ label, ...props }) => {
@@ -31,7 +30,9 @@ const StringInput = ({ label, ...props }) => {
 
       {meta.touched && meta.error ? (
         <p className="text-danger mb-1">{meta.error}</p>
-      ) : <p className="text-danger mb-1 invisible">a</p>}
+      ) : (
+        <p className="text-danger mb-1 invisible">a</p>
+      )}
     </div>
   );
 };
@@ -55,14 +56,15 @@ const RadioInput = ({ label, ...props }) => {
       </div>
       {meta.touched && meta.error ? (
         <div className="error text-danger text-start">{meta.error}</div>
-      ) : <p className="text-danger mb-1 invisible">a</p>}
+      ) : (
+        <p className="text-danger mb-1 invisible">a</p>
+      )}
     </div>
   );
 };
 
-
 const SignUp = (props) => {
-    console.log(props.error)
+  console.log(props.error);
   YupPassword(Yup);
   const [showPass, setShowPass] = useState(false);
   const togglePassword = (e) => {
@@ -95,7 +97,9 @@ const SignUp = (props) => {
 
   return (
     <>
-
+<div className="fondo-menu-sign">
+        <Menu />
+      </div>
     <Container fluid className="d-flex p-0">
     
 
@@ -286,4 +290,4 @@ const mapStateToProps = (state) => {
   };
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

@@ -41,6 +41,7 @@ ul {
 .botones-menu {
   text-shadow: 1px 1px 1px gold;
   font-size: 20px;
+  text-decoration: none;
 }
 
 .hamburguesa {
@@ -51,13 +52,14 @@ ul {
 .carrito img {
   object-fit: cover;
   width: 35px;
+  /* margin-left: 20px; */
 }
 
 .usuario img {
   object-fit: cover;
   border-radius: 20%;
   box-shadow: 2px 2px 4px gold;
-  width: 40px;
+  width: 30px;
   opacity: 85%;
 }
 
@@ -269,23 +271,30 @@ main {
   font-size: 15px;
 }
 
-.sign-logo{
-    width: 15rem;
-    height: 15rem;
+/* SIGN */
+
+.fondo-menu-sign {
+  background-color: black;
 }
 
-.signin-container{
-    background-image: linear-gradient(to bottom, #2e2e2e, #0c0c0c);
+.sign-logo {
+  width: 15rem;
+  height: 15rem;
 }
 
-.sign-here{
-    color: #e9ca66;
-    font-size: 18px;
-    transition: .1s;
+.signin-container {
+  background-image: linear-gradient(to bottom, #181818, #0c0c0c);
 }
-.sign-here:hover{
-    color: #7e671a;
-    transition: .1s;
+
+.sign-here {
+  color: #e9ca66;
+  font-size: 18px;
+  transition: 0.1s;
+}
+
+.sign-here:hover {
+  color: #7e671a;
+  transition: 0.1s;
 }
 
 .sign-verify-message{
@@ -296,103 +305,119 @@ main {
   }
   
 .sign-button {
-    transition: .1s;
-	box-shadow:inset 0px 34px 0px -15px #d1b46b;
-	background:linear-gradient(to bottom, #d2aa44 5%, #c79a30 100%);
-	background-color:#d2aa44;
-	border:1px solid #241d13;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-weight:bold;
-	padding:9px 23px;
-	text-decoration:none;
-	text-shadow:0px -1px 0px #7a2a1d;
+  transition: 0.1s;
+  box-shadow: inset 0px 34px 0px -15px #d1b46b;
+  background: linear-gradient(to bottom, #d2aa44 5%, #c79a30 100%);
+  background-color: #d2aa44;
+  border: 1px solid #241d13;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 9px 23px;
+  text-decoration: none;
+  text-shadow: 0px -1px 0px #7a2a1d;
 }
 .sign-button:hover {
-    transition: .1s;
-	background:linear-gradient(to bottom, #d4a327 5%, #c79216 100%);
-	box-shadow:inset 0px 34px 0px -15px #d1a841;
-    text-shadow:0px 1px 0px #7a2a1d;
+  transition: 0.1s;
+  background: linear-gradient(to bottom, #d4a327 5%, #c79216 100%);
+  box-shadow: inset 0px 34px 0px -15px #d1a841;
+  text-shadow: 0px 1px 0px #7a2a1d;
 }
 .sign-button:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
 .form-check-input:checked {
-    background-color: #b4831a;
-    border-color: #b4831a;
+  background-color: #b4831a;
+  border-color: #b4831a;
 }
 
-
-.sign-in-portrait{
-    background-position: center;
+.sign-in-portrait {
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: inset 0 0 0 2000px #00000091;
 }
 
-.sign-here-link{
-    text-decoration: none !important;
+.sign-here-link {
+  text-decoration: none !important;
 }
 .user-icon {
-    width: 2rem;
-    border-radius: 20px;
-  }
-
-  .dropdown-toggle {
-    background-color: #ba090900 !important;
-    border-color: #ba090900;
-  }
-  .btn-primary {
-    color: #b4831a;
-  }
-  .btn-primary:hover {
-    color: #000000;
-    border-color: #ba090900;
-  }
-  .btn-primary:focus {
-    color: #000000;
-    border-color: #ba090900;
-  }
-  .btn-primary:active:focus {
-    color: #000000;
-    border-color: #ba090900;
-  }
-  .btn-check:focus + .btn-primary,
-  .btn-primary:focus {
-    border-color: #ba090900;
-    box-shadow: 0 0 0 0.25rem #ba090900;
-  }
-  .btn-check:active + .btn-primary:focus,
-  .btn-check:checked + .btn-primary:focus,
-  .btn-primary.active:focus,
-  .btn-primary:active:focus,
-  .show > .btn-primary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.25rem #ba090900;
-  }
-  .btn-check:active + .btn-primary,
-  .btn-check:checked + .btn-primary,
-  .btn-primary.active,
-  .btn-primary:active,
-  .show > .btn-primary.dropdown-toggle {
-    border-color: #ba090900;
-  }
-
-@media (max-width:767px){
-    .sign-in-portrait{
-        display: none !important;
-
-    }
-    .signin-container{
-        background-color: blue !important;
-    }
-
+  width: 3rem;
+  border-radius: 20px;
 }
 
-@media (max-width:1500px){
-    .sign-radio-container{
-        flex-direction: column;
-    }
+.dropdown-toggle {
+  background-color: #ba090900 !important;
+  border-color: #ba090900;
+}
+.btn-primary {
+  color: #b4831a;
+}
+.btn-primary:hover {
+  color: #000000;
+  border-color: #ba090900;
+}
+.btn-primary:focus {
+  color: #000000;
+  border-color: #ba090900;
+}
+.btn-primary:active:focus {
+  color: #000000;
+  border-color: #ba090900;
+}
+.btn-check:focus + .btn-primary,
+.btn-primary:focus {
+  border-color: #ba090900;
+  box-shadow: 0 0 0 0.25rem #ba090900;
+}
+.btn-check:active + .btn-primary:focus,
+.btn-check:checked + .btn-primary:focus,
+.btn-primary.active:focus,
+.btn-primary:active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.25rem #ba090900;
+}
+.btn-check:active + .btn-primary,
+.btn-check:checked + .btn-primary,
+.btn-primary.active,
+.btn-primary:active,
+.show > .btn-primary.dropdown-toggle {
+  border-color: #ba090900;
+}
 
+@media (max-width: 767px) {
+  .sign-in-portrait {
+    display: none !important;
+  }
+  .signin-container {
+    background-color: blue !important;
+  }
+}
+
+@media (max-width: 1500px) {
+  .sign-radio-container {
+    flex-direction: column;
+  }
+}
+
+/* DROPDOWN USER */
+
+.contenedor-dropdown {
+  text-align: center;
+  background-color: rgb(0, 0, 0);
+  padding: 10%;
+  margin-top: -8px;
+  margin-bottom: -8px;
+}
+
+.contenedor-dropdown .dropdown-item {
+  color: gold;
+}
+
+.contenedor-dropdown .dropdown-item:hover {
+  background-color: rgb(0, 0, 0);
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px gold;
 }

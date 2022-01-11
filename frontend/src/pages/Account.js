@@ -1,13 +1,12 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import Menu from "../components/Menu";
 import Footer from "../components/Footer";
-
 
 const Account = () => {
   return (
     <>
       <div className="menu-contacts">
-        <Navbar />
+        <Menu />
         <p>mi cuenta</p>
       </div>
       <Footer />
