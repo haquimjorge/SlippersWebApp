@@ -95,6 +95,13 @@
   .title_wrapper .title_ {
     font-size: 7vw;
   }
+  
+  .swiper-pagination-bullet {
+    width: 25px;
+    height: 5px;
+    border-radius: 5px;
+  }
+  
 }
 
 .title_wrapper .title_ span {
@@ -109,4 +116,9 @@
   width: 25px;
   height: 5px;
   border-radius: 5px;
+}
+
+.card-shoe:hover{
+  box-shadow: 0 0 12px #ffa845;
+  transition: .3s;
 }
