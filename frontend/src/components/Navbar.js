@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import User from "../assets/user.png";
 import Image from "react-bootstrap/Image";
 
+
 function Navbar(props) {
     const token = localStorage.getItem('token')
     let imagenUsuario = (
@@ -38,7 +39,6 @@ function Navbar(props) {
             </a>
           </li>
         </ul>
-<<<<<<< HEAD
         <DropdownButton id="dropdown-basic-button" title={imagenUsuario}>
             {props.user ? (
                 <>
@@ -60,9 +60,7 @@ function Navbar(props) {
             </>
             )}
           </DropdownButton>
-=======
 
->>>>>>> Sulamita
         <a type="button" href="#">
           <img
             className="carrito"
