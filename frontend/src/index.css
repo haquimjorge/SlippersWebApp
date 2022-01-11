@@ -291,10 +291,12 @@ main {
   font-size: 18px;
   transition: 0.1s;
 }
+
 .sign-here:hover {
   color: #7e671a;
   transition: 0.1s;
 }
+
 .sign-button {
   transition: 0.1s;
   box-shadow: inset 0px 34px 0px -15px #d1b46b;
