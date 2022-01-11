@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Carrito from "./Carrito";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
+import { connect } from "react-redux";
+import userActions from "../redux/actions/userActions";
+import Image from "react-bootstrap/Image";
 
 function Menu(props) {
   let imagenUsuario = (

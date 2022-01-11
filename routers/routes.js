@@ -7,7 +7,7 @@ const categoryControllers = require("../controllers/categoryControllers")
 const subCategoryControllers = require("../controllers/subCategoryControllers")
 const passport = require("../config/passport");
 const {uploadShoe, getShoes, modifyShoe, deleteShoe} = shoeControllers
-const {googleLogin,signUpUser, signInUser,authUser} = userControllers
+const {googleLogin,signUpUser, signInUser,authUser, verifyEmail} = userControllers
 const {createCategory, listCategory, readCategory, updateCategory, removeCategory} = categoryControllers
 const {createSubCategory, listSubCategory, readSubCategory, updateSubCategory, removeSubCategory} = subCategoryControllers
 
@@ -32,9 +32,11 @@ Router.route("/auth/signup")
 Router.route("/auth/signin")
 .post(signInUser) 
 
+Router.route("/verify/:uniqueString").get(verifyEmail);
+
+//chequea el token y si esta todo bien pasa a la accion: loguearse.
 Router.route("/auth")
 .get(passport.authenticate("jwt", {session: false}), authUser)
-//chequea el token y si esta todo bien pasa a la accion: loguearse.
 
 // Category
 Router.route("/category")

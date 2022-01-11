@@ -268,7 +268,6 @@ main {
   font-weight: bold;
   font-size: 15px;
 }
-<<<<<<< HEAD
 
 .sign-logo{
     width: 15rem;
@@ -288,6 +287,14 @@ main {
     color: #7e671a;
     transition: .1s;
 }
+
+.sign-verify-message{
+    height: 40rem;
+}
+.text-shadow-slipper {
+    text-shadow: 2px 2px 5px black;
+  }
+  
 .sign-button {
     transition: .1s;
 	box-shadow:inset 0px 34px 0px -15px #d1b46b;
@@ -389,5 +396,3 @@ main {
     }
 
 }
-=======
->>>>>>> Sulamita

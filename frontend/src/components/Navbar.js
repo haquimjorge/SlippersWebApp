@@ -38,7 +38,6 @@ function Navbar(props) {
             </a>
           </li>
         </ul>
-<<<<<<< HEAD
         <DropdownButton id="dropdown-basic-button" title={imagenUsuario}>
             {props.user ? (
                 <>
@@ -60,9 +59,7 @@ function Navbar(props) {
             </>
             )}
           </DropdownButton>
-=======
 
->>>>>>> Sulamita
         <a type="button" href="#">
           <img
             className="carrito"

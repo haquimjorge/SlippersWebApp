@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import {GoogleLogin} from 'react-google-login'
-import Navbar from "../components/Navbar"
 import * as Yup from "yup";
 import { Formik, Form, useField } from "formik";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
@@ -63,7 +62,6 @@ const SignIn = (props) => {
 
   return (
     <>
-    <Navbar />
     <Container fluid className="d-flex p-0" >
         <Container fluid className="col-8 col-md-6 col-lg-6 col-xl-6 col-xxl-8 bg-info sign-in-portrait" style={{
           backgroundImage: `url(${SignInPic})`,

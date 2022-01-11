@@ -8,6 +8,11 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import userActions from "./redux/actions/userActions";
 import Account from "./pages/Account"
+import Verify from './pages/Verify'
+import withRouter from "./utilities/withRouter";
+
+
+const VerifyDinamic = withRouter(Verify)
 
 function App(props) {
     const { authUser } = props;
@@ -30,6 +35,7 @@ function App(props) {
         : <Route path="/account" element={<Account />}/>}    
         <Route path="/shop" element={<Shop />} exact />  
         <Route path="/contacts" element={<Contacts />} exact />
+        <Route path="/verify/:uniqueString" element={<VerifyDinamic />}/>
         <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>
