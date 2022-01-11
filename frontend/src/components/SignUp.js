@@ -15,10 +15,10 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 
 import { useFormik, Field } from "formik";
-import Navbar from "../components/Navbar"
+import Menu from "../components/Menu";
 
 import { Link } from "react-router-dom";
-import SignInPic from "../assets/sign-in.jpg"
+import SignInPic from "../assets/sign-in.jpg";
 import userActions from "../redux/actions/userActions";
 
 const StringInput = ({ label, ...props }) => {
@@ -32,7 +32,9 @@ const StringInput = ({ label, ...props }) => {
 
       {meta.touched && meta.error ? (
         <p className="text-danger mb-1">{meta.error}</p>
-      ) : <p className="text-danger mb-1 invisible">a</p>}
+      ) : (
+        <p className="text-danger mb-1 invisible">a</p>
+      )}
     </div>
   );
 };
@@ -56,14 +58,15 @@ const RadioInput = ({ label, ...props }) => {
       </div>
       {meta.touched && meta.error ? (
         <div className="error text-danger text-start">{meta.error}</div>
-      ) : <p className="text-danger mb-1 invisible">a</p>}
+      ) : (
+        <p className="text-danger mb-1 invisible">a</p>
+      )}
     </div>
   );
 };
 
-
 const SignUp = (props) => {
-    console.log(props.error)
+  console.log(props.error);
   YupPassword(Yup);
   const [showPass, setShowPass] = useState(false);
   const togglePassword = (e) => {
@@ -96,171 +99,180 @@ const SignUp = (props) => {
 
   return (
     <>
-    <Navbar />
-    <Container fluid className="d-flex p-0">
-    
-
-    
-      <Container fluid className=" signin-container col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 ">
-        {props.message ? (
-          <div className="d-flex justify-content center flex-column align-items-center">
-            <p className="display-6 text-center">
-              Gracias por registrarte con nosotros, por favor verifica tu
-              bandeja de entrada.
-            </p>
-          </div>
-        ) : (
-          <>
-          <div className="d-flex justify-content-center">
-
-<img className="sign-logo" src="./assets/logo3.png" alt="Logo Slippers" />
-    </div>
-            <h2 className="registrate text-light">Register Here </h2>
-            <Formik
-              initialValues={{
-                name: "",
-                lastName: "",
-                email: "",
-                password: "",
-                image: "",
-                gender: "",
-              }}
-              validationSchema={Yup.object({
-                name: Yup.string()
-                  .max(30, "Can not exceed 15 characters")
-                  .trim()
-                  .matches(/^[aA-zZ\s]+$/, "Alphabet only")
-                  .required("Required"),
-                lastName: Yup.string()
-                  .max(35, "Can not exceed 20 characters")
-                  .matches(/^[aA-zZ\s]+$/, "Alphabet only")
-                  .trim()
-                  .required("Required"),
-                email: Yup.string()
-                  .email("Invalid email")
-                  .matches(/(\W|^)[\w.-]{0,25}.(com|cl|ar|col|pe|ven|br)(\W|$)/, "Invalid email")
-                  .min(5,"At least 5 characters")
-              .max(40, "Can not exceed 40 characters")
-                  .trim()
-                  .required("Required"),
-                password: Yup.string()
-                  .min(7, "At least 7 characters")
-                  .max(35, "Can not exceed 35 characters")
-                  .minLowercase(3, "At least 3 lowercase letter")
-                  .minUppercase(1, "At least 1 capital letter")
-                  .minNumbers(1, "At least 1 number")
-                  .minSymbols(1, "At least 1 symbol")
-                  .required("Required"),
-                image: Yup.string().required("Required"),
-                gender: Yup.string()
-                  .oneOf(["Male", "Female"], "Invalid gender")
-                  .required("Required"),
-              })}
-              onSubmit={(values, { setSubmitting }) => {
-                props.signUp(values)
-                setSubmitting(false);
-              }}
-            >
-              <Form>
-                <div className="d-flex gap-2">
-                  <StringInput
-                    label="Name"
-                    name="name"
-                    type="text"
-                    placeholder="kevin"
-                    className="w-100"
-                  />
-                  <StringInput
-                    label="Last Name"
-                    name="lastName"
-                    type="text"
-                    placeholder="kevin"
-                    className="w-100"
-                  />
-                </div>
-
-                <StringInput
-                  label="Email"
-                  name="email"
-                  type="email"
-                  placeholder="kevin"
+      <Menu />
+      <Container fluid className="d-flex p-0">
+        <Container
+          fluid
+          className=" signin-container col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 "
+        >
+          {props.message ? (
+            <div className="d-flex justify-content center flex-column align-items-center">
+              <p className="display-6 text-center">
+                Gracias por registrarte con nosotros, por favor verifica tu
+                bandeja de entrada.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="d-flex justify-content-center">
+                <img
+                  className="sign-logo"
+                  src="./assets/logo3.png"
+                  alt="Logo Slippers"
                 />
-                <div>
-                  <div>
-                    <input
-                      onClick={(e) => {
-                        togglePassword(e);
-                      }}
-                      className="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
+              </div>
+              <h2 className="registrate text-light">Register Here </h2>
+              <Formik
+                initialValues={{
+                  name: "",
+                  lastName: "",
+                  email: "",
+                  password: "",
+                  image: "",
+                  gender: "",
+                }}
+                validationSchema={Yup.object({
+                  name: Yup.string()
+                    .max(30, "Can not exceed 15 characters")
+                    .trim()
+                    .matches(/^[aA-zZ\s]+$/, "Alphabet only")
+                    .required("Required"),
+                  lastName: Yup.string()
+                    .max(35, "Can not exceed 20 characters")
+                    .matches(/^[aA-zZ\s]+$/, "Alphabet only")
+                    .trim()
+                    .required("Required"),
+                  email: Yup.string()
+                    .email("Invalid email")
+                    .matches(
+                      /(\W|^)[\w.-]{0,25}.(com|cl|ar|col|pe|ven|br)(\W|$)/,
+                      "Invalid email"
+                    )
+                    .min(5, "At least 5 characters")
+                    .max(40, "Can not exceed 40 characters")
+                    .trim()
+                    .required("Required"),
+                  password: Yup.string()
+                    .min(7, "At least 7 characters")
+                    .max(35, "Can not exceed 35 characters")
+                    .minLowercase(3, "At least 3 lowercase letter")
+                    .minUppercase(1, "At least 1 capital letter")
+                    .minNumbers(1, "At least 1 number")
+                    .minSymbols(1, "At least 1 symbol")
+                    .required("Required"),
+                  image: Yup.string().required("Required"),
+                  gender: Yup.string()
+                    .oneOf(["Male", "Female"], "Invalid gender")
+                    .required("Required"),
+                })}
+                onSubmit={(values, { setSubmitting }) => {
+                  props.signUp(values);
+                  setSubmitting(false);
+                }}
+              >
+                <Form>
+                  <div className="d-flex gap-2">
+                    <StringInput
+                      label="Name"
+                      name="name"
+                      type="text"
+                      placeholder="kevin"
+                      className="w-100"
                     />
-                    <label className="form-check-label text-white ms-1">
-                      Show Password
-                    </label>
+                    <StringInput
+                      label="Last Name"
+                      name="lastName"
+                      type="text"
+                      placeholder="kevin"
+                      className="w-100"
+                    />
                   </div>
 
                   <StringInput
-                    label="Password"
-                    name="password"
-                    type={showPass ? "text" : "password"}
+                    label="Email"
+                    name="email"
+                    type="email"
                     placeholder="kevin"
                   />
-                </div>
-                <div className="d-flex sign-radio-container">
-                  <RadioInput name="gender" />
-                  <StringInput
-                    className="col-6"
-                    label="Image Url"
-                    name="image"
-                    type="text"
-                    placeholder="kevin"
-                  />
-                </div>
+                  <div>
+                    <div>
+                      <input
+                        onClick={(e) => {
+                          togglePassword(e);
+                        }}
+                        className="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckDefault"
+                      />
+                      <label className="form-check-label text-white ms-1">
+                        Show Password
+                      </label>
+                    </div>
 
-                <div className="btn-container d-flex justify-content-center">
-                  <button className="text-light p-2 m-2 sign-button" type="submit">
-                    Sign Up
-                  </button>
-                </div>
-                {props.error ? (
-                  <div className="text-danger text-center">
-                    {props.error}
+                    <StringInput
+                      label="Password"
+                      name="password"
+                      type={showPass ? "text" : "password"}
+                      placeholder="kevin"
+                    />
                   </div>
-                ) : (
-                  ""
-                )}
-                <div className="d-flex justify-content-center flex-column align-items-center">
-                  <p className="text-center text-shadow text-light">
-                    Already registered? sign in{" "}
-                    <Link className="sign-here-link" to="/signin">
-                      {" "}
-                      <strong className="sign-here">here</strong>
-                    </Link>{" "}
-                  </p>
-                  <p className="text-white text-shadow google-text fw-bold">
-                    or Sign Up with Google
-                  </p>
-                  <GoogleLogin
-                    className="googleLogin"
-                    clientId="205491317030-kvfnncacikijvdksu4984jfjhr586hbf.apps.googleusercontent.com"
-                    buttonText="Sign Up with Google"
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
-                    cookiePolicy={"single_host_origin"}
-                  />
-                </div>
-              </Form>
-            </Formik>
-          </>
-        )}
-      
-      </Container>
-      <Container fluid className="col-8 col-md-6 col-lg-6 col-xl-6 col-xxl-8 bg-info sign-in-portrait" style={{
-          backgroundImage: `url(${SignInPic})`,
-        }}>
-            </Container>
+                  <div className="d-flex sign-radio-container">
+                    <RadioInput name="gender" />
+                    <StringInput
+                      className="col-6"
+                      label="Image Url"
+                      name="image"
+                      type="text"
+                      placeholder="kevin"
+                    />
+                  </div>
+
+                  <div className="btn-container d-flex justify-content-center">
+                    <button
+                      className="text-light p-2 m-2 sign-button"
+                      type="submit"
+                    >
+                      Sign Up
+                    </button>
+                  </div>
+                  {props.error ? (
+                    <div className="text-danger text-center">{props.error}</div>
+                  ) : (
+                    ""
+                  )}
+                  <div className="d-flex justify-content-center flex-column align-items-center">
+                    <p className="text-center text-shadow text-light">
+                      Already registered? sign in{" "}
+                      <Link className="sign-here-link" to="/signin">
+                        {" "}
+                        <strong className="sign-here">here</strong>
+                      </Link>{" "}
+                    </p>
+                    <p className="text-white text-shadow google-text fw-bold">
+                      or Sign Up with Google
+                    </p>
+                    <GoogleLogin
+                      className="googleLogin"
+                      clientId="205491317030-kvfnncacikijvdksu4984jfjhr586hbf.apps.googleusercontent.com"
+                      buttonText="Sign Up with Google"
+                      onSuccess={responseGoogle}
+                      onFailure={responseGoogle}
+                      cookiePolicy={"single_host_origin"}
+                    />
+                  </div>
+                </Form>
+              </Formik>
+            </>
+          )}
+        </Container>
+        <Container
+          fluid
+          className="col-8 col-md-6 col-lg-6 col-xl-6 col-xxl-8 bg-info sign-in-portrait"
+          style={{
+            backgroundImage: `url(${SignInPic})`,
+          }}
+        ></Container>
       </Container>
       <Footer />
     </>
@@ -268,17 +280,15 @@ const SignUp = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    return {
-      user: state.userReducer.user,
-      error: state.userReducer.error,
-      success: state.userReducer.success,
-    };
+  return {
+    user: state.userReducer.user,
+    error: state.userReducer.error,
+    success: state.userReducer.success,
   };
-  const mapDispatchToProps = {
-    googleLogin: userActions.googleLogin,
-    signUp : userActions.signUpUser
+};
+const mapDispatchToProps = {
+  googleLogin: userActions.googleLogin,
+  signUp: userActions.signUpUser,
+};
 
-  };
-
-
-export default connect(mapStateToProps,mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

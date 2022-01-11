@@ -3,13 +3,19 @@ import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Carrito from "./Carrito";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
+import { connect } from "react-redux";
+import userActions from "../redux/actions/userActions";
+import Usuario from "./Usuario";
+import Image from "react-bootstrap/Image";
+import "../index.css";
 
 function Menu(props) {
-  let imagenUsuario = (
-    <Image
-      className="usuario"
-      src={props.user ? props.user.image : "./assets/usuario1.png"}
-    ></Image>
+  let imagenUsuario = props.user ? (
+    <Image className="usuario" src={props.user.image}></Image>
+  ) : (
+    <Usuario />
   );
   return (
     <>
@@ -23,7 +29,7 @@ function Menu(props) {
             aria-controls="basic-navbar-nav"
           />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="m-auto">
+            <Nav className="d-flex justify-content-between w-25 m-auto">
               <Link className="botones-menu text-light text-center" to="/">
                 Home
               </Link>
@@ -37,30 +43,47 @@ function Menu(props) {
                 Contacts
               </Link>
             </Nav>
-            <DropdownButton id="dropdown-basic-button" title={imagenUsuario}>
-              {props.user ? (
-                <>
-                  <Dropdown.Item as={Link} to="/account">
-                    Account
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => props.logOut()}>
-                    Sign Out
-                  </Dropdown.Item>
-                </>
-              ) : (
-                <>
-                  <Dropdown.Item as={Link} to="/signin">
-                    Sign In
-                  </Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/signup">
-                    Sign Up
-                  </Dropdown.Item>
-                </>
-              )}
-            </DropdownButton>
-            <Link to="/cart" className="d-flex justify-content-center">
-              <Carrito />
-            </Link>
+            <div>
+              <Link to="/cart" className="d-flex justify-content-center">
+                <Carrito />
+              </Link>
+              <DropdownButton id="dropdown-basic-button" title={imagenUsuario}>
+                {props.user ? (
+                  <div>
+                    <Dropdown.Item
+                      className="text-light"
+                      as={Link}
+                      to="/account"
+                    >
+                      Account
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      className="dropdown-item"
+                      onClick={() => props.logOut()}
+                    >
+                      Sign Out
+                    </Dropdown.Item>
+                  </div>
+                ) : (
+                  <div className="contenedor-dropdown">
+                    <Dropdown.Item
+                      className="dropdown-item"
+                      as={Link}
+                      to="/signin"
+                    >
+                      Sign In
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      className="dropdown-item"
+                      as={Link}
+                      to="/signup"
+                    >
+                      Sign Up
+                    </Dropdown.Item>
+                  </div>
+                )}
+              </DropdownButton>
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
