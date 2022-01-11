@@ -6,8 +6,8 @@ const userSchema = new mongoose.Schema({
     email: { type: String, require: true },
     password:{ type: String, require: true },
     image:{ type: String, require: true },
-    rol:{ type: String, require: true, default:"Guest" }, // Guest o Admin o Subscriber
-    gender:{ type: String, require: true },
+    rol:{ type: String, default:"Guest" }, // Guest o Admin o Subscriber
+    gender:{ type: String, default:'Unisex' },
     favorites: { type: [String], default:[]},
     googleUser:{type:Boolean, default: false}
 })
