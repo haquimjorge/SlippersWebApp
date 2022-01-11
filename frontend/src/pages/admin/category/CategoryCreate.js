@@ -9,6 +9,7 @@ import {
 } from "../../../redux/actions/categoryActions";
 import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
+import CategoryForm from "../../../components/CategoryForm";
 
 const CategoryCreate = () => {
   const [name, setName] = useState("");
@@ -61,22 +62,6 @@ const CategoryCreate = () => {
     }
   };
 
-  const categoryForm = () => (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label>Name</label>
-        <input
-          type="text"
-          className="form-control"
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-          autoFocus
-          required
-        />
-        <button className="btn btn-outline-primary">Upload</button>
-      </div>
-    </form>
-  );
   return (
     <div className="container-fluid">
       <div className="row">
@@ -89,7 +74,11 @@ const CategoryCreate = () => {
           ) : (
             <h4>Create Category</h4>
           )}
-          {categoryForm()}
+          <CategoryForm
+            handleSubmit={handleSubmit}
+            name={name}
+            setName={setName}
+          />
           <ToastContainer
             position="bottom-center"
             autoClose={5000}
