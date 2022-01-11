@@ -13,9 +13,9 @@ import "../index.css";
 
 function Menu(props) {
   let imagenUsuario = props.user ? (
-    <Image className="usuario" src={props.user.image}></Image>
+    <Image className="user-icon" src={props.user.image}></Image>
   ) : (
-    <Usuario />
+    <Image className="user-icon" src="./assets/usuario1.png" />
   );
   return (
     <>
@@ -29,7 +29,7 @@ function Menu(props) {
             aria-controls="basic-navbar-nav"
           />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="d-flex justify-content-between w-25 m-auto">
+            <Nav className="d-flex justify-content-around w-50 m-auto align-items-center">
               <Link className="botones-menu text-light text-center" to="/">
                 Home
               </Link>
@@ -42,16 +42,16 @@ function Menu(props) {
               >
                 Contacts
               </Link>
-            </Nav>
-            <div>
-              <Link to="/cart" className="d-flex justify-content-center">
-                <Carrito />
-              </Link>
-              <DropdownButton id="dropdown-basic-button" title={imagenUsuario}>
+
+              <DropdownButton
+                className=""
+                id="dropdown-basic-button"
+                title={imagenUsuario}
+              >
                 {props.user ? (
-                  <div>
+                  <div className="contenedor-dropdown">
                     <Dropdown.Item
-                      className="text-light"
+                      className="dropdown-item"
                       as={Link}
                       to="/account"
                     >
@@ -83,8 +83,11 @@ function Menu(props) {
                   </div>
                 )}
               </DropdownButton>
-            </div>
+            </Nav>
           </Navbar.Collapse>
+          <Link to="/cart">
+            <Carrito />
+          </Link>
         </Container>
       </Navbar>
     </>

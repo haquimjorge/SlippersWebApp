@@ -64,7 +64,9 @@ const SignIn = (props) => {
 
   return (
     <>
-      <Menu />
+      <div className="fondo-menu-sign">
+        <Menu />
+      </div>
       <Container fluid className="d-flex p-0">
         <Container
           fluid

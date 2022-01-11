@@ -273,13 +273,17 @@ main {
 
 /* SIGN */
 
+.fondo-menu-sign {
+  background-color: black;
+}
+
 .sign-logo {
   width: 15rem;
   height: 15rem;
 }
 
 .signin-container {
-  background-image: linear-gradient(to bottom, #2e2e2e, #0c0c0c);
+  background-image: linear-gradient(to bottom, #181818, #0c0c0c);
 }
 
 .sign-here {
@@ -331,7 +335,7 @@ main {
   text-decoration: none !important;
 }
 .user-icon {
-  width: 2rem;
+  width: 3rem;
   border-radius: 20px;
 }
 
@@ -389,8 +393,12 @@ main {
   }
 }
 
+/* DROPDOWN USER */
+
 .contenedor-dropdown {
-  background-color: rgba(0, 0, 0, 0.801);
+  text-align: center;
+  background-color: rgb(0, 0, 0);
+  padding: 10%;
   margin-top: -8px;
   margin-bottom: -8px;
 }
@@ -400,7 +408,7 @@ main {
 }
 
 .contenedor-dropdown .dropdown-item:hover {
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   color: whitesmoke;
   text-shadow: 2px 2px 4px gold;
 }
