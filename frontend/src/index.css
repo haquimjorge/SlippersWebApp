@@ -428,3 +428,34 @@ main {
   color: whitesmoke;
   text-shadow: 2px 2px 4px gold;
 }
+
+.admin-panel-dashboard-welcome{
+    min-height: 70vh;
+}
+.card-admin-items {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 15rem;
+  }
+  .admin-edit-icon {
+    transition: 0.5s;
+    width: 1rem;
+    cursor: pointer;
+  }
+  .admin-edit-icon:hover {
+    transition: 0.2s;
+    filter: invert(26%) sepia(55%) saturate(1670%) hue-rotate(329deg)
+      brightness(105%) contrast(105%);
+  }
+  .admin-shoes-card-footer{
+      background-color: #e2c272;
+  }
+  .admin-delete-shoe-button{
+      background-color: #c3993f;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+  }
+  .admin-delete-shoe-button:hover{
+      background-color: #aa8025;
+  }

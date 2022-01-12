@@ -26,6 +26,18 @@ const shoeActions = {
 
       dispatch({ type: 'filterShoes', payload: filteredShoes })
     }
+  },
+  modifyshoe: (data)=>{
+      return async (dispatch)=>{
+          let response = axios.put("http://localhost:4000/api/shoes", data)
+          dispatch({type: "MODIFY_SHOE", payload:response.data.response})
+      }
+  },
+  uploadShoe:(shoe)=>{
+    return async (dispatch)=>{
+        let response = axios.post("http://localhost:4000/api/shoes", shoe)
+        dispatch({type: "UPLOAD_SHOE", payload:response.data.response})
+    }
   }
 
 }

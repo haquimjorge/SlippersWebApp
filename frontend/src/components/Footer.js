@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 
 function Footer() {
   return (
-    <>
+    <div>
       <Navbar className="container-menu-footer" expand="lg">
         <Container>
           <Nav className="m-auto">
@@ -48,7 +48,7 @@ function Footer() {
           </a>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -30,9 +30,9 @@ function App(props) {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} exact />
-        <Route path="/admin" element={<AdminNav />} exact />
-        <Route path="/admin/category" element={<CategoryCreate/>} exact />
-        <Route path="/admin/category/:slug" element={<CategoryUpdate/>} exact />
+        <Route path="/admin" element={<AdminDashboard />} exact />
+        {/* <Route path="/admin/category" element={<CategoryCreate/>} exact /> */}
+        {/* <Route path="/admin/category/:slug" element={<CategoryUpdate/>} exact /> */}
         {!token 
         ? <>
         <Route path="/signin" element={<SignIn />} exact /> 

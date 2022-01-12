@@ -4,10 +4,11 @@ const Shoe = require('../models/Shoe')
 const shoeControllers ={
     uploadShoe : async(req,res)=>{
         try{
-            const{ name,price,description,lastPrice,color,size,image,season,gender} = req.body
-            await new Shoe({name,price,description,lastPrice,color,size,image,season,gender}).save()
-            console.log('aqui estoy')
-            res.json({success:true,response:'uploaded shoe with name ' + name, error:null})
+            console.log(req.body)
+            const{ name,price,description,lastPrice,color,size,image,season,gender,variations,slug,category,subcategory,shipping} = req.body
+            let newShoe= await new Shoe({name,price,description,lastPrice,color,size,image,season,gender,variations,slug,category,subcategory,shipping}).save()
+            console.log(newShoe)
+            res.json({success:true,response:newShoe,error:null})
         }catch(e){
             res.json({ success: false, error: e, response:null });
             console.error(e);
@@ -27,7 +28,7 @@ const shoeControllers ={
         try{
             const {id}=req.body
             const modifiedShoe = await Shoe.findOneAndUpdate({_id: id}, {...req.body},{new:true})
-            res.json({success:true, error:null, response:"modified shoe: " + JSON.stringify(modifiedShoe) })
+            res.json({success:true, error:null, response:modifiedShoe })
         }catch(e){
             res.json({ success: false, error: e, response:null });
             console.error(e);
