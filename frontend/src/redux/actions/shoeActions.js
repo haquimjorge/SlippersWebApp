@@ -17,20 +17,26 @@ const shoeActions = {
     return async (dispatch) => {
       let filteredShoes = [...shoes]
       if (Array.isArray(searchValue)) {
-        
-        if (searchValue.length>0) searchValue.forEach(value => {
-          filteredShoes = filteredShoes.filter(searchShoes => {
-            return (
-              searchShoes.name.toLowerCase().trim().startsWith(value.toLowerCase().trim())
-              || searchShoes.gender.toLowerCase().trim().startsWith(value.toLowerCase().trim())
-              || searchShoes.color.toLowerCase().trim().startsWith(value.toLowerCase().trim())
-              || searchShoes.season.toLowerCase().trim().startsWith(value.toLowerCase().trim())
-            )
+
+        if (searchValue.length > 0)
+          searchValue.forEach(element => {
+            
+              
+              filteredShoes = filteredShoes.filter(searchShoes => {
+                
+                return (
+                  !element.value.length>0?true
+                  :(element.type === 'gender') ? element.value.includes(searchShoes.gender.toLowerCase().trim()) 
+                  : (element.type === 'color') ? element.value.includes(searchShoes.color.toLowerCase().trim()) 
+                  : (element.type === 'season') && element.value.includes(searchShoes.season.toLowerCase().trim())
+                )
+              })
+            
           })
-        })
+          
       }
       else {
-          filteredShoes = filteredShoes.filter(searchShoes => {
+        filteredShoes = filteredShoes.filter(searchShoes => {
           return (
             searchShoes.name.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())
             || searchShoes.gender.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())

@@ -9,18 +9,17 @@ import { useState, useEffect, useRef } from "react";
 
 const Shop = (props) => {
   const [search, setSearch] = useState("");
-  const [checked, setChecked] = useState([])
+  const [checked, setChecked] = useState([{type: "gender", value:[]}, {type: "color", value:[]}, {type: "season", value:[]}])
   const checkedRef = useRef(checked)
 
   useEffect(() => {
     if (!props.shoes) props.getShoes();
-    console.log(props.shoes);
     console.log(props.filteredShoes)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.shoes, props.filteredShoes]);
   useEffect(() => {
     props.getShoes();
-    
+    //console.log(props.shoes)
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -34,21 +33,29 @@ const Shop = (props) => {
 
     console.log(props.filteredShoes);
   };
-  const handleCheck = (e, value) => {
+  const handleCheck = (e, data) => {
     const list = checked
+    let newData = list.filter(element=> element.type===data.type)
+    const index = list.indexOf(newData[0])
+
     if(e.target.checked){
-      checkedRef.current = [...list,value]
-      setChecked([...list, value])
+      list[index].value = [...newData[0].value, data.value]
+      checkedRef.current = [...list]
+      setChecked([...list])
     }
     else{
       if(list.length>0){
-        checkedRef.current = list.filter( (check)=> check!==value )
-        setChecked( list.filter( (check)=> check!==value ) )
+        const valueIndex = newData[0].value.indexOf(data.value)
+        if(valueIndex>-1)newData[0].value.splice(valueIndex,1)
+        checkedRef.current = [...list]
+        setChecked([...list])
+        
       }
     }
     
     //console.log(checkedRef.current)
-    checkedRef.current.forEach((element,index)=>console.log(index,"-",element))
+    //checkedRef.current.forEach((element,index)=>console.log(index,"-",element))
+    console.log(checkedRef.current)
     if(props.shoes) props.filterShoes(props.shoes, checkedRef.current)
     
 
@@ -71,12 +78,24 @@ const Shop = (props) => {
       </div>
 
 
-      <input type="checkbox" id="option1" value="Blue" onChange={(e)=>handleCheck(e, "Blue")}/>
-      <label htmlFor="option1"> Blue</label>
-      <input type="checkbox" id="option2" value="Black" onChange={(e)=>handleCheck(e, "Black")}/>
-      <label htmlFor="option2"> Black</label>
-      <input type="checkbox" id="option3" value="Green" onChange={(e)=>handleCheck(e, "Green")}/>
-      <label htmlFor="option3"> Green</label>
+      <input type="checkbox" id="color1" value="blue" onChange={(e)=>handleCheck(e, {type: "color", value:"blue"} )}/>
+      <label htmlFor="color1"> Blue</label>
+      <input type="checkbox" id="color2" value="black" onChange={(e)=>handleCheck(e, {type: "color", value:"black"} )}/>
+      <label htmlFor="color2"> Black</label>
+      <input type="checkbox" id="color3" value="green" onChange={(e)=>handleCheck(e, {type: "color", value:"green"} )}/>
+      <label htmlFor="color3"> Green</label>
+
+      <input type="checkbox" id="gender1" value="male" onChange={(e)=>handleCheck(e, {type: "gender", value:"male"} )}/>
+      <label htmlFor="gender1"> Female</label>
+      <input type="checkbox" id="gender2" value="female" onChange={(e)=>handleCheck(e, {type: "gender", value:"female"} )}/>
+      <label htmlFor="gender2"> Male</label>
+      
+
+      <input type="checkbox" id="season1" value="spring-summer" onChange={(e)=>handleCheck(e, {type: "season", value:"spring-summer"} )}/>
+      <label htmlFor="season1"> Spring-Summer</label>
+      <input type="checkbox" id="season2" value="winter-autum" onChange={(e)=>handleCheck(e, {type: "season", value:"winter-autumn"} )}/>
+      <label htmlFor="season2"> Winter-Autum</label>
+      
 
       <MainShop />
       <Footer />
