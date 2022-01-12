@@ -4,9 +4,10 @@ const slugify = require("slugify");
 const subCategoryControllers = {
   createSubCategory: async (req, res) => {
     try {
-      const { name } = req.body;
+      const { name, parent } = req.body;
       const subCategory = await new SubCategory({
         name,
+        parent,
         slug: slugify(name),
       }).save();
       res.json(subCategory);
@@ -35,11 +36,11 @@ const subCategoryControllers = {
     }
   },
   updateSubCategory: async (req, res) => {
-    const { name } = req.body;
+    const { name, parent } = req.body;
     try {
       const updated = await SubCategory.findOneAndUpdate(
         { slug: req.params.slug },
-        { name, slug: slugify(name) },
+        { name, parent, slug: slugify(name) },
         { new: true }
       );
       res.json(updated);

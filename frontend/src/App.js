@@ -14,6 +14,7 @@ import CategoryCreate from "./pages/admin/category/CategoryCreate";
 import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
 import Verify from './pages/Verify'
 import withRouter from "./utilities/withRouter";
+import SubCategoryUpdate from "./pages/admin/subcategory/SubCategoryUpdate";
 
 
 const VerifyDinamic = withRouter(Verify)
@@ -33,6 +34,7 @@ function App(props) {
         <Route path="/admin" element={<AdminDashboard />} exact />
         {/* <Route path="/admin/category" element={<CategoryCreate/>} exact /> */}
         <Route path="/admin/category/:slug" element={<CategoryUpdate/>} exact />
+        <Route path="/admin/subcategory/:slug" element={<SubCategoryUpdate/>} exact />
         {!token 
         ? <>
         <Route path="/signin" element={<SignIn />} exact /> 
