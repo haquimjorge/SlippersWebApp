@@ -9,19 +9,50 @@ import { useState, useEffect, useRef } from "react";
 
 const Shop = (props) => {
   const [search, setSearch] = useState("");
+  const [checked, setChecked] = useState([])
+  const checkedRef = useRef(checked)
 
   useEffect(() => {
     if (!props.shoes) props.getShoes();
-    console.log(props.filteredShoes);
+    console.log(props.shoes);
+    console.log(props.filteredShoes)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.shoes, props.filteredShoes]);
+  useEffect(() => {
+    props.getShoes();
+    
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = (e) => {
     const searchValue = e.target.value;
     setSearch(searchValue);
-    props.filterShoes(props.shoes, searchValue);
+
+    if (!checked) props.filterShoes(props.shoes, searchValue);
+    else props.filterShoes(props.filteredShoes, searchValue)
+
     console.log(props.filteredShoes);
   };
+  const handleCheck = (e, value) => {
+    const list = checked
+    if(e.target.checked){
+      checkedRef.current = [...list,value]
+      setChecked([...list, value])
+    }
+    else{
+      if(list.length>0){
+        checkedRef.current = list.filter( (check)=> check!==value )
+        setChecked( list.filter( (check)=> check!==value ) )
+      }
+    }
+    
+    //console.log(checkedRef.current)
+    checkedRef.current.forEach((element,index)=>console.log(index,"-",element))
+    if(props.shoes) props.filterShoes(props.shoes, checkedRef.current)
+    
+
+  }
 
   return (
     <>
@@ -38,6 +69,15 @@ const Shop = (props) => {
         />
         <button type="submit">Ok</button>
       </div>
+
+
+      <input type="checkbox" id="option1" value="Blue" onChange={(e)=>handleCheck(e, "Blue")}/>
+      <label htmlFor="option1"> Blue</label>
+      <input type="checkbox" id="option2" value="Black" onChange={(e)=>handleCheck(e, "Black")}/>
+      <label htmlFor="option2"> Black</label>
+      <input type="checkbox" id="option3" value="Green" onChange={(e)=>handleCheck(e, "Green")}/>
+      <label htmlFor="option3"> Green</label>
+
       <MainShop />
       <Footer />
     </>
