@@ -15,9 +15,11 @@ import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
 import Verify from './pages/Verify'
 import withRouter from "./utilities/withRouter";
 import SubCategoryUpdate from "./pages/admin/subcategory/SubCategoryUpdate";
+import ShoeProduct from "./pages/ShoeProduct";
 
 
 const VerifyDinamic = withRouter(Verify)
+const shoeProduct = withRouter(ShoeProduct)
 
 function App(props) {
     const { authUser } = props;
@@ -43,6 +45,7 @@ function App(props) {
         </>
         : <Route path="/account" element={<Account />}/>}    
         <Route path="/shop" element={<Shop />} exact />  
+        <Route path="/shoe/:shoesId" element={<ShoeProduct/>} exact />
         <Route path="/contacts" element={<Contacts />} exact />
         <Route path="/verify/:uniqueString" element={<VerifyDinamic />}/>
         <Route path="*" element={<Home />} />
