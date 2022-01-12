@@ -12,6 +12,7 @@ const Shop = (props) => {
 
   useEffect(() => {
     if (!props.shoes) props.getShoes();
+    console.log(props.shoes)
     console.log(props.filteredShoes);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.shoes, props.filteredShoes]);
@@ -38,7 +39,7 @@ const Shop = (props) => {
         />
         <button type="submit">Ok</button>
       </div>
-      <MainShop />
+      <MainShop shoes={props.shoes}/>
       <Footer />
     </>
   );
