@@ -14,9 +14,12 @@ import CategoryCreate from "./pages/admin/category/CategoryCreate";
 import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
 import Verify from './pages/Verify'
 import withRouter from "./utilities/withRouter";
+import SubCategoryUpdate from "./pages/admin/subcategory/SubCategoryUpdate";
+import ShoeProduct from "./pages/ShoeProduct";
 
 
 const VerifyDinamic = withRouter(Verify)
+const shoeProduct = withRouter(ShoeProduct)
 
 function App(props) {
     const { authUser } = props;
@@ -33,6 +36,7 @@ function App(props) {
         <Route path="/admin" element={<AdminDashboard />} exact />
         {/* <Route path="/admin/category" element={<CategoryCreate/>} exact /> */}
         <Route path="/admin/category/:slug" element={<CategoryUpdate/>} exact />
+        <Route path="/admin/subcategory/:slug" element={<SubCategoryUpdate/>} exact />
         {!token 
         ? <>
         <Route path="/signin" element={<SignIn />} exact /> 
@@ -41,6 +45,7 @@ function App(props) {
         </>
         : <Route path="/account" element={<Account />}/>}    
         <Route path="/shop" element={<Shop />} exact />  
+        <Route path="/shoe/:shoesId" element={<ShoeProduct/>} exact />
         <Route path="/contacts" element={<Contacts />} exact />
         <Route path="/verify/:uniqueString" element={<VerifyDinamic />}/>
         <Route path="*" element={<Home />} />

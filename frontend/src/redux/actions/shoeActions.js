@@ -60,6 +60,13 @@ const shoeActions = {
       let response = axios.post("http://localhost:4000/api/shoes", shoe)
       dispatch({ type: "UPLOAD_SHOE", payload: response.data.response })
     }
+  },
+  getOneShoe: (id) => {
+    return async (dispatch) => {
+      let response = await axios.get("http://localhost:4000/api/shoe/" +id )
+      if (response.data.succes) dispatch({type: "getShoe", payload: response.data.response})
+      else console.error("Salio mal")
+    }
   }
 
 }

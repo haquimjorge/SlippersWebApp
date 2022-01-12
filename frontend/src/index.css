@@ -113,9 +113,9 @@ ul {
 /* MAIN HOME */
 
 main {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .div-titulo {
@@ -168,7 +168,7 @@ main {
 .precio-promoHome {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .precio-promoHome h2 {

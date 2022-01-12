@@ -6,9 +6,10 @@ import MainShop from "../components/MainShop";
 import shoeActions from "../redux/actions/shoeActions";
 import { connect } from "react-redux";
 import { useState, useEffect, useRef } from "react";
+import { getShoez } from "../redux/actions/categoryActions";
 
 const Shop = (props) => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("")
   const [checked, setChecked] = useState([{type: "gender", value:[]}, {type: "color", value:[]}, {type: "season", value:[]}])
   const checkedRef = useRef(checked)
 
@@ -61,10 +62,24 @@ const Shop = (props) => {
 
   }
 
+  // useEffect(() => {
+  //   if (!props.shoes) props.getShoes();
+  //   console.log(props.shoes)
+  //   console.log(props.filteredShoes);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [props.shoes, props.filteredShoes]);
+
+  // const handleChange = (e) => {
+  //   const searchValue = e.target.value;
+  //   setSearch(searchValue);
+  //   props.filterShoes(props.shoes, searchValue);
+  //   console.log(props.filteredShoes);
+  // };
+
   return (
     <>
       <Menu />
-      <div className="input-contenedor-home">
+       <div className="input-contenedor-home">
         <label htmlFor="search">Search :</label>
         <input
           type="text"
@@ -96,8 +111,7 @@ const Shop = (props) => {
       <input type="checkbox" id="season2" value="winter-autum" onChange={(e)=>handleCheck(e, {type: "season", value:"winter-autumn"} )}/>
       <label htmlFor="season2"> Winter-Autum</label>
       
-
-      <MainShop />
+      <MainShop shoes={props.shoes} />
       <Footer />
     </>
   );
