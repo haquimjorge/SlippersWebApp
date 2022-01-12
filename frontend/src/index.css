@@ -216,7 +216,7 @@ main {
 
 .menu-contacts {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-image: url("../public/assets/05.jpg");
@@ -267,11 +267,116 @@ main {
 }
 
 .contenedor-contacts p {
-  font-weight: bold;
   font-size: 15px;
 }
 
+.contenedor-contacts input {
+  color: whitesmoke;
+  font-family: monospace;
+  font-size: 20px;
+  width: 100%;
+  height: 35px;
+  margin-bottom: 2%;
+  border: none;
+  box-shadow: 1px 1px 2px whitesmoke;
+  background-color: rgba(0, 0, 0, 0.37);
+}
+
+.formulario-contacts p {
+  text-align: left;
+  text-shadow: 1px 1px 1px gold;
+}
+
+.formulario-contacts .mensaje {
+  height: 45px;
+}
+
+.button-sendform {
+  background-color: transparent !important;
+  text-shadow: 1px 1px gold !important;
+  text-transform: uppercase !important;
+  box-shadow: 1px 1px 2px whitesmoke !important;
+  border: none !important;
+  color: whitesmoke !important;
+  padding: 1% !important;
+  margin: 5% !important;
+  width: 30% !important;
+}
+
+.button-sendform:hover {
+  background-color: transparent !important;
+  text-shadow: none !important;
+}
+
+.contenedor-modal {
+  padding-top: 5%;
+  background: rgba(0, 0, 0, 0.603);
+  text-transform: uppercase;
+}
+
+.modal-header {
+  text-shadow: 1px 1px rgba(255, 217, 0, 0.445);
+  border-bottom: solid 0.5px rgba(0, 0, 0, 0.445);
+  background-color: rgba(0, 0, 0, 0.082);
+}
+
+.modal-body {
+  background-color: rgba(0, 0, 0, 0.082);
+  font-weight: bold;
+}
+
+.modal-footer {
+  background-color: rgba(0, 0, 0, 0.082);
+  border: none;
+}
+
+.modal-footer button {
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 1px 1px 4px black;
+  width: 30%;
+  border: none;
+  color: black;
+  text-shadow: 1px 1px 1px rgba(255, 217, 0, 0.377) !important;
+  background-color: transparent !important;
+}
+
+.modal-footer button:hover {
+  text-shadow: none !important;
+  background-color: rgba(0, 0, 0, 0.829) !important;
+}
+
 /* SIGN */
+
+.gender-sign {
+  text-transform: uppercase;
+  margin: 1%;
+  background-color: rgba(245, 245, 245, 0.034);
+  box-shadow: 1px 1px 2px whitesmoke;
+}
+
+.input-sign label {
+  text-transform: uppercase;
+  color: grey;
+}
+
+.input-sign input {
+  border: none;
+  box-shadow: 1px 1px whitesmoke;
+  background-color: rgba(245, 245, 245, 0.034);
+}
+
+.googleLogin {
+  color: whitesmoke !important;
+  text-transform: uppercase !important;
+  border: solid goldenrod !important;
+  background: linear-gradient(to bottom, #d2aa44 5%, #c79a30 100%) !important;
+}
+
+.registrate {
+  color: whitesmoke;
+  text-shadow: 1px 1px gold;
+}
 
 .fondo-menu-sign {
   background-color: black;

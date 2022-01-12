@@ -7,7 +7,6 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import { connect } from "react-redux";
 import userActions from "../redux/actions/userActions";
-import Usuario from "./Usuario";
 import Image from "react-bootstrap/Image";
 import "../index.css";
 

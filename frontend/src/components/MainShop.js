@@ -1,24 +1,14 @@
-// const MainShop(props) {
-//   return (
-//     <>
-//       <main>
-//         <div className="div-titulo">
-//           <h1 className="titulo">Slippers - MAIN SHOP</h1>
-//         </div>
-//         {props.}
-//       </main>
-//     </>
-//   );
-// }
+function MainShop(props) {
+  return (
+    <>
+      <main>
+        <div className="div-titulo">
+          <h1 className="titulo">Slippers - MAIN SHOP</h1>
+        </div>
+        <div></div>
+      </main>
+    </>
+  );
+}
 
-// const mapStateToProps = (state) => {
-//   return {
-//     filtrado: state.citiesReducer.filtrado,
-//   };
-// };
-
-// const mapDispatchToProps = {
-//   filtro: citiesAction.filtro,
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(MainCities);
+export default MainShop;
