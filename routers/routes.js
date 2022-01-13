@@ -72,7 +72,7 @@ Router.route("/subcategory/:slug")
 .put(updateSubCategory)
 .delete(removeSubCategory)
 
-Router.route("/subcategory/:id")
+Router.route("/allsubcategory/:id")
 .delete(deleteSubCategory)
 
 Router.route("/subcategories/:parentId")

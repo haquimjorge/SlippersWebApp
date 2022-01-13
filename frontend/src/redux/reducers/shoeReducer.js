@@ -7,6 +7,7 @@ const initialState = {
   oneShoe: {},
 };
 
+
 const shoeReducer = (state = initialState, action) => {
   function getUniqueValues(array) {
     let result = [];
@@ -75,6 +76,14 @@ const shoeReducer = (state = initialState, action) => {
         ...state,
         category: categoryDelete,
       };
+    case "SEND_SUB_SLUG":
+      let subCategoryDelete = state.subCategories.find(
+        (category) => category.slug === action.payload
+      );
+      return {
+        ...state,
+        category: subCategoryDelete,
+      };
     case "DELETE_CATEGORY":
       let actualCategories = state.categories.filter(
         (category) => category._id !== action.payload._id
@@ -95,6 +104,7 @@ const shoeReducer = (state = initialState, action) => {
         categories: currentCategories,
       };
     case "DELETE_SUBCATEGORY":
+        console.log(action.payload)
       let actualSubcategories = state.subCategories.filter(
         (sub) => sub._id !== action.payload._id
       );
@@ -103,16 +113,24 @@ const shoeReducer = (state = initialState, action) => {
         subCategories: actualSubcategories,
       };
     case "MODIFY_SUBCATEGORY":
-      let currentSubcategories = state.categories.map((sub) => {
+      console.log(action.payload);
+      let currentSubcategories = state.subCategories.map((sub) => {
         if (sub._id === action.payload._id) {
           sub = action.payload;
         }
         return sub;
       });
+      console.log(currentSubcategories);
       return {
         ...state,
-        categories: currentSubcategories,
+        subCategories: currentSubcategories,
       };
+      case "UPLOAD_SUBCATEGORY":
+          let addedSubcategories = state.subCategories.concat(action.payload)
+          return{
+              ...state,
+              subCategories: getUniqueValues(addedSubcategories)
+          }
     default:
       return state;
   }

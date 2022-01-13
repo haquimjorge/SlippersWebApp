@@ -21,6 +21,11 @@ const categoryActionsRedux = {
             dispatch({type: "SEND_DELETE_SLUG", payload: slug})
         }
     },
+    sendSubSlug : (slug)=>{
+        return (dispatch)=>{
+            dispatch({type: "SEND_SUB_SLUG", payload: slug})
+        }
+    },
     deleteCategory : (id)=>{
         return async (dispatch)=>{
             let response = await axios.delete(`http://localhost:4000/api/category/${id}`)
@@ -47,10 +52,18 @@ const categoryActionsRedux = {
     },
     deleteSubCategory : (id)=>{
         return async (dispatch)=>{
-            let response = await axios.delete(`http://localhost:4000/api/subcategory/${id}`)
+            console.log(id)
+            let response = await axios.delete(`http://localhost:4000/api/allsubcategory/${id}`)
+            console.log(response.data)
             dispatch({type:"DELETE_SUBCATEGORY", payload:response.data})
         }
     },
+    createSubCategory : (data)=>{
+        return async (dispatch)=>{
+            let response = await axios.post("http://localhost:4000/api/subcategory/", data)
+            dispatch({type:"UPLOAD_SUBCATEGORY", payload: response.data})
+        }
+    }
 
 }
 

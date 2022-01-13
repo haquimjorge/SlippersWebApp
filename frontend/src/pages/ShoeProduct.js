@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import shoeActions from "../redux/actions/shoeActions";
 import Menu from '../components/Menu';
 import Footer from '../components/Footer';
-import '../shoeDetails.scss';
+import "../shoeDetails.scss";
 
 const ShoeProduct = (props) => {
 

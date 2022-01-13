@@ -77,7 +77,7 @@ const subCategoryControllers = {
       });
       res.json(deleted);
     } catch (err) {
-      res.status(400).send("Delete category failed");
+        res.json({ success: false, error: e,respose:null });
     }
   }
 };

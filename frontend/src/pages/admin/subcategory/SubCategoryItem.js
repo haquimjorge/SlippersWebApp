@@ -25,6 +25,7 @@ function SubCategoryItem(props){
 
   function handleDelete(slug){
     console.log(slug)
+    props.sendDeleteSlug(slug)
     setModalShow(true)
 }
 
@@ -35,7 +36,7 @@ function handleOnKeyPressEdit(editedMessage, message,event, categoryId){
               id: categoryId,
               name: editedMessage,
             };
-            console.log(data)
+            props.modifySubCategory(data)
       }
       setEdit(!edit)
     }
@@ -90,7 +91,7 @@ function handleOnKeyPressEdit(editedMessage, message,event, categoryId){
                     <DeleteIcon slug={props.subcategory.slug}  />
                   </div>
                 </div>
-                <CenterModal />
+                <CenterModal type="sub" show={modalShow} onHide={() => setModalShow(false)} />
               </ListGroup.Item>
     )
 
@@ -102,7 +103,7 @@ const mapStateToProps = (state) => {
   };
   
   const mapDispatchToProps = {
-    sendDeleteSlug : categoryActionsRedux.sendDeleteSlug,
+    sendDeleteSlug : categoryActionsRedux.sendSubSlug,
     modifySubCategory: categoryActionsRedux.modifySubCategory,
     
     

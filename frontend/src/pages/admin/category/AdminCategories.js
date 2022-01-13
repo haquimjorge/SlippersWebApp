@@ -14,6 +14,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import FormR from "react-bootstrap/Form";
 import Pencil from "../../../assets/pencil.png";
 import Delete from "../../../assets/deletecross.png";
+import Plus from "../../../assets/plus.png";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -68,10 +69,40 @@ delay={{ show: 25, hide: 25 }}
 overlay={renderEdit}
 {...props}
 >
-<img onClick={()=>handleEditClick(props.name)} src={Pencil} alt='pencil' className="admin-interaction-icon"/>
+<img onClick={()=>handleEditClick(props.name)} src={Pencil} alt='pencil' className="admin-interaction-icon ms-2"/>
 </OverlayTrigger>
     )   
 }
+
+const PlusIcon =(props)=>{
+    const renderEdit = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+          Add Sub Category
+        </Tooltip>
+      );
+    return(
+<OverlayTrigger
+placement="top"
+delay={{ show: 25, hide: 25 }}
+overlay={renderEdit}
+{...props}
+>
+<img onClick={()=>handlePlus(props.parent)} src={Plus} alt='plus' className="admin-interaction-icon"/>
+</OverlayTrigger>
+    )   
+}
+function handlePlus(parent){
+    let randomString = Math.random().toString(36).substring(2, 4) + Math.random().toString(36).substring(2, 4);
+    
+    let data = {
+        name: "New Subcategory ("+ randomString +")",
+        parent
+    }
+    props.createSubCategory(data)
+    console.log(data)
+
+}
+
 function handleDelete(slug){
     console.log(slug)
     setModalShow(true)
@@ -128,6 +159,7 @@ const DeleteIcon =(props)=>{
          
 
           <div className="m-0 p-0 d-flex align-items-center">
+            <PlusIcon parent={category._id} />
             <PencilIcon name={category.name}/>
             <DeleteIcon slug={category.slug}/>
           </div>
@@ -141,19 +173,6 @@ const DeleteIcon =(props)=>{
           {properSubcategories.length ? (
             properSubcategories.map((sub) => (
                 <SubCategoryItem subcategory={sub} />
-            //   <ListGroup.Item
-            //     key={sub._id}
-            //     className="admin-subcategory-container text-light">
-
-            //     <div className="d-flex justify-content-between align-items-center">
-                    
-            //       <p className="m-0 p-0 ">{sub.name}</p>
-            //       <div className="m-0 p-0 d-flex align-items-center">
-            //         <PencilIcon/>
-            //         <DeleteIcon/>
-            //       </div>
-            //     </div>
-            //   </ListGroup.Item>
             ))
           ) : (
             <ListGroup.Item className="admin-subcategory-container text-light">
@@ -175,7 +194,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getSubCategoriesByParentId: categoryActionsRedux.getSubCategoriesByParentId,
   sendDeleteSlug : categoryActionsRedux.sendDeleteSlug,
-  modifycategory : categoryActionsRedux.modifyCategory
+  modifycategory : categoryActionsRedux.modifyCategory,
+  createSubCategory: categoryActionsRedux.createSubCategory
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminCategories);

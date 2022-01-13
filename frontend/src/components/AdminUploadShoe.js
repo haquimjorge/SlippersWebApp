@@ -92,7 +92,7 @@ function AdminUploadShoe(props) {
 
           loadSubcategories();
       }
-  }, []);
+  }, [selectedCategoryId]);
 
   const loadSubcategories = () =>
     subCategoryActions
@@ -223,9 +223,10 @@ function AdminUploadShoe(props) {
                   <option value="Select Category">Select Category</option>
                   {props.categories.length !== 0 &&
                     props.categories.map((category) => (
+                        
                       <option
                         key={category.slug}
-                        onChange={(e) => setSelectedCategoryId("leo")}
+                        onClick={(e) => setSelectedCategoryId(category._id)}
                         value={category._id}
                       >
                         {category.name}
