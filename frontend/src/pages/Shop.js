@@ -1,7 +1,7 @@
 import React from "react";
 import Menu from "../components/Menu";
-import Input from "../components/Input";
 import Footer from "../components/Footer";
+import CarouselMarcas from "../components/CarouselMarcas";
 import MainShop from "../components/MainShop";
 import shoeActions from "../redux/actions/shoeActions";
 import { connect } from "react-redux";
@@ -39,6 +39,7 @@ const Shop = (props) => {
         <button type="submit">Ok</button>
       </div>
       <MainShop />
+      <CarouselMarcas />
       <Footer />
     </>
   );

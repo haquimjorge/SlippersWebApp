@@ -519,3 +519,48 @@ main {
   color: whitesmoke;
   text-shadow: 2px 2px 4px gold;
 }
+
+/* CAROUSEL MARCAS */
+
+.contenedor-marcasSociales {
+  border-top: double black;
+}
+
+.contenedor-marcasSociales img {
+  object-fit: contain;
+  padding: 0px 15px 0px 15px;
+  width: 100px;
+  height: 150px;
+}
+
+.pedidos-exclusivos {
+  padding: 2% 0 1% 0;
+  text-transform: uppercase;
+  color: whitesmoke;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.952);
+  margin: 0 25% 0 25%;
+  border-top: solid 6px rgb(255, 224, 51);
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+}
+
+.pedidos-exclusivos p {
+  font-family: monospace;
+  font-size: 18px;
+  text-shadow: 1px 1px rgba(255, 217, 0, 0.377);
+  padding: 3% 3% 0 3%;
+}
+
+@media (min-width: 250px) and (max-width: 850px) {
+  .pedidos-exclusivos {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top: none;
+    margin: 0;
+  }
+  .pedidos-exclusivos p {
+    font-size: 15px;
+    padding: 5%;
+  }
+}

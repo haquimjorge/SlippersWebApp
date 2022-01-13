@@ -4,8 +4,7 @@ import Input from "../components/Input";
 import MainHome from "../components/MainHome";
 import PromoHome from "../components/PromoHome";
 import Footer from "../components/Footer";
-
-
+import CarouselMarcas from "../components/CarouselMarcas";
 
 const Home = () => {
   return (
@@ -16,6 +15,7 @@ const Home = () => {
       <Input />
       <MainHome />
       <PromoHome />
+      <CarouselMarcas />
       <Footer />
     </>
   );
