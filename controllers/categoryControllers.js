@@ -1,4 +1,5 @@
 const Category = require("../models/Category");
+const SubCategory = require("../models/SubCategory");
 const slugify = require("slugify");
 
 const categoryControllers = {
@@ -8,7 +9,6 @@ const categoryControllers = {
       const category = await new Category({ name, slug: slugify(name) }).save();
       res.json(category);
     } catch (err) {
-      // console.log(err)
       res.status(400).send("Create category failed");
     }
   },
@@ -21,9 +21,11 @@ const categoryControllers = {
   },
   removeCategory: async (req, res) => {
     try {
+        // se mantiene nombre de varibale slug para no contaminar otras funciones. (req.params.slug=req.params.id)
       const deleted = await Category.findOneAndDelete({
-        slug: req.params.slug,
+        _id: req.params.slug,
       });
+      await SubCategory.deleteMany({parent:req.params.slug})
       res.json(deleted);
     } catch (err) {
       res.status(400).send("Delete category failed");
@@ -42,6 +44,15 @@ const categoryControllers = {
       res.status(400).send("Update category failed");
     }
   },
+  getAllCategories : async (req,res)=>{
+      try{
+          let categories = await Category.find().sort({createdAt:-1}).exec()
+          res.json({success:true, error:null, response:categories})
+
+      }catch(e){
+        res.json({ success: false, error: e,respose:null });
+      }
+  }
 };
 
 module.exports = categoryControllers;

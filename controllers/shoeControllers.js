@@ -1,13 +1,12 @@
 const Shoe = require('../models/Shoe')
+const slugify = require("slugify");
 
 
 const shoeControllers ={
     uploadShoe : async(req,res)=>{
         try{
-            console.log(req.body)
-            const{ name,price,description,lastPrice,color,size,image,season,gender,variations,slug,category,subcategory,shipping} = req.body
-            let newShoe= await new Shoe({name,price,description,lastPrice,color,size,image,season,gender,variations,slug,category,subcategory,shipping}).save()
-            console.log(newShoe)
+            const{ name,price,description,lastPrice,color,size,image,season,gender,variations,category,subCategory,shipping} = req.body
+            let newShoe= await new Shoe({name,price,description,lastPrice,color,size,image,season,gender,variations,slug:slugify(name),category,subcategory:subCategory,shipping}).save()
             res.json({success:true,response:newShoe,error:null})
         }catch(e){
             res.json({ success: false, error: e, response:null });
@@ -16,7 +15,7 @@ const shoeControllers ={
     },
     getShoes : async(req,res)=>{
         try{
-            const shoes = await Shoe.find()
+            const shoes = await Shoe.find().populate('subcategory').populate('category')
             res.json({success:true,response:shoes,error:null})
 
         }catch(e){

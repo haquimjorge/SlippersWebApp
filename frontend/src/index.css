@@ -459,3 +459,45 @@ main {
   .admin-delete-shoe-button:hover{
       background-color: #aa8025;
   }
+  .admin-upload-shoe-img{
+      height: 20rem;
+      background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  .admin-newcategory-container{
+      background-color: #0e0e0e;
+  }
+  .admin-interaction-icon{
+      width: 1.2rem;
+  }
+  .admin-interaction-icon:hover{
+    filter: invert(23%) sepia(26%) saturate(459%) hue-rotate(191deg) brightness(96%) contrast(91%);
+    cursor: pointer;
+  }
+  .admin-category-container{
+    background: linear-gradient(to bottom, #2e2e2e 5%, #000000 100%);
+  }
+  .admin-category-subcontainer{
+      transition: .2s;
+    background: rgb(189,146,38);
+background: radial-gradient(circle, rgba(189,146,38,1) 0%, rgba(200,178,123,1) 43%, rgba(172,150,92,1) 100%);
+border-radius: 10px;
+  }
+  .admin-category-subcontainer:hover{
+      transition: .2s;
+    background: rgb(145, 105, 6);
+    background: radial-gradient(circle, rgb(167, 123, 14) 0%, rgb(163, 141, 84) 43%, rgba(172,150,92,1) 100%);
+  }
+  .admin-subcategory-container{
+      transition: .2s;
+    background-color: #be952d;
+  }
+  .admin-subcategory-container:hover{
+      transition: .2s;
+    background-color: #a87d0f;
+  }
+  .admin-uploadshoe-container{
+    background: linear-gradient(to bottom, #2e2e2e 5%, #000000 100%);
+  }
+  
