@@ -1,38 +1,42 @@
 import React from "react";
 import Menu from "../components/Menu";
-import Input from "../components/Input";
 import Footer from "../components/Footer";
 import MainShop from "../components/MainShop";
 import shoeActions from "../redux/actions/shoeActions";
 import { connect } from "react-redux";
 import { useState, useEffect, useRef } from "react";
-import { getShoez } from "../redux/actions/categoryActions";
+import { process_params } from "express/lib/router";
+
 
 const Shop = (props) => {
   const [search, setSearch] = useState("")
-  const [checked, setChecked] = useState([{type: "gender", value:[]}, {type: "color", value:[]}, {type: "season", value:[]}])
+  const [checked, setChecked] = useState([{type: "gender", value:[]}, {type: "color", value:[]}, {type: "season", value:[]}, {type: "text", value:""}])
+  const [filtered, setFiltered] = useState(false)
   const checkedRef = useRef(checked)
 
   useEffect(() => {
-    if (!props.shoes) props.getShoes();
+    
     console.log(props.filteredShoes)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.shoes, props.filteredShoes]);
   useEffect(() => {
-    props.getShoes();
-    //console.log(props.shoes)
-    
+    if(!props.shoes)props.getShoes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (e) => {
     const searchValue = e.target.value;
     setSearch(searchValue);
+    const list = checked
+    let newData = list.filter(element=> element.type==='text')
+    const index = list.indexOf(newData[0])
 
-    if (!checked) props.filterShoes(props.shoes, searchValue);
-    else props.filterShoes(props.filteredShoes, searchValue)
+    list[index].value = searchValue
+    checkedRef.current = [...list]
+    setChecked([...list])
+    console.log(checkedRef.current)
+    props.filterShoes(props.shoes,checkedRef.current)
 
-    console.log(props.filteredShoes);
   };
   const handleCheck = (e, data) => {
     const list = checked
@@ -56,9 +60,9 @@ const Shop = (props) => {
     
     //console.log(checkedRef.current)
     //checkedRef.current.forEach((element,index)=>console.log(index,"-",element))
-    console.log(checkedRef.current)
-    if(props.shoes) props.filterShoes(props.shoes, checkedRef.current)
-    
+    //console.log(checkedRef.current)
+    //if(props.filteredShoes) props.filterShoes(props.filteredShoes, checkedRef.current)
+    props.filterShoes(props.shoes, checkedRef.current)
 
   }
 
@@ -100,9 +104,9 @@ const Shop = (props) => {
       <input type="checkbox" id="color3" value="green" onChange={(e)=>handleCheck(e, {type: "color", value:"green"} )}/>
       <label htmlFor="color3"> Green</label>
 
-      <input type="checkbox" id="gender1" value="male" onChange={(e)=>handleCheck(e, {type: "gender", value:"male"} )}/>
+      <input type="checkbox" id="gender1" value="male" onChange={(e)=>handleCheck(e, {type: "gender", value:"female"} )}/>
       <label htmlFor="gender1"> Female</label>
-      <input type="checkbox" id="gender2" value="female" onChange={(e)=>handleCheck(e, {type: "gender", value:"female"} )}/>
+      <input type="checkbox" id="gender2" value="female" onChange={(e)=>handleCheck(e, {type: "gender", value:"male"} )}/>
       <label htmlFor="gender2"> Male</label>
       
 
@@ -111,7 +115,7 @@ const Shop = (props) => {
       <input type="checkbox" id="season2" value="winter-autum" onChange={(e)=>handleCheck(e, {type: "season", value:"winter-autumn"} )}/>
       <label htmlFor="season2"> Winter-Autum</label>
       
-      <MainShop shoes={props.shoes} />
+      <MainShop shoes={props.filteredShoes?props.filteredShoes:props.shoes?props.shoes:[]} />
       <Footer />
     </>
   );
