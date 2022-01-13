@@ -5,6 +5,7 @@ import "../../node_modules/swiper/modules/effect-coverflow/effect-coverflow.min.
 import "../../node_modules/swiper/modules/navigation/navigation.min.css";
 import "../../node_modules/swiper/modules/pagination/pagination.min.css";
 import "../styles.css";
+import './css/carouselstyle.css'
 import { connect } from "react-redux";
 import shoeActions from "../redux/actions/shoeActions";
 import SwiperCore, {
@@ -13,12 +14,7 @@ import SwiperCore, {
   Navigation,
 } from "swiper/core";
 import Logo from "../assets/logo2.png";
-// import Img1 from "../assets/img1.jpg";
-// import Img2 from "../assets/img2.jpg";
-// import Img3 from "../assets/img3.jpg";
-// import Img4 from "../assets/img4.jpg";
-// import Img5 from "../assets/img5.jpg";
-// import Img6 from "../assets/img6.jpg";
+
 
 SwiperCore.use([EffectCoverflow, Pagination, Navigation]);
 
@@ -59,10 +55,15 @@ function Carousel(props) {
           {props.allShoes ? (props.allShoes.map((elem) => {
             return (
               <SwiperSlide>
-                <div className="card-shoe">
-                  <div className="img-div">
-                    <img src={elem.image} />
-                    <p className="name-shoe">{elem.name}</p>
+                <div class="containerr">
+                  <div class="card">
+                    <div class="imgBx">
+                      <img src={elem.image} />
+                    </div>
+                    <div class="contentBx">
+                      <h2 className="name-shoe">{elem.name}</h2>
+                      <a href="#">Buy Now</a>
+                    </div>
                   </div>
                 </div>
               </SwiperSlide>
@@ -90,3 +91,13 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Carousel);
+
+
+{/* <SwiperSlide>
+  <div className="card-shoe">
+    <div className="img-div">
+      <img src={elem.image} />
+      <p className="name-shoe">{elem.name}</p>
+    </div>
+  </div>
+</SwiperSlide> */}

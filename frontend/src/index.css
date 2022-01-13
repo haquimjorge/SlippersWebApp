@@ -421,3 +421,69 @@ main {
   color: whitesmoke;
   text-shadow: 2px 2px 4px gold;
 }
+
+/* select styles */
+
+select {
+  /* Reset Select */
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: rgb(141, 89, 12);
+  background-color: var(--darkgray);
+  background-image: none;
+  cursor: pointer;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select wrapper */
+.select {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  border-radius: .25em;
+  overflow: hidden;
+  box-shadow: 2px 2px 4px #d49d04d7;
+  margin: 5px
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: blanchedalmond;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: #d49d04d7;
+}
+
+/* Other styles*/
+
+h1 {
+  margin: 0 0 0.25em;
+}
+
+/* Imagen ShoeDetails Styles */
+
+.zoom{
+  transition: 0.2s;
+}
+.zoom:hover{
+  transform: scale(1.5);
+}
+
+.zoom{
+  box-shadow: 5px 5px 8px #d49d04d7;
+}

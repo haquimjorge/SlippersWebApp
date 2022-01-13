@@ -14,6 +14,7 @@ import CategoryCreate from "./pages/admin/category/CategoryCreate";
 import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
 import Verify from './pages/Verify'
 import withRouter from "./utilities/withRouter";
+import ShoeDetails from './components/ShoeDetails';
 
 
 const VerifyDinamic = withRouter(Verify)
@@ -44,6 +45,7 @@ function App(props) {
         <Route path="/contacts" element={<Contacts />} exact />
         <Route path="/verify/:uniqueString" element={<VerifyDinamic />}/>
         <Route path="*" element={<Home />} />
+        <Route path="/shoedetails" element={<ShoeDetails />} />
       </Routes>
     </BrowserRouter>
   );
