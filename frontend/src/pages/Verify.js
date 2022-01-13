@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import Stack from "react-bootstrap/Stack";
+import { Link } from "react-router-dom";
 
 const Verify = (props) => {
   const [redirect, setRedirect] = useState(false);
@@ -52,20 +53,28 @@ const Verify = (props) => {
               <Spinner animation="border" variant="warning" size="sm" />
             )}
           </p>
-          <p className="text-shadow-slipper text-center text-warning">
-            {props.success !== null || props.success !== undefined ? (
+          {props.success !== null || props.success !== undefined ? (
               props.success ? (
-                props.message
+                  <>
+                <p className="text-shadow-slipper text-center text-warning">{props.message}</p>
+                
+          </>
               ) : (
-                props.error
+                  <>
+                <p className="text-shadow-slipper text-center text-warning">{props.error}</p>
+                
+          </>
               )
             ) : (
               <Spinner animation="grow" variant="danger" />
             )}
-          </p>
-          <p className="text-shadow-slipper text-light">
-            Redirecting to home...
-          </p>
+            {props.message || props.error? <>
+            <p className="text-light">Redirecting to Home...</p>
+            <Link to="/">(Click here if automatic redirect does not work)</Link>
+            
+            </>
+            
+             : <p className="invisible">redirecting</p>}
           <Spinner animation="grow" variant="warning" />
         </Stack>
       </Container>

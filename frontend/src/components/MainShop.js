@@ -38,7 +38,7 @@ const MainShop = ({ shoes }) => {
 
         <div className="container">
           <div className="row">
-            {shoes.map((shoe) => (
+            {shoes && shoes.map((shoe) => (
               <div
                 key={shoe._id}
                 style={{ marginTop: "1rem" }}

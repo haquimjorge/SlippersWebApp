@@ -15,18 +15,17 @@ const Shop = (props) => {
   const checkedRef = useRef(checked)
 
   useEffect(() => {
-    
     console.log(props.filteredShoes)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.shoes, props.filteredShoes]);
+  }, [props.shoes, props.filteredShoes])
   useEffect(() => {
-    if(!props.shoes)props.getShoes();
+    if(!props.shoes)props.getShoes()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const handleChange = (e) => {
     const searchValue = e.target.value;
-    setSearch(searchValue);
+    setSearch(searchValue)
     const list = checked
     let newData = list.filter(element=> element.type==='text')
     const index = list.indexOf(newData[0])

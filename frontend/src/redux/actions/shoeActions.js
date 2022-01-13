@@ -69,9 +69,8 @@ const shoeActions = {
   },
   getOneShoe: (id) => {
     return async (dispatch) => {
-      let response = await axios.get("http://localhost:4000/api/shoe/" + id)
-      if (response.data.succes) dispatch({ type: "getShoe", payload: response.data.response })
-      else console.error("Salio mal")
+      let response = await axios.get(`http://localhost:4000/api/shoe/${id.toString()}`)
+      dispatch({type: "getShoe", payload: response.data.response})
     }
   }
 
