@@ -19,7 +19,7 @@ import ShoeProduct from "./pages/ShoeProduct";
 
 
 const VerifyDinamic = withRouter(Verify)
-const shoeProduct = withRouter(ShoeProduct)
+const ShoeProductDinamic = withRouter(ShoeProduct)
 
 function App(props) {
     const { authUser } = props;
@@ -45,7 +45,7 @@ function App(props) {
         </>
         : <Route path="/account" element={<Account />}/>}    
         <Route path="/shop" element={<Shop />} exact />  
-        <Route path="/shoe/:shoesId" element={<ShoeProduct/>} exact />
+        <Route path="/shoe/:shoesId" element={<ShoeProductDinamic/>} exact />
         <Route path="/contacts" element={<Contacts />} exact />
         <Route path="/verify/:uniqueString" element={<VerifyDinamic />}/>
         <Route path="*" element={<Home />} />

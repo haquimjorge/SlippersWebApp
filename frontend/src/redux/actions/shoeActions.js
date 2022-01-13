@@ -15,35 +15,62 @@ const shoeActions = {
   },
   filterShoes: (shoes, searchValue) => {
     return async (dispatch) => {
-      const filteredShoes = shoes.filter(searchShoes => {
-        return (
-          searchShoes.name.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())
-          || searchShoes.gender.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())
-          || searchShoes.color.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())
-          || searchShoes.season.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())
+      let filteredShoes = [...shoes]
+      if (Array.isArray(searchValue)) {
+
+        if (searchValue.length > 0)
+          searchValue.forEach(element => {
+
+
+            filteredShoes = filteredShoes.filter(searchShoes => {
+              
+              return (
+                !element.value.length > 0 ? true
+                  : (element.type === 'gender') ? element.value.includes(searchShoes.gender.toLowerCase().trim())
+                    : (element.type === 'color') ? element.value.includes(searchShoes.color.toLowerCase().trim())
+                      : (element.type === 'season') ? element.value.includes(searchShoes.season.toLowerCase().trim())
+                        : (element.type === 'text') && (
+                          searchShoes.name.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())
+                          || searchShoes.gender.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())
+                          || searchShoes.color.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())
+                          || searchShoes.season.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())
+                        )
+              )
+            })
+
+          })
+
+      }
+      else {
+        filteredShoes = filteredShoes.filter(searchShoes => {
+          return (
+            searchShoes.name.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())
+            || searchShoes.gender.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())
+            || searchShoes.color.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())
+            || searchShoes.season.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())
           )
-      })
+        })
+      }
 
       dispatch({ type: 'filterShoes', payload: filteredShoes })
     }
   },
-  modifyshoe: (data)=>{
-      return async (dispatch)=>{
-          let response = axios.put("http://localhost:4000/api/shoes", data)
-          dispatch({type: "MODIFY_SHOE", payload:response.data.response})
-      }
+  modifyshoe: (data) => {
+    return async (dispatch) => {
+      let response = axios.put("http://localhost:4000/api/shoes", data)
+      dispatch({ type: "MODIFY_SHOE", payload: response.data.response })
+    }
   },
-  uploadShoe:(shoe)=>{
-    return async (dispatch)=>{
-        let response = axios.post("http://localhost:4000/api/shoes", shoe)
-        dispatch({type: "UPLOAD_SHOE", payload:response.data.response})
+  uploadShoe: (shoe) => {
+    return async (dispatch) => {
+      let response = axios.post("http://localhost:4000/api/shoes", shoe)
+      dispatch({ type: "UPLOAD_SHOE", payload: response.data.response })
     }
   },
   getOneShoe: (id) => {
     return async (dispatch) => {
-      let response = await axios.get("http://localhost:4000/api/shoe/" +id )
-      if (response.data.succes) dispatch({type: "getShoe", payload: response.data.response})
-      else console.error("Salio mal")
+      let response = await axios.get(`http://localhost:4000/api/shoe/${id.toString()}`)
+      dispatch({type: "getShoe", payload: response.data.response})
     }
   }
 

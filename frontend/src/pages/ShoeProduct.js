@@ -4,14 +4,16 @@ import { connect } from "react-redux";
 import shoeActions from "../redux/actions/shoeActions";
 
 const ShoeProduct = (props) => {
-  const params = useParams();
-  console.log(params)
 
   useEffect(() => {
-    props.getOneShoe(props.params.shoeId);
+    props.getOneShoe(props.params.shoesId);
   }, []);
+  console.log(props.oneShoe)
 
-  return <>asdadadadaddadadaddad</>;
+  return <>
+  <p>{props.oneShoe.name}</p>
+  
+  </>;
 };
 
 const mapDispatchToProps = {

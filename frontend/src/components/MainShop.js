@@ -4,7 +4,7 @@ import Typewriter from "typewriter-effect";
 import { getShoesCount } from "../redux/actions/categoryActions";
 
 const MainShop = ({ shoes }) => {
-  console.log(shoes);
+  
 
   const [shoesCount, setShoesCount] = useState(0);
   const [page, setPage] = useState(1);
@@ -38,7 +38,7 @@ const MainShop = ({ shoes }) => {
 
         <div className="container">
           <div className="row">
-            {shoes.map((shoe) => (
+            {shoes && shoes.map((shoe) => (
               <div
                 key={shoe._id}
                 style={{ marginTop: "1rem" }}
