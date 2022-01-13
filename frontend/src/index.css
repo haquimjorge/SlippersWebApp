@@ -513,7 +513,7 @@ border-radius: 10px;
   
 /* select styles */
 
-select {
+ .select-shoes {
   /* Reset Select */
   appearance: none;
   outline: 0;
@@ -528,11 +528,11 @@ select {
   cursor: pointer;
 }
 /* Remove IE arrow */
-select::-ms-expand {
+.select-shoes::-ms-expand {
   display: none;
 }
 /* Custom Select wrapper */
-.select {
+.select-shoes {
   position: relative;
   display: flex;
   width: 20em;
@@ -543,7 +543,7 @@ select::-ms-expand {
   margin: 5px
 }
 /* Arrow */
-.select::after {
+.select-shoes::after {
   content: '\25BC';
   position: absolute;
   top: 0;
@@ -554,7 +554,7 @@ select::-ms-expand {
   pointer-events: none;
 }
 /* Transition */
-.select:hover::after {
+.select-shoes:hover::after {
   color: #d49d04d7;
 }
 

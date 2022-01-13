@@ -50,6 +50,7 @@ const categoryControllers = {
           res.json({success:true, error:null, response:categories})
 
       }catch(e){
+        console.log(e)
         res.json({ success: false, error: e,respose:null });
       }
   },

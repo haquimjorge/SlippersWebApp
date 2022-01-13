@@ -49,7 +49,7 @@ const ShoeProduct = (props) => {
           <p className="desc">Heel: Full grain cow leather with Rubber top</p>
           <p className="desc">Height: 3.5 cm / 1.38 inches</p>
           <div className="select">
-            <select>
+            <select className="select-shoes">
               <option value="1">Choose you size</option>
               <option value="2">5</option>
               <option value="3">6</option>
@@ -61,13 +61,12 @@ const ShoeProduct = (props) => {
             </select>
           </div>
           <div className="select">
-            <select>
+            <select className="select-shoes">
               <option value="1">Choose your color</option>
               <option value="2">Black</option>
               <option value="3">Grey</option>
               <option value="4">Brown</option>
               <option value="5">Gold</option>
-
             </select>
           </div>
           <div className="buttons">

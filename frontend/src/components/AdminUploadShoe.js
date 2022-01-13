@@ -86,13 +86,13 @@ function AdminUploadShoe(props) {
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [subCategories, setSubCategories] = useState([]);
 
-  console.log(props.subCategories);
+  console.log(props.categories);
   useEffect(() => {
       if(selectedCategoryId){
 
           loadSubcategories();
       }
-  }, [selectedCategoryId]);
+  }, []);
 
   const loadSubcategories = () =>
     subCategoryActions
@@ -225,7 +225,7 @@ function AdminUploadShoe(props) {
                     props.categories.map((category) => (
                       <option
                         key={category.slug}
-                        onClick={(e) => setSelectedCategoryId(category._id)}
+                        onChange={(e) => setSelectedCategoryId("leo")}
                         value={category._id}
                       >
                         {category.name}
