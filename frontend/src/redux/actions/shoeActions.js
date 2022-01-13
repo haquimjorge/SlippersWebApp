@@ -57,13 +57,14 @@ const shoeActions = {
   },
   modifyshoe: (data) => {
     return async (dispatch) => {
-      let response = axios.put("http://localhost:4000/api/shoes", data)
+      let response = await axios.put("http://localhost:4000/api/shoes", data)
       dispatch({ type: "MODIFY_SHOE", payload: response.data.response })
     }
   },
   uploadShoe: (shoe) => {
     return async (dispatch) => {
-      let response = axios.post("http://localhost:4000/api/shoes", shoe)
+      let response = await axios.post("http://localhost:4000/api/shoes", shoe)
+      console.log(response)
       dispatch({ type: "UPLOAD_SHOE", payload: response.data.response })
     }
   },

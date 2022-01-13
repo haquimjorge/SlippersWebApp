@@ -62,6 +62,7 @@ function CenterModal(props) {
   };
   
   const mapDispatchToProps = {
-      deletecategory : categoryActionsRedux.deleteCategory
+      deletecategory : categoryActionsRedux.deleteCategory,
+      deleteSubCategory : categoryActionsRedux.deleteSubCategory
   };
   export default connect(mapStateToProps, mapDispatchToProps)(CenterModal);

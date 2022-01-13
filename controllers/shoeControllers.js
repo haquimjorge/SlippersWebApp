@@ -51,7 +51,6 @@ const shoeControllers = {
     getShoes : async(req,res)=>{
         try{
             const shoes = await Shoe.find().populate('subcategory').populate('category')
-            console.log(shoes)
             res.json({success:true,response:shoes,error:null})
 
     } catch(err){

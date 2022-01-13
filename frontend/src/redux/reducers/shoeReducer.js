@@ -3,8 +3,8 @@ const initialState = {
   filteredShoes: null,
   categories: [],
   subCategories: [],
-  category:null,
-  oneShoe: {}
+  category: null,
+  oneShoe: {},
 };
 
 const shoeReducer = (state = initialState, action) => {
@@ -25,11 +25,11 @@ const shoeReducer = (state = initialState, action) => {
         ...state,
         shoes: action.payload,
       };
-      case "getShoe":
-                return {
-                    ...state,
-                    oneShoe: action.payload
-                }
+    case "getShoe":
+      return {
+        ...state,
+        oneShoe: action.payload,
+      };
     case "filterShoes":
       return {
         ...state,
@@ -38,6 +38,7 @@ const shoeReducer = (state = initialState, action) => {
     case "UPLOAD_SHOE":
       let current = [];
       if (state.shoes !== null) {
+        console.log("se agrega" + JSON.stringify(action.payload));
         current = state.shoes.concat(action.payload);
       } else {
         state.shoes = [];
@@ -66,19 +67,52 @@ const shoeReducer = (state = initialState, action) => {
         categories: getUniqueValues(newCategories),
       };
     case "SEND_DELETE_SLUG":
-        console.log(action.payload)
-        let categoryDelete = state.categories.find(category=> category.slug === action.payload)
+      console.log(action.payload);
+      let categoryDelete = state.categories.find(
+        (category) => category.slug === action.payload
+      );
       return {
-          ...state,
-          category: categoryDelete
+        ...state,
+        category: categoryDelete,
       };
-      case "DELETE_CATEGORY":
-          let actualCategories = state.categories.filter(category=> category._id !== action.payload._id)
-      return{
-          ...state,
-          categories:actualCategories
-
-      }
+    case "DELETE_CATEGORY":
+      let actualCategories = state.categories.filter(
+        (category) => category._id !== action.payload._id
+      );
+      return {
+        ...state,
+        categories: actualCategories,
+      };
+    case "MODIFY_CATEGORY":
+      let currentCategories = state.categories.map((category) => {
+        if (category._id === action.payload._id) {
+          category = action.payload;
+        }
+        return category;
+      });
+      return {
+        ...state,
+        categories: currentCategories,
+      };
+    case "DELETE_SUBCATEGORY":
+      let actualSubcategories = state.subCategories.filter(
+        (sub) => sub._id !== action.payload._id
+      );
+      return {
+        ...state,
+        subCategories: actualSubcategories,
+      };
+    case "MODIFY_SUBCATEGORY":
+      let currentSubcategories = state.categories.map((sub) => {
+        if (sub._id === action.payload._id) {
+          sub = action.payload;
+        }
+        return sub;
+      });
+      return {
+        ...state,
+        categories: currentSubcategories,
+      };
     default:
       return state;
   }

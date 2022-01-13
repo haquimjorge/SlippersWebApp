@@ -500,6 +500,16 @@ border-radius: 10px;
   .admin-uploadshoe-container{
     background: linear-gradient(to bottom, #2e2e2e 5%, #000000 100%);
   }
+  .admin-input-category{
+      padding: 6px;
+      border-radius: 10px !important;
+      width: 90% !important ;
+  }
+  .admin-subcategory-input{
+      border-radius: 10px;
+      padding: 2px;
+      width: 90%;
+  }
   
 /* select styles */
 
