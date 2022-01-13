@@ -11,6 +11,7 @@ const {googleLogin,signUpUser, signInUser,authUser, verifyEmail} = userControlle
 const {createCategory, listCategory, readCategory, updateCategory, removeCategory} = categoryControllers
 const {createSubCategory, listSubCategory, readSubCategory, updateSubCategory, removeSubCategory} = subCategoryControllers
 
+
 // Rutas para el controlador de zapatos
 
 Router.route("/shoes")
@@ -61,6 +62,9 @@ Router.route("/subcategory/:slug")
 .get(readSubCategory)
 .put(updateSubCategory)
 .delete(removeSubCategory)
+
+
+
 
 
 
