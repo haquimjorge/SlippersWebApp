@@ -90,6 +90,7 @@ function handleOnKeyPressEdit(editedMessage, message,event, categoryId){
                     <DeleteIcon slug={props.subcategory.slug}  />
                   </div>
                 </div>
+                <CenterModal />
               </ListGroup.Item>
     )
 
