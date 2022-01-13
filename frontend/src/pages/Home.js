@@ -5,8 +5,6 @@ import MainHome from "../components/MainHome";
 import PromoHome from "../components/PromoHome";
 import Footer from "../components/Footer";
 
-
-
 const Home = () => {
   return (
     <>

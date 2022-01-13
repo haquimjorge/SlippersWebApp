@@ -1,6 +1,7 @@
 const initialState = {
     shoes: null,
-    filteredShoes: null
+    filteredShoes: null,
+    oneShoe: {}
 }
 
 const shoeReducer = (state = initialState, action) => {
@@ -37,6 +38,11 @@ const shoeReducer = (state = initialState, action) => {
                 return{
                     ...state,
                     shoes: getUniqueValues(current)
+                }
+            case "getShoe":
+                return {
+                    ...state,
+                    oneShoe: action.payload
                 }
         default:
             return state;

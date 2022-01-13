@@ -5,6 +5,7 @@ import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import CategoryCreate from '../pages/admin/category/CategoryCreate'
 import AdminShoes from "./AdminShoes";
+import SubCategoryCreate from "../pages/admin/subcategory/SubCategoryCreate";
 
 
 const AdminNav = () => {
@@ -69,6 +70,7 @@ const AdminNav = () => {
       <p>aqui va categoria</p>
       </Tab>
       <Tab eventKey="subcategroy" title="SubCategory">
+        <SubCategoryCreate/>
         <p>suibcategory</p>
       </Tab>
       <Tab eventKey="coupons" title="Coupons">
