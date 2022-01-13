@@ -3,7 +3,8 @@ const initialState = {
   filteredShoes: null,
   categories: [],
   subCategories: [],
-  category:null
+  category:null,
+  oneShoe: {}
 };
 
 const shoeReducer = (state = initialState, action) => {
@@ -24,6 +25,11 @@ const shoeReducer = (state = initialState, action) => {
         ...state,
         shoes: action.payload,
       };
+      case "getShoe":
+                return {
+                    ...state,
+                    oneShoe: action.payload
+                }
     case "filterShoes":
       return {
         ...state,

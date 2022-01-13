@@ -6,7 +6,7 @@ const userControllers = require("../controllers/userControllers");
 const categoryControllers = require("../controllers/categoryControllers")
 const subCategoryControllers = require("../controllers/subCategoryControllers")
 const passport = require("../config/passport");
-const {uploadShoe, getShoes, modifyShoe, deleteShoe} = shoeControllers
+const {uploadShoe, getShoes, modifyShoe, deleteShoe, shoesCount, getShoeById} = shoeControllers
 const {googleLogin,signUpUser, signInUser,authUser, verifyEmail} = userControllers
 const {createCategory, listCategory, readCategory, updateCategory, removeCategory, getAllCategories} = categoryControllers
 const {createSubCategory, listSubCategory, readSubCategory, updateSubCategory, removeSubCategory,getSubcategoryByParent } = subCategoryControllers
@@ -18,8 +18,13 @@ Router.route("/shoes")
 .get(getShoes)
 .put(modifyShoe)
 
+
 Router.route("/shoe/:shoeId")
-.delete(deleteShoe);
+.delete(deleteShoe)
+.get(getShoeById)
+
+Router.route("/shoes/total")
+.get(shoesCount)
 
 
 // Rutas para el controlador de usuarios

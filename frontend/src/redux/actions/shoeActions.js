@@ -38,6 +38,14 @@ const shoeActions = {
         let response = await axios.post("http://localhost:4000/api/shoes", shoe)
         dispatch({type: "UPLOAD_SHOE", payload:response.data.response})
     }
+  },
+  getOneShoe: (id) => {
+    return async (dispatch) => {
+        console.log(id)
+      let response = await axios.get(`http://localhost:4000/api/shoe/${id.toString()}`)
+      console.log(response.data)
+      dispatch({type: "getShoe", payload: response.data.response})
+    }
   }
 
 }

@@ -14,7 +14,7 @@ const CategoryForm = ({handleSubmit, name, setName}) => {
             autoFocus
             required
           />
-          <button className="btn btn-outline-primary">Upload</button>
+          <button className="btn btn-outline-primary mt-4">Upload</button>
         </div>
       </form>
     </>
