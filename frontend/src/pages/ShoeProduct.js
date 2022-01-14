@@ -13,12 +13,12 @@ const ShoeProduct = (props) => {
   }, []);
   console.log(props.params)
 
-  return <>
+  return (<>
     <Menu />
     <div className="shoe-body">
       <div className="shoe-container">
         <div className="images">
-          <img className="zoom" src="https://d3ugyf2ht6aenh.cloudfront.net/stores/090/848/products/081ddb2b-257b-4145-8dd1-d7a40792be65-c1eac204abe79eb80616190381701708-320-0.jpg" />
+          <img className="zoom" src="https://d3ugyf2ht6aenh.cloudfront.net/stores/090/848/products/081ddb2b-257b-4145-8dd1-d7a40792be65-c1eac204abe79eb80616190381701708-320-0.jpg" alt="zoomed" />
         </div>
         <div className="slideshow-buttons">
           <div className="one"></div>
@@ -80,7 +80,7 @@ const ShoeProduct = (props) => {
     <Footer />
     
 
-  </>;
+  </>);
 };
 
 const mapDispatchToProps = {
