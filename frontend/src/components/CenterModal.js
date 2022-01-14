@@ -12,7 +12,12 @@ function CenterModal(props) {
     let category = props.category ? props.category : {name:'',slug:'',createdAt:1,updatedAt:1,_id:1}
 
     function handleDelete(slug){
-        props.deletecategory(slug)
+        if(props.type){
+            console.log('pasa aca')
+            props.deleteSubCategory(slug)
+        }else{
+            props.deletecategory(slug)
+        }
         props.onHide()
     }
 
@@ -30,7 +35,8 @@ function CenterModal(props) {
           
         <Modal.Header closeButton className="d-flex admin-modal-header">
           <Modal.Title id="contained-modal-title-vcenter" className="text-dark">
-            ¿Are you sure you want to delete this category and all its sub categories?
+              {props.type ? "¿Are you sure you want to delete this sub category?": "¿Are you sure you want to delete this category and all its sub categories?"}
+            
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="admin-modal-body text-dark">
@@ -62,6 +68,7 @@ function CenterModal(props) {
   };
   
   const mapDispatchToProps = {
-      deletecategory : categoryActionsRedux.deleteCategory
+      deletecategory : categoryActionsRedux.deleteCategory,
+      deleteSubCategory : categoryActionsRedux.deleteSubCategory
   };
   export default connect(mapStateToProps, mapDispatchToProps)(CenterModal);

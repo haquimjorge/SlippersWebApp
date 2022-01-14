@@ -41,7 +41,7 @@ const categoryControllers = {
       );
       res.json(updated);
     } catch (err) {
-      res.status(400).send("Update category failed");
+      res.status(400).send("Update category failed (same name not allowed)");
     }
   },
   getAllCategories : async (req,res)=>{
@@ -50,6 +50,18 @@ const categoryControllers = {
           res.json({success:true, error:null, response:categories})
 
       }catch(e){
+        console.log(e)
+        res.json({ success: false, error: e,respose:null });
+      }
+  },
+  modifyCategory : async (req,res)=>{
+      try{
+          let modifiedCategory = await Category.findOneAndUpdate({_id:req.body.id},{name:req.body.name, slug: slugify(req.body.name) },{new:true})
+          res.json({success:true, error:null, response:modifiedCategory})
+
+      }catch(e){
+          console.log(e)
+          res.status(400).send(`Update category failed (${e.codeName})`);
         res.json({ success: false, error: e,respose:null });
       }
   }

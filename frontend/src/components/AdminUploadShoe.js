@@ -86,7 +86,7 @@ function AdminUploadShoe(props) {
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [subCategories, setSubCategories] = useState([]);
 
-  console.log(props.subCategories);
+  console.log(props.categories);
   useEffect(() => {
       if(selectedCategoryId){
 
@@ -175,9 +175,12 @@ function AdminUploadShoe(props) {
                   )
                   .required("Required"),
               })}
-              onSubmit={(values, { setSubmitting }) => {
+              onSubmit={(values, {resetForm}) => {
                 props.uploadShoe(values);
+                
                 console.log(values);
+                resetForm({values:''})
+                
               }}
             >
               <Form>
@@ -223,6 +226,7 @@ function AdminUploadShoe(props) {
                   <option value="Select Category">Select Category</option>
                   {props.categories.length !== 0 &&
                     props.categories.map((category) => (
+                        
                       <option
                         key={category.slug}
                         onClick={(e) => setSelectedCategoryId(category._id)}

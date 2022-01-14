@@ -8,20 +8,22 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { connect } from "react-redux";
 import userActions from "../redux/actions/userActions";
 import Image from "react-bootstrap/Image";
+import Logo from "../assets/logo3.png"
+import User from "../assets/usuario1.png"
 import "../index.css";
 
 function Menu(props) {
   let imagenUsuario = props.user ? (
     <Image className="user-icon" src={props.user.image}></Image>
   ) : (
-    <Image className="user-icon" src="./assets/usuario1.png" />
+    <Image className="user-icon" src={User} />
   );
   return (
     <>
       <Navbar className="contenedor-menu bg-dark" expand="lg">
         <Container>
           <div className="logo-menu ms-5">
-            <img src="./assets/logo3.png" />
+            <img src={Logo} alt="logo" />
           </div>
           <Navbar.Toggle
             className="hamburguesa"

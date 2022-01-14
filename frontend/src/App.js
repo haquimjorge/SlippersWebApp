@@ -49,6 +49,7 @@ function App(props) {
         <Route path="/contacts" element={<Contacts />} exact />
         <Route path="/verify/:uniqueString" element={<VerifyDinamic />}/>
         <Route path="*" element={<Home />} />
+        <Route path="shoeproduct" element={<ShoeProduct />} />
       </Routes>
     </BrowserRouter>
   );
