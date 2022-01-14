@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import userActions from "../redux/actions/userActions";
+import { useEffect } from "react";
+import { propTypes } from "react-bootstrap/esm/Image";
 
-const ProductCard = ({ shoe }) => {
+const ProductCard = ({ shoe, ...props }) => {
+
+  
+
   return (
     <>
       <div className="shoe-card-container">
@@ -52,14 +59,19 @@ const ProductCard = ({ shoe }) => {
               className="add-cart"
             >
               <p style={{ fontWeight: "bold" }}> ADD TO CART </p>
-              <img
-                style={{
-                  width: "2rem",
-                  alignSelf: "center",
-                  justifyContent: "center",
-                }}
-                src="../assets/carrito-de-compras.png"
-              />
+              <button onClick={()=>props.addToCart(props.cart, true, shoe)} disabled={props.user?false:true}>
+                <img
+                  style={{
+                    width: "2rem",
+                    alignSelf: "center",
+                    justifyContent: "center",
+                  }}
+
+                  src="../assets/carrito-de-compras.png"
+                  alt="shopping cart"
+                  
+                />
+              </button>
             </div>
           </div>
         </div>
@@ -68,4 +80,15 @@ const ProductCard = ({ shoe }) => {
   );
 };
 
-export default ProductCard;
+
+const mapStateToProps = (state) => {
+  return {
+    cart: state.userReducer.cart,
+    user: state.userReducer.user
+  };
+};
+const mapDispatchToProps = {
+  addToCart: userActions.addToCart
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);

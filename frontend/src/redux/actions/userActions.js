@@ -82,6 +82,27 @@ const userActions ={
               });
     
           }
+      },
+      addToCart : (cart, isAdded, product)=>{
+        
+        return async (dispatch)=>{
+          //await axios.put("http://localhost:4000/api/cart",{userId, isAdded, product})
+          //.then(response=>{
+          //  if(response.data.success)dispatch({type:"UPDATE", payload: user})
+          //  return response.data.success
+          //}).catch(err=>console.error(err))
+          
+          if(isAdded){
+            cart.push(product)
+            console.log(cart)
+            dispatch({type:"ADD_PRODUCT", payload: cart})
+          }
+          else{
+            cart.filter(element => product !== element)
+            dispatch({type:"DELETE_PRODUCT", payload: cart})
+        }
+
+        }
       }
 }
 

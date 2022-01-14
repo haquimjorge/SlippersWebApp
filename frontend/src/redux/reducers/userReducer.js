@@ -1,32 +1,45 @@
 const initialState = {
-    user: null,
+  user: null,
   success: null,
   error: null,
-  message:null
+  message: null,
+  cart: []
 }
 
-const userReducer =(state=initialState, action)=>{
-    switch(action.type){
-        case "SAVE_USER":
+const userReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "SAVE_USER":
       return {
         ...state,
         success: action.payload.info.success,
         error: action.payload.info.error,
         user: action.payload.info.response,
-        message:action.payload.info.message
+        message: action.payload.info.message
       };
-      case "LOG_OUT":
+    case "LOG_OUT":
       return {
         ...initialState,
       };
-      case "IS_AUTH":
+    case "IS_AUTH":
       return {
-          ...state,
+        ...state,
         user: action.payload,
       };
-        default:
-            return state;
-    }
+    case "ADD_PRODUCT":
+      
+      return {
+        ...state,
+        cart: action.payload
+      }
+    case "DELETE_PRODUCT":
+      
+      return { 
+        ...state, 
+        cart: action.payload
+      }
+    default:
+      return state;
+  }
 }
 
 export default userReducer

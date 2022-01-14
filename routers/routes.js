@@ -7,7 +7,7 @@ const categoryControllers = require("../controllers/categoryControllers")
 const subCategoryControllers = require("../controllers/subCategoryControllers")
 const passport = require("../config/passport");
 const {uploadShoe, getShoes, modifyShoe, deleteShoe, shoesCount, getShoeById} = shoeControllers
-const {googleLogin,signUpUser, signInUser,authUser, verifyEmail} = userControllers
+const {googleLogin,signUpUser, signInUser,authUser, verifyEmail, addToCart} = userControllers
 const {createCategory, listCategory, readCategory, updateCategory, removeCategory, getAllCategories,modifyCategory} = categoryControllers
 const {createSubCategory, listSubCategory, readSubCategory, updateSubCategory, removeSubCategory,getSubcategoryByParent, modifySubCategory,deleteSubCategory } = subCategoryControllers
 
@@ -78,6 +78,7 @@ Router.route("/allsubcategory/:id")
 Router.route("/subcategories/:parentId")
 .get(getSubcategoryByParent)
 
-
+Router.route("/cart")
+.put(addToCart)
 
 module.exports = Router;

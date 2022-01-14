@@ -97,7 +97,7 @@ const userControllers = {
       }
     } catch (e) {
       res.json({ success: false, error: e, response: null });
-      console.log(e)
+      
     }
   },
   signUpUser: async (req, res) => {
@@ -125,7 +125,7 @@ const userControllers = {
 
       }catch(error){
         res.json({success:false, response:null, error:error})
-        console.log(error)
+        
       }
     },
     getUsers: async (req, res) => {
@@ -212,6 +212,28 @@ const userControllers = {
             res.json({success:false,response:null,error:'Your email could not be verified', message:null})
         }
   
+    },
+    addToCart: async (req, res) => {
+      try {
+        
+        const { userId, isAdded, product } = req.body;
+        //   si esta se agrega, se agrega; de lo contrario, se elimina
+        
+        const action = isAdded ? "$push" : "$pull";
+        const updatedUser = User.findOneAndUpdate(
+          { _id: userId },
+          { [action]: { cart: product } },
+          { new: true }
+        );
+        const user = await User.findOne({ _id: userId })
+        console.log(user)
+        //res.json({ success: true, error: null, response: updatedUser });
+  
+        
+      } catch (e) {
+        res.json({ success: false, error: e, response: null });
+        console.error(e);
+      }
     }
     
 };

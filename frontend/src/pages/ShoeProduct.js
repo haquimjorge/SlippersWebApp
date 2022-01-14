@@ -5,12 +5,18 @@ import shoeActions from "../redux/actions/shoeActions";
 import Menu from '../components/Menu';
 import Footer from '../components/Footer';
 import "../shoeDetails.scss";
+import userActions from "../redux/actions/userActions";
+
 
 const ShoeProduct = (props) => {
 
   useEffect(() => {
     props.getOneShoe(props.params.shoesId);
   }, []);
+
+  useEffect(() => {
+    console.log(props.cart)
+  }, [props.cart]);
   console.log(props.params)
 
   return (<>
@@ -70,7 +76,7 @@ const ShoeProduct = (props) => {
             </select>
           </div>
           <div className="buttons">
-            <button className="add">Add to Cart</button>
+            <button className="add"  onClick={()=>props.addToCart(props.cart, true, props.oneShoe)} disabled={props.user?false:true}>Add to Cart</button>
             <button className="like">♥</button>
             <button className="paypal">PayPal</button>
           </div>
@@ -85,12 +91,19 @@ const ShoeProduct = (props) => {
 
 const mapDispatchToProps = {
   getOneShoe: shoeActions.getOneShoe,
+  addToCart: userActions.addToCart
 };
 
 const mapStateToProps = (state) => {
   return {
     oneShoe: state.shoeReducer.oneShoe,
+    cart: state.userReducer.cart,
+    user: state.userReducer.user
   };
 };
+
+
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoeProduct);
