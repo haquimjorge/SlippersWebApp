@@ -59,6 +59,26 @@ const subCategoryControllers = {
       }catch(e){
         res.status(400).send("Cannot find subcategory with that id" + req.params.parentId);
       }
+  },
+  modifySubCategory : async (req,res)=>{
+    try{
+        let modifiedCategory = await SubCategory.findOneAndUpdate({_id:req.body.id},{name:req.body.name, slug: slugify(req.body.name) },{new:true})
+        res.json({success:true, error:null, response:modifiedCategory})
+
+    }catch(e){
+        console.log(e)
+      res.json({ success: false, error: e,respose:null });
+    }
+  },
+  deleteSubCategory: async (req, res) => {
+    try {
+      const deleted = await SubCategory.findOneAndDelete({
+        _id: req.params.id,
+      });
+      res.json(deleted);
+    } catch (err) {
+        res.json({ success: false, error: e,respose:null });
+    }
   }
 };
 

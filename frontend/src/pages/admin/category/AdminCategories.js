@@ -14,6 +14,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import FormR from "react-bootstrap/Form";
 import Pencil from "../../../assets/pencil.png";
 import Delete from "../../../assets/deletecross.png";
+import Plus from "../../../assets/plus.png";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -21,17 +22,36 @@ import Collapse from "react-bootstrap/Collapse";
 import Button from "react-bootstrap/Button";
 import categoryActionsRedux from "../../../redux/actions/categoryActionsRedux";
 import CenterModal from "../../../components/CenterModal";
+import SubCategoryItem from "../subcategory/SubCategoryItem"
 
 function AdminCategories(props) {
   const [open, setOpen] = useState(false);
   const { getSubCategoriesByParentId, category, subCategories } = props;
   const [modalShow, setModalShow] = useState(false);
+  const [edit, setEdit] = useState(false)
+  const [editInput, setEditInput] = useState("")
 
   function handleCategoryClick() {
     setOpen(!open);
     getSubCategoriesByParentId(category._id);
   }
 
+  function handleEditClick(name){
+    setEdit(!edit)
+    setEditInput(name)
+  }
+  function handleOnKeyPressEdit(editedMessage, message,event, categoryId){
+      if(event.charCode ===13){
+          if(message !== editedMessage){
+            let data = {
+                id: categoryId,
+                name: editedMessage,
+              };
+              props.modifycategory(data)
+        }
+        setEdit(!edit)
+      }
+  }
 
   
  
@@ -49,10 +69,40 @@ delay={{ show: 25, hide: 25 }}
 overlay={renderEdit}
 {...props}
 >
-<img onClick={()=>console.log("click a lapiz")} src={Pencil} alt='pencil' className="admin-interaction-icon"/>
+<img onClick={()=>handleEditClick(props.name)} src={Pencil} alt='pencil' className="admin-interaction-icon ms-2"/>
 </OverlayTrigger>
     )   
 }
+
+const PlusIcon =(props)=>{
+    const renderEdit = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+          Add Sub Category
+        </Tooltip>
+      );
+    return(
+<OverlayTrigger
+placement="top"
+delay={{ show: 25, hide: 25 }}
+overlay={renderEdit}
+{...props}
+>
+<img onClick={()=>handlePlus(props.parent)} src={Plus} alt='plus' className="admin-interaction-icon"/>
+</OverlayTrigger>
+    )   
+}
+function handlePlus(parent){
+    let randomString = Math.random().toString(36).substring(2, 4) + Math.random().toString(36).substring(2, 4);
+    
+    let data = {
+        name: "New Subcategory ("+ randomString +")",
+        parent
+    }
+    props.createSubCategory(data)
+    console.log(data)
+
+}
+
 function handleDelete(slug){
     console.log(slug)
     setModalShow(true)
@@ -89,14 +139,28 @@ const DeleteIcon =(props)=>{
         className="admin-category-container"
       >
         <div className="d-flex justify-content-between align-items-center admin-category-subcontainer">
+            {edit? <div className="w-100 rounded" >
+            <OverlayTrigger
+        placement="top"
+        delay={{ show: 25, hide: 25 }}
+        overlay={<Tooltip id="button-tooltip">
+        Hit Enter to Edit
+      </Tooltip>}
+        >
+              <input value={editInput} onKeyPress={(e)=> handleOnKeyPressEdit(e.target.value,category.name,e, category._id)} onChange={(e)=> setEditInput(e.target.value)} className="admin-input-category text-black fw-bold rounded"/>
+              </OverlayTrigger>
+          </div> : 
           <div className="w-100 rounded" onClick={() => handleCategoryClick()}>
-            <p className="m-0 p-2 text-light fw-bold text-shadow-slipper">
-              {category.name}
-            </p>
-          </div>
+          <p className="m-0 p-2 text-light fw-bold text-shadow-slipper">
+          {category.name}
+        </p> 
+        
+      </div> }
+         
 
           <div className="m-0 p-0 d-flex align-items-center">
-            <PencilIcon/>
+            <PlusIcon parent={category._id} />
+            <PencilIcon name={category.name}/>
             <DeleteIcon slug={category.slug}/>
           </div>
         </div>
@@ -108,18 +172,7 @@ const DeleteIcon =(props)=>{
         <ListGroup className="ps-2 pe-2">
           {properSubcategories.length ? (
             properSubcategories.map((sub) => (
-              <ListGroup.Item
-                key={sub._id}
-                className="admin-subcategory-container text-light">
-
-                <div className="d-flex justify-content-between align-items-center">
-                  <p className="m-0 p-0 ">{sub.name}</p>
-                  <div className="m-0 p-0 d-flex align-items-center">
-                    <PencilIcon/>
-                    <DeleteIcon/>
-                  </div>
-                </div>
-              </ListGroup.Item>
+                <SubCategoryItem subcategory={sub} />
             ))
           ) : (
             <ListGroup.Item className="admin-subcategory-container text-light">
@@ -140,7 +193,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   getSubCategoriesByParentId: categoryActionsRedux.getSubCategoriesByParentId,
-  sendDeleteSlug : categoryActionsRedux.sendDeleteSlug
+  sendDeleteSlug : categoryActionsRedux.sendDeleteSlug,
+  modifycategory : categoryActionsRedux.modifyCategory,
+  createSubCategory: categoryActionsRedux.createSubCategory
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminCategories);
