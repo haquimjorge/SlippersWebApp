@@ -53,21 +53,25 @@ function Carousel(props) {
         className="mySwiper"
       >
         {console.log(props.allShoes)}
-        {props.allShoes ? (
-          props.allShoes.map((elem) => {
+        <div className="shoes-container-card">
+          {props.allShoes ? (props.allShoes.map((elem) => {
             return (
-              <>
-                <SwiperSlide>
-                  <img src={elem.image} />
-                </SwiperSlide>
-              </>
-            );
-          })
-        ) : (
-          <SwiperSlide>
-            <img src={Logo} />
-          </SwiperSlide>
-        )}
+              <SwiperSlide>
+                <div className="card-shoe">
+                  <div className="img-div">
+                    <img src={elem.image} />
+                    <p className="name-shoe">{elem.name}</p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            )
+          }))
+            :
+            <SwiperSlide>
+              <img src={Logo} />
+            </SwiperSlide>
+          }
+        </div>
       </Swiper>
     </div>
   );
