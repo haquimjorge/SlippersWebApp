@@ -52,7 +52,6 @@ ul {
 .carrito img {
   object-fit: cover;
   width: 35px;
-  /* margin-left: 20px; */
 }
 
 .usuario img {
@@ -113,13 +112,13 @@ ul {
 /* MAIN HOME */
 
 main {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: whitesmoke;
 }
 
 .div-titulo {
-  padding: 5%;
+  padding: 3% 0 1% 0;
   border-bottom: double rgba(0, 0, 0, 0.952);
   text-transform: uppercase;
   text-align: center;
@@ -137,6 +136,10 @@ main {
   color: rgba(0, 0, 0, 0.952);
   text-shadow: 1px 1px 2px orangered;
   font-size: 45px;
+}
+
+.contenedor-carouselZapatos {
+  padding-bottom: 10%;
 }
 
 /* PROMO-HOME */
