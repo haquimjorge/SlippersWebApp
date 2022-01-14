@@ -41,6 +41,7 @@ const categoryActionsRedux = {
     getSubCategoriesByParentId : (parentId)=>{
         return async (dispatch)=>{
             let response = await axios.get(`http://localhost:4000/api/subcategories/${parentId}`)
+            console.log(response.data)
             dispatch({type: "GET_SUBCATEGORIES_BY_PARENT", payload: response.data})
         }
     },

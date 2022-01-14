@@ -16,6 +16,7 @@ import Verify from './pages/Verify'
 import withRouter from "./utilities/withRouter";
 import SubCategoryUpdate from "./pages/admin/subcategory/SubCategoryUpdate";
 import ShoeProduct from "./pages/ShoeProduct";
+import ReduxToastr from 'react-redux-toastr'
 
 
 const VerifyDinamic = withRouter(Verify)
@@ -30,6 +31,7 @@ function App(props) {
     }
   }, [authUser, token]);
   return (
+      <>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} exact />
@@ -52,6 +54,17 @@ function App(props) {
         <Route path="shoeproduct" element={<ShoeProduct />} />
       </Routes>
     </BrowserRouter>
+    <ReduxToastr
+    timeOut={4000}
+    newestOnTop={false}
+    preventDuplicates
+    position="bottom-center"
+    getState={(state) => state.toastr} // This is the default
+    transitionIn="fadeIn"
+    transitionOut="fadeOut"
+    progressBar
+    closeOnToastrClick/>
+    </>
   );
 }
 

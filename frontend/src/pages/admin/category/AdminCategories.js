@@ -23,6 +23,7 @@ import Button from "react-bootstrap/Button";
 import categoryActionsRedux from "../../../redux/actions/categoryActionsRedux";
 import CenterModal from "../../../components/CenterModal";
 import SubCategoryItem from "../subcategory/SubCategoryItem"
+import {toastr} from 'react-redux-toastr'
 
 function AdminCategories(props) {
   const [open, setOpen] = useState(false);
@@ -93,12 +94,18 @@ overlay={renderEdit}
 }
 function handlePlus(parent){
     let randomString = Math.random().toString(36).substring(2, 4) + Math.random().toString(36).substring(2, 4);
+    const toastrOptions ={
+        preventDuplicates: false,
+        showCloseButton:false,
+        closeOnToastrClick: true
+    }
     
     let data = {
         name: "New Subcategory ("+ randomString +")",
         parent
     }
     props.createSubCategory(data)
+    toastr.success('Sub Category Added!', data.name, toastrOptions)
     console.log(data)
 
 }

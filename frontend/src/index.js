@@ -2,6 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ReactDOM from "react-dom";
 import './index.css';
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import thunk from "redux-thunk";

@@ -13,6 +13,8 @@ import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { getCategories } from "../redux/actions/categoryActions";
 import subCategoryActions from "../redux/actions/subCategoryActions";
+import {toastr} from 'react-redux-toastr'
+import categoryActionsRedux from "../redux/actions/categoryActionsRedux"
 
 const StringInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -84,20 +86,18 @@ const RadioInput = ({ label, ...props }) => {
 
 function AdminUploadShoe(props) {
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
-  const [subCategories, setSubCategories] = useState([]);
 
-  console.log(props.categories);
   useEffect(() => {
       if(selectedCategoryId){
-
-          loadSubcategories();
+          props.getSubCategoriesByParentId(selectedCategoryId)  
       }
   }, [selectedCategoryId]);
 
-  const loadSubcategories = () =>
-    subCategoryActions
-      .getSubcategoriesByParentId(selectedCategoryId)
-      .then((category) => setSubCategories(category.data));
+  let properSubcategories = props.subCategories.filter(
+    (sub) => sub.parent === selectedCategoryId
+  );
+  
+   
 
       
 
@@ -180,10 +180,14 @@ function AdminUploadShoe(props) {
                 
                 console.log(values);
                 resetForm({values:''})
+                toastr.success('Shoe Uploaded!', values.name)
                 
               }}
             >
               <Form>
+              <button
+          onClick={() => toastr.info('The title', 'The message')}
+          type="button">Toastr Success</button>
                 <StringInput
                   label="Shoe Name"
                   name="name"
@@ -191,6 +195,7 @@ function AdminUploadShoe(props) {
                   placeholder="kevin"
                   className="w-100"
                 />
+             
                 <StringInput
                   label="Description"
                   name="description"
@@ -241,8 +246,8 @@ function AdminUploadShoe(props) {
                   <option value="Select Sub Category">
                     Select Sub Category
                   </option>
-                  {subCategories.length !== 0 &&
-                    subCategories.map((subCategory) => (
+                  {properSubcategories.length !== 0 &&
+                    properSubcategories.map((subCategory) => (
                       <option key={subCategory.slug} value={subCategory._id}>
                         {subCategory.name}
                       </option>
@@ -283,6 +288,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   uploadShoe: shoeActions.uploadShoe,
+  getSubCategoriesByParentId: categoryActionsRedux.getSubCategoriesByParentId
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminUploadShoe);
