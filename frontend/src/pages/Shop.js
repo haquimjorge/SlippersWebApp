@@ -1,6 +1,7 @@
 import React from "react";
 import Menu from "../components/Menu";
 import Footer from "../components/Footer";
+import CarouselMarcas from "../components/CarouselMarcas";
 import MainShop from "../components/MainShop";
 import shoeActions from "../redux/actions/shoeActions";
 import { connect } from "react-redux";
@@ -134,6 +135,7 @@ const Shop = (props) => {
       </div>
 
       <MainShop shoes={props.filteredShoes ? props.filteredShoes : props.shoes ? props.shoes : []} />
+      <CarouselMarcas />
       <Footer />
     </>
   );

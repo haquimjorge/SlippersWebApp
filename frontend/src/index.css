@@ -52,7 +52,6 @@ ul {
 .carrito img {
   object-fit: cover;
   width: 35px;
-  /* margin-left: 20px; */
 }
 
 .usuario img {
@@ -113,13 +112,13 @@ ul {
 /* MAIN HOME */
 
 main {
-  min-height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: white;
 }
 
 .div-titulo {
-  padding: 5%;
+  padding: 3% 0 1% 0;
   border-bottom: double rgba(0, 0, 0, 0.952);
   text-transform: uppercase;
   text-align: center;
@@ -137,6 +136,10 @@ main {
   color: rgba(0, 0, 0, 0.952);
   text-shadow: 1px 1px 2px orangered;
   font-size: 45px;
+}
+
+.contenedor-carouselZapatos {
+  padding-bottom: 10%;
 }
 
 /* PROMO-HOME */
@@ -216,7 +219,7 @@ main {
 
 .menu-contacts {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-image: url("../public/assets/05.jpg");
@@ -267,11 +270,116 @@ main {
 }
 
 .contenedor-contacts p {
-  font-weight: bold;
   font-size: 15px;
 }
 
+.contenedor-contacts input {
+  color: whitesmoke;
+  font-family: monospace;
+  font-size: 20px;
+  width: 100%;
+  height: 35px;
+  margin-bottom: 2%;
+  border: none;
+  box-shadow: 1px 1px 2px whitesmoke;
+  background-color: rgba(0, 0, 0, 0.37);
+}
+
+.formulario-contacts p {
+  text-align: left;
+  text-shadow: 1px 1px 1px gold;
+}
+
+.formulario-contacts .mensaje {
+  height: 45px;
+}
+
+.button-sendform {
+  background-color: transparent !important;
+  text-shadow: 1px 1px gold !important;
+  text-transform: uppercase !important;
+  box-shadow: 1px 1px 2px whitesmoke !important;
+  border: none !important;
+  color: whitesmoke !important;
+  padding: 1% !important;
+  margin: 5% !important;
+  width: 30% !important;
+}
+
+.button-sendform:hover {
+  background-color: transparent !important;
+  text-shadow: none !important;
+}
+
+.contenedor-modal {
+  padding-top: 5%;
+  background: rgba(0, 0, 0, 0.603);
+  text-transform: uppercase;
+}
+
+.modal-header {
+  text-shadow: 1px 1px rgba(255, 217, 0, 0.445);
+  border-bottom: solid 0.5px rgba(0, 0, 0, 0.445);
+  background-color: rgba(0, 0, 0, 0.082);
+}
+
+.modal-body {
+  background-color: rgba(0, 0, 0, 0.082);
+  font-weight: bold;
+}
+
+.modal-footer {
+  background-color: rgba(0, 0, 0, 0.082);
+  border: none;
+}
+
+.modal-footer button {
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 1px 1px 4px black;
+  width: 30%;
+  border: none;
+  color: black;
+  text-shadow: 1px 1px 1px rgba(255, 217, 0, 0.377) !important;
+  background-color: transparent !important;
+}
+
+.modal-footer button:hover {
+  text-shadow: none !important;
+  background-color: rgba(0, 0, 0, 0.829) !important;
+}
+
 /* SIGN */
+
+.gender-sign {
+  text-transform: uppercase;
+  margin: 1%;
+  background-color: rgba(245, 245, 245, 0.034);
+  box-shadow: 1px 1px 2px whitesmoke;
+}
+
+.input-sign label {
+  text-transform: uppercase;
+  color: grey;
+}
+
+.input-sign input {
+  border: none;
+  box-shadow: 1px 1px whitesmoke;
+  background-color: rgba(245, 245, 245, 0.034);
+}
+
+.googleLogin {
+  color: whitesmoke !important;
+  text-transform: uppercase !important;
+  border: solid goldenrod !important;
+  background: linear-gradient(to bottom, #d2aa44 5%, #c79a30 100%) !important;
+}
+
+.registrate {
+  color: whitesmoke;
+  text-shadow: 1px 1px gold;
+}
 
 .fondo-menu-sign {
   background-color: black;
@@ -297,13 +405,13 @@ main {
   transition: 0.1s;
 }
 
-.sign-verify-message{
-    height: 40rem;
+.sign-verify-message {
+  height: 40rem;
 }
 .text-shadow-slipper {
-    text-shadow: 2px 2px 5px black;
-  }
-  
+  text-shadow: 2px 2px 5px black;
+}
+
 .sign-button {
   transition: 0.1s;
   box-shadow: inset 0px 34px 0px -15px #d1b46b;
@@ -400,12 +508,12 @@ main {
   .sign-radio-container {
     flex-direction: column;
   }
-  .sign-input-imageurl{
-      width: 100% !important;
+  .sign-input-imageurl {
+    width: 100% !important;
   }
-  .signup-radio-container{
-      display: flex !important;
-      justify-content: space-around !important;
+  .signup-radio-container {
+    display: flex !important;
+    justify-content: space-around !important;
   }
 }
 
@@ -429,91 +537,149 @@ main {
   text-shadow: 2px 2px 4px gold;
 }
 
-.admin-panel-dashboard-welcome{
-    min-height: 70vh;
+/* CAROUSEL MARCAS */
+
+.contenedor-marcasSociales {
+  border-top: double black;
+}
+
+.contenedor-marcasSociales img {
+  object-fit: contain;
+  padding: 0px 15px 0px 15px;
+  width: 100px;
+  height: 150px;
+}
+
+.pedidos-exclusivos {
+  padding: 2% 0 1% 0;
+  text-transform: uppercase;
+  color: whitesmoke;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.952);
+  margin: 0 25% 0 25%;
+  border-top: solid 6px rgb(255, 224, 51);
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+}
+
+.pedidos-exclusivos p {
+  font-family: monospace;
+  font-size: 18px;
+  text-shadow: 1px 1px rgba(255, 217, 0, 0.377);
+  padding: 3% 3% 0 3%;
+}
+
+@media (min-width: 250px) and (max-width: 850px) {
+  .pedidos-exclusivos {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top: none;
+    margin: 0;
+  }
+  .pedidos-exclusivos p {
+    font-size: 15px;
+    padding: 5%;
+  }
+}
+
+/* ADMIN */
+
+.admin-panel-dashboard-welcome {
+  min-height: 70vh;
 }
 .card-admin-items {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 15rem;
-  }
-  .admin-edit-icon {
-    transition: 0.5s;
-    width: 1rem;
-    cursor: pointer;
-  }
-  .admin-edit-icon:hover {
-    transition: 0.2s;
-    filter: invert(26%) sepia(55%) saturate(1670%) hue-rotate(329deg)
-      brightness(105%) contrast(105%);
-  }
-  .admin-shoes-card-footer{
-      background-color: #e2c272;
-  }
-  .admin-delete-shoe-button{
-      background-color: #c3993f;
-      color: white;
-      text-shadow: 1px 1px 2px black;
-  }
-  .admin-delete-shoe-button:hover{
-      background-color: #aa8025;
-  }
-  .admin-upload-shoe-img{
-      height: 20rem;
-      background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-  .admin-newcategory-container{
-      background-color: #0e0e0e;
-  }
-  .admin-interaction-icon{
-      width: 1.2rem;
-  }
-  .admin-interaction-icon:hover{
-    filter: invert(23%) sepia(26%) saturate(459%) hue-rotate(191deg) brightness(96%) contrast(91%);
-    cursor: pointer;
-  }
-  .admin-category-container{
-    background: linear-gradient(to bottom, #2e2e2e 5%, #000000 100%);
-  }
-  .admin-category-subcontainer{
-      transition: .2s;
-    background: rgb(189,146,38);
-background: radial-gradient(circle, rgba(189,146,38,1) 0%, rgba(200,178,123,1) 43%, rgba(172,150,92,1) 100%);
-border-radius: 10px;
-  }
-  .admin-category-subcontainer:hover{
-      transition: .2s;
-    background: rgb(145, 105, 6);
-    background: radial-gradient(circle, rgb(167, 123, 14) 0%, rgb(163, 141, 84) 43%, rgba(172,150,92,1) 100%);
-  }
-  .admin-subcategory-container{
-      transition: .2s;
-    background-color: #be952d;
-  }
-  .admin-subcategory-container:hover{
-      transition: .2s;
-    background-color: #a87d0f;
-  }
-  .admin-uploadshoe-container{
-    background: linear-gradient(to bottom, #2e2e2e 5%, #000000 100%);
-  }
-  .admin-input-category{
-      padding: 6px;
-      border-radius: 10px !important;
-      width: 90% !important ;
-  }
-  .admin-subcategory-input{
-      border-radius: 10px;
-      padding: 2px;
-      width: 90%;
-  }
-  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 15rem;
+}
+.admin-edit-icon {
+  transition: 0.5s;
+  width: 1rem;
+  cursor: pointer;
+}
+.admin-edit-icon:hover {
+  transition: 0.2s;
+  filter: invert(26%) sepia(55%) saturate(1670%) hue-rotate(329deg)
+    brightness(105%) contrast(105%);
+}
+.admin-shoes-card-footer {
+  background-color: #e2c272;
+}
+.admin-delete-shoe-button {
+  background-color: #c3993f;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+.admin-delete-shoe-button:hover {
+  background-color: #aa8025;
+}
+.admin-upload-shoe-img {
+  height: 20rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.admin-newcategory-container {
+  background-color: #0e0e0e;
+}
+.admin-interaction-icon {
+  width: 1.2rem;
+}
+.admin-interaction-icon:hover {
+  filter: invert(23%) sepia(26%) saturate(459%) hue-rotate(191deg)
+    brightness(96%) contrast(91%);
+  cursor: pointer;
+}
+.admin-category-container {
+  background: linear-gradient(to bottom, #2e2e2e 5%, #000000 100%);
+}
+.admin-category-subcontainer {
+  transition: 0.2s;
+  background: rgb(189, 146, 38);
+  background: radial-gradient(
+    circle,
+    rgba(189, 146, 38, 1) 0%,
+    rgba(200, 178, 123, 1) 43%,
+    rgba(172, 150, 92, 1) 100%
+  );
+  border-radius: 10px;
+}
+.admin-category-subcontainer:hover {
+  transition: 0.2s;
+  background: rgb(145, 105, 6);
+  background: radial-gradient(
+    circle,
+    rgb(167, 123, 14) 0%,
+    rgb(163, 141, 84) 43%,
+    rgba(172, 150, 92, 1) 100%
+  );
+}
+.admin-subcategory-container {
+  transition: 0.2s;
+  background-color: #be952d;
+}
+.admin-subcategory-container:hover {
+  transition: 0.2s;
+  background-color: #a87d0f;
+}
+.admin-uploadshoe-container {
+  background: linear-gradient(to bottom, #2e2e2e 5%, #000000 100%);
+}
+.admin-input-category {
+  padding: 6px;
+  border-radius: 10px !important;
+  width: 90% !important ;
+}
+.admin-subcategory-input {
+  border-radius: 10px;
+  padding: 2px;
+  width: 90%;
+}
+
 /* select styles */
 
- .select-shoes {
+.select-shoes {
   /* Reset Select */
   appearance: none;
   outline: 0;
@@ -537,20 +703,20 @@ border-radius: 10px;
   display: flex;
   width: 20em;
   height: 3em;
-  border-radius: .25em;
+  border-radius: 0.25em;
   overflow: hidden;
   box-shadow: 2px 2px 4px #d49d04d7;
-  margin: 5px
+  margin: 5px;
 }
 /* Arrow */
 .select-shoes::after {
-  content: '\25BC';
+  content: "\25BC";
   position: absolute;
   top: 0;
   right: 0;
   padding: 1em;
   background-color: blanchedalmond;
-  transition: .25s all ease;
+  transition: 0.25s all ease;
   pointer-events: none;
 }
 /* Transition */
@@ -566,13 +732,13 @@ h1 {
 
 /* Imagen ShoeDetails Styles */
 
-.zoom{
+.zoom {
   transition: 0.2s;
 }
-.zoom:hover{
+.zoom:hover {
   transform: scale(1.5);
 }
 
-.zoom{
+.zoom {
   box-shadow: 5px 5px 8px #d49d04d7;
 }

@@ -32,9 +32,7 @@ function Carousel(props) {
   return (
     <div className="container-carousel">
       <div className="title_wrapper">
-        <div className="title_">
-          <span>New</span>Models
-        </div>
+        <div className="title_"></div>
       </div>
       <Swiper
         navigation={true}

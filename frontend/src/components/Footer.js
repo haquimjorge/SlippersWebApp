@@ -1,6 +1,7 @@
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import { Link } from "react-router-dom";
 import Facebook from "../assets/facebook.png"
 import Instagram from "../assets/instagram.png"
 import Mail from "../assets/mail.png"
@@ -13,24 +14,21 @@ function Footer() {
       <Navbar className="container-menu-footer" expand="lg">
         <Container>
           <Nav className="m-auto">
-            <Nav.Link
-              className="botones-menu text-light text-center"
-              href="#home"
-            >
+            <Link className="p-2 botones-menu text-light text-center" to="/">
               Home
-            </Nav.Link>
-            <Nav.Link
-              className="botones-menu text-light text-center"
-              href="#link"
+            </Link>
+            <Link
+              className="p-2 botones-menu text-light text-center"
+              to="/shop"
             >
               Shop
-            </Nav.Link>
-            <Nav.Link
-              className="botones-menu text-light text-center"
-              href="#link"
+            </Link>
+            <Link
+              className="p-2 botones-menu text-light text-center"
+              to="/contacts"
             >
               Contacts
-            </Nav.Link>
+            </Link>
           </Nav>
         </Container>
       </Navbar>
