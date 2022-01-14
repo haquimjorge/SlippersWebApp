@@ -16,6 +16,7 @@ import Verify from './pages/Verify'
 import withRouter from "./utilities/withRouter";
 import SubCategoryUpdate from "./pages/admin/subcategory/SubCategoryUpdate";
 import ShoeProduct from "./pages/ShoeProduct";
+// import PayPalCheckOutButton from "./components/PaypalCheckOutButton";
 
 
 const VerifyDinamic = withRouter(Verify)
@@ -66,3 +67,5 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+

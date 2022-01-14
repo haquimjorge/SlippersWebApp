@@ -11,6 +11,7 @@ const {googleLogin,signUpUser, signInUser,authUser, verifyEmail, addToCart} = us
 const {createCategory, listCategory, readCategory, updateCategory, removeCategory, getAllCategories,modifyCategory} = categoryControllers
 const {createSubCategory, listSubCategory, readSubCategory, updateSubCategory, removeSubCategory,getSubcategoryByParent, modifySubCategory,deleteSubCategory } = subCategoryControllers
 
+
 // Rutas para el controlador de zapatos
 
 Router.route("/shoes")
@@ -80,5 +81,8 @@ Router.route("/subcategories/:parentId")
 
 Router.route("/cart")
 .put(addToCart)
+
+
+
 
 module.exports = Router;
