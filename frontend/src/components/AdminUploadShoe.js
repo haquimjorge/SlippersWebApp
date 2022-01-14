@@ -175,9 +175,12 @@ function AdminUploadShoe(props) {
                   )
                   .required("Required"),
               })}
-              onSubmit={(values, { setSubmitting }) => {
+              onSubmit={(values, {resetForm}) => {
                 props.uploadShoe(values);
+                
                 console.log(values);
+                resetForm({values:''})
+                
               }}
             >
               <Form>
