@@ -742,3 +742,52 @@ h1 {
 .zoom {
   box-shadow: 5px 5px 8px #d49d04d7;
 }
+/* Carrito */
+
+.cart-button{
+  background-color: transparent!important;
+  border-color: transparent!important;
+}
+.cart-button:hover{
+  background-color:#7a2a1d;
+}
+
+.header-cart{
+  padding: 0 0.5rem;
+}
+.image-cart {
+  width: 20%;
+  height: auto;
+  margin-right: 1rem;
+}
+.product-cart{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+  width: inherit;
+  
+}
+.product-name{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin:0;
+}
+
+.delete-button{
+  border-radius:10px;
+  background-color: #7a2a1d;
+  color: #a87d0f;
+  width:40px;
+  height: 40px;
+  height:auto;
+}
+.delete-button:hover{
+  color: #7a2a1d;
+  background-color: #a87d0f;
+  
+}
+
+
+

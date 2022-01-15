@@ -5,6 +5,7 @@ import MainHome from "../components/MainHome";
 import PromoHome from "../components/PromoHome";
 import Footer from "../components/Footer";
 import CarouselMarcas from "../components/CarouselMarcas";
+import CarritoModal from "../components/CarritoModal";
 
 const Home = () => {
   return (
@@ -12,7 +13,8 @@ const Home = () => {
       <div className="portada">
         <Menu />
       </div>
-      <Input />
+      <CarritoModal/>
+      <Input/>
       <MainHome />
       <PromoHome />
       <CarouselMarcas />

@@ -11,6 +11,7 @@ import Image from "react-bootstrap/Image";
 import Logo from "../assets/logo3.png"
 import User from "../assets/usuario1.png"
 import "../index.css";
+import CarritoModal from "./CarritoModal";
 
 function Menu(props) {
   let imagenUsuario = props.user ? (
@@ -86,9 +87,7 @@ function Menu(props) {
               </DropdownButton>
             </Nav>
           </Navbar.Collapse>
-          <Link to="/cart">
-            <Carrito />
-          </Link>
+            <CarritoModal/>
         </Container>
       </Navbar>
     </>

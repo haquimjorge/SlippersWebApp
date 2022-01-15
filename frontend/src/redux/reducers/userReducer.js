@@ -26,7 +26,6 @@ const userReducer = (state = initialState, action) => {
         user: action.payload,
       };
     case "ADD_PRODUCT":
-      
       return {
         ...state,
         cart: action.payload
@@ -35,7 +34,7 @@ const userReducer = (state = initialState, action) => {
       
       return { 
         ...state, 
-        cart: action.payload
+        cart: action.payload,
       }
     default:
       return state;

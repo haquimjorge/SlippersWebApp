@@ -17,7 +17,6 @@ const ShoeProduct = (props) => {
   useEffect(() => {
     console.log(props.cart)
   }, [props.cart]);
-  console.log(props.params)
 
   return (<>
     <Menu />

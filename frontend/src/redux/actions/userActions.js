@@ -91,15 +91,14 @@ const userActions ={
           //  if(response.data.success)dispatch({type:"UPDATE", payload: user})
           //  return response.data.success
           //}).catch(err=>console.error(err))
-          
+          let newCart = [...cart] 
           if(isAdded){
-            cart.push(product)
-            console.log(cart)
-            dispatch({type:"ADD_PRODUCT", payload: cart})
+            newCart.push(product)
+            dispatch({type:"ADD_PRODUCT", payload: newCart})
           }
           else{
-            cart.filter(element => product !== element)
-            dispatch({type:"DELETE_PRODUCT", payload: cart})
+            newCart = newCart.filter(element => product !== element)
+            dispatch({type:"DELETE_PRODUCT", payload: newCart})
         }
 
         }

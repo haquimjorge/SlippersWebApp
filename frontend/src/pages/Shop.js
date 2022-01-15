@@ -19,10 +19,12 @@ const Shop = (props) => {
   const [checked, setChecked] = useState([{ type: "gender", value: [] }, { type: "color", value: [] }, { type: "season", value: [] }, { type: "text", value: "" }, { type: 'price', value: value }])
   const checkedRef = useRef(checked)
 
+
   useEffect(() => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.shoes, props.filteredShoes])
+  
   useEffect(() => {
     if (!props.shoes) props.getShoes()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -32,6 +34,8 @@ const Shop = (props) => {
     console.log(props.cart)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.cart])
+
+  
 
   const handleChange = (e) => {
     const searchValue = e.target.value;
@@ -147,9 +151,10 @@ const mapDispatchToProps = {
 };
 const mapStateToProps = (state) => {
   return {
+    cart: state.userReducer.cart,
     shoes: state.shoeReducer.shoes,
     filteredShoes: state.shoeReducer.filteredShoes,
-    cart: state.userReducer.cart
+    
   };
 };
 
