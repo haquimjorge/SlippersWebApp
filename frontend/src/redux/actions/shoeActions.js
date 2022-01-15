@@ -29,6 +29,7 @@ const shoeActions = {
                   : (element.type === 'gender') ? element.value.includes(searchShoes.gender.toLowerCase().trim())
                     : (element.type === 'color') ? element.value.includes(searchShoes.color.toLowerCase().trim())
                       : (element.type === 'season') ? element.value.includes(searchShoes.season.toLowerCase().trim())
+                      : (element.type === 'price') ? (searchShoes.price>element.value[0] && searchShoes.price<element.value[1])
                         : (element.type === 'text') && (
                           searchShoes.name.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())
                           || searchShoes.gender.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())

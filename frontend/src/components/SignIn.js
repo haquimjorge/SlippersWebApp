@@ -117,6 +117,7 @@ const SignIn = (props) => {
           >
             <Form>
               <StringInput
+                className="input-sign"
                 label="Email"
                 name="email"
                 type="email"
@@ -139,6 +140,7 @@ const SignIn = (props) => {
                 </div>
 
                 <StringInput
+                  className="input-sign"
                   label="Password"
                   name="password"
                   type={showPass ? "text" : "password"}
