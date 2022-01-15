@@ -14,46 +14,6 @@ const AdminNav = () => {
   const [key, setKey] = useState('dashboard');
   return (
     <>
-    
-    {/* <nav>
-      <ul className="nav flex-row">
-        <li className="nav-item">
-          <Link to="/" className="nav-link">
-            Dashboard
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/admin/shoe" className="nav-link">
-            Shoe
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/admin/shoes" className="nav-link">
-            Shoes
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/admin/category" className="nav-link">
-            Category
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/admin/subcategory" className="nav-link">
-            Sub Category
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/admin/coupons" className="nav-link">
-            Coupons
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/admin/password" className="nav-link">
-            Password
-          </Link>
-        </li>
-      </ul>
-    </nav> */}
      <Tabs
       id="controlled-tab-example"
       activeKey={key}
@@ -62,23 +22,20 @@ const AdminNav = () => {
     >
       <Tab eventKey="dashboard" title="Dashboard">
         <p>estadisticas quizas</p>
+        <p>cantidad de zapatos uploaded</p>
+        <p>cantidad de categorias y subcategorias</p>
+        <p>cuentas admin</p>
+        <p>cantidad de cuentas creadas</p>
+        <p>cantidad de ventas realizadas (quizas un grafico)</p>
       </Tab>
       <Tab eventKey="shoes" title="Shoes">
       <p>Here you can delete, edit and upload shoes. To edit, simply click on pencil icon. To delete, click "Delete" button (This action is permanent). To upload, go to "Upload Shoe" tab and fill the form.</p>
       <AdminShoes />
       </Tab>
-      <Tab eventKey="category" title="Category">
-      {/* <CategoryCreate /> */}
+      <Tab eventKey="category" title="Categories">
       <AdminCategoryTab/>
       </Tab>
-      <Tab eventKey="subcategroy" title="SubCategory">
-        <SubCategoryCreate/>
-        <p>suibcategory</p>
-      </Tab>
-      <Tab eventKey="coupons" title="Coupons">
-        <p>coupons</p>
-      </Tab>
-      <Tab eventKey="password" title="Password">
+      <Tab eventKey="users" title="Users">
         <p>passwords</p>
       </Tab>
     </Tabs> 

@@ -17,7 +17,7 @@ const subCategoryControllers = {
     }
   },
   listSubCategory: async (req, res) => {
-    res.json(await SubCategory.find({}).sort({ createdAt: -1 }).exec());
+    res.json(await SubCategory.find().sort({ createdAt: -1 }).exec());
   },
   readSubCategory: async (req, res) => {
       console.log(req.params)
@@ -49,6 +49,7 @@ const subCategoryControllers = {
       res.status(400).send("Update sub category failed");
     }
   },
+//   NEW CONTROLLERS (los anteriores se dejan mientras por si se rompe algo)
   getSubcategoryByParent: async(req,res)=>{
       try{
           const subCategories = await SubCategory.find({parent:req.params.parentId}).exec()
@@ -59,6 +60,14 @@ const subCategoryControllers = {
       }catch(e){
         res.status(400).send("Cannot find subcategory with that id" + req.params.parentId);
       }
+  },
+  getAllSubCategories : async (req,res)=>{
+    try{
+        const subCategories = await SubCategory.find()
+        res.json({success:true, error:null, response: subCategories})
+    }catch(e){
+        res.json({ success: false, error: e,respose:null });
+    }
   },
   modifySubCategory : async (req,res)=>{
     try{
@@ -77,7 +86,7 @@ const subCategoryControllers = {
       });
       res.json(deleted);
     } catch (err) {
-        res.json({ success: false, error: e,respose:null });
+        res.json({ success: false, error: err,respose:null });
     }
   }
 };

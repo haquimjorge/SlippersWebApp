@@ -55,7 +55,7 @@ const shoeActions = {
       dispatch({ type: 'filterShoes', payload: filteredShoes })
     }
   },
-  modifyshoe: (data) => {
+  modifyShoe: (data) => {
     return async (dispatch) => {
       let response = await axios.put("http://localhost:4000/api/shoes", data)
       dispatch({ type: "MODIFY_SHOE", payload: response.data.response })
@@ -73,6 +73,17 @@ const shoeActions = {
       let response = await axios.get(`http://localhost:4000/api/shoe/${id.toString()}`)
       dispatch({type: "getShoe", payload: response.data.response})
     }
+  },
+  deleteShoe : (id)=>{
+      return async (dispatch)=>{
+          let response = await axios.delete(`http://localhost:4000/api/shoe/${id}`)
+          dispatch({type: "DELETE_SHOE", payload: response.data.response})
+      }
+  },
+  sendIdtoDeleteShoe : (id)=>{
+      return (dispatch)=>{
+          dispatch({type: "ID_TO_DELETE_SHOE", payload:id})
+      }
   }
 
 }

@@ -27,7 +27,7 @@ import {toastr} from 'react-redux-toastr'
 
 function AdminCategories(props) {
   const [open, setOpen] = useState(false);
-  const { getSubCategoriesByParentId, category, subCategories } = props;
+  const { getSubCategoriesByParentId, category, allSubCategories } = props;
   const [modalShow, setModalShow] = useState(false);
   const [edit, setEdit] = useState(false)
   const [editInput, setEditInput] = useState("")
@@ -106,12 +106,11 @@ function handlePlus(parent){
     }
     props.createSubCategory(data)
     toastr.success('Sub Category Added!', data.name, toastrOptions)
-    console.log(data)
+    setOpen(true)
 
 }
 
 function handleDelete(slug){
-    console.log(slug)
     setModalShow(true)
       props.sendDeleteSlug(slug)
 }
@@ -134,7 +133,7 @@ const DeleteIcon =(props)=>{
             )  
 }
 
-  let properSubcategories = subCategories.filter(
+  let properSubcategories = allSubCategories.filter(
     (sub) => sub.parent === category._id
   );
 
@@ -194,12 +193,11 @@ const DeleteIcon =(props)=>{
 
 const mapStateToProps = (state) => {
   return {
-    subCategories: state.shoeReducer.subCategories,
+    allSubCategories: state.shoeReducer.allSubCategories
   };
 };
 
 const mapDispatchToProps = {
-  getSubCategoriesByParentId: categoryActionsRedux.getSubCategoriesByParentId,
   sendDeleteSlug : categoryActionsRedux.sendDeleteSlug,
   modifycategory : categoryActionsRedux.modifyCategory,
   createSubCategory: categoryActionsRedux.createSubCategory

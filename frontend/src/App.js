@@ -35,10 +35,7 @@ function App(props) {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} exact />
-        <Route path="/admin" element={<AdminDashboard />} exact />
-        {/* <Route path="/admin/category" element={<CategoryCreate/>} exact /> */}
-        <Route path="/admin/category/:slug" element={<CategoryUpdate/>} exact />
-        <Route path="/admin/subcategory/:slug" element={<SubCategoryUpdate/>} exact />
+        {props.user && props.user.rol === "Admin" && <Route path="/admin" element={<AdminDashboard />}/>}
         {!token 
         ? <>
         <Route path="/signin" element={<SignIn />} exact /> 

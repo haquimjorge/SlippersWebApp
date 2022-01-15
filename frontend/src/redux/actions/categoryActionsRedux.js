@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {toastr} from 'react-redux-toastr'
 
 const categoryActionsRedux = {
 
@@ -35,20 +36,34 @@ const categoryActionsRedux = {
     modifyCategory : (data)=>{
         return async (dispatch)=>{
             let response = await axios.put("http://localhost:4000/api/allcategories", data)
-            dispatch({type:"MODIFY_CATEGORY", payload:response.data.response})
+            if(response.data.success === false){
+                toastr.error('Error!', response.data.error.codeName && response.data.error.codeName )  
+            }else{
+                dispatch({type:"MODIFY_CATEGORY", payload:response.data.response})
+            }
         }
     },
     getSubCategoriesByParentId : (parentId)=>{
         return async (dispatch)=>{
             let response = await axios.get(`http://localhost:4000/api/subcategories/${parentId}`)
-            console.log(response.data)
+            console.log("le pegue a la db")
             dispatch({type: "GET_SUBCATEGORIES_BY_PARENT", payload: response.data})
+        }
+    },
+    getAllSubCategories : ()=>{
+        return async (dispatch)=>{
+            let response = await axios.get(`http://localhost:4000/api/allsubcategories`)
+            dispatch({type: "GET_ALL_SUBCATEGORIES", payload: response.data.response})
         }
     },
     modifySubCategory : (data)=>{
         return async (dispatch)=>{
             let response = await axios.put("http://localhost:4000/api/subcategories", data)
-            dispatch({type:"MODIFY_SUBCATEGORY", payload:response.data.response})
+            if(response.data.success === false){
+                toastr.error('Error!', response.data.error.codeName && response.data.error.codeName)  
+            }else{
+                dispatch({type:"MODIFY_SUBCATEGORY", payload:response.data.response})
+            }
         }
     },
     deleteSubCategory : (id)=>{

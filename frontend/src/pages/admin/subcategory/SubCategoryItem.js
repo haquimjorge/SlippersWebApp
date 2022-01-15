@@ -44,7 +44,7 @@ function handleOnKeyPressEdit(editedMessage, message,event, categoryId){
 
     const PencilIcon =(props)=>{
         const renderEdit = (props) => (
-            <Tooltip id="button-tooltip">
+            <Tooltip id="button-tooltip" {...props}>
               Edit
             </Tooltip>
           );
@@ -53,6 +53,7 @@ function handleOnKeyPressEdit(editedMessage, message,event, categoryId){
     placement="top"
     delay={{ show: 25, hide: 25 }}
     overlay={renderEdit}
+    {...props}
     >
     <img onClick={()=>handleEditClick(props.name)} src={Pencil} alt='pencil' className="admin-interaction-icon"/>
     </OverlayTrigger>
@@ -61,12 +62,13 @@ function handleOnKeyPressEdit(editedMessage, message,event, categoryId){
     
     const DeleteIcon =(props)=>{
         const renderEdit = (props) => (
-            <Tooltip id="button-tooltip">
+            <Tooltip id="button-tooltip" {...props}>
               Delete
             </Tooltip>
           );
           return(
             <OverlayTrigger
+            {...props}
             placement="top"
             delay={{ show: 25, hide: 25 }}
             overlay={renderEdit}
@@ -83,7 +85,14 @@ function handleOnKeyPressEdit(editedMessage, message,event, categoryId){
                 className="admin-subcategory-container text-light">
 
                 <div className="d-flex justify-content-between align-items-center">
-                    {edit? <input className="admin-subcategory-input" value={editInput} onKeyPress={(e)=> handleOnKeyPressEdit(e.target.value,props.subcategory.name,e, props.subcategory._id)} onChange={(e)=> setEditInput(e.target.value)}/> : <p className="m-0 p-1 ">{props.subcategory.name}</p>}
+                    {edit? <OverlayTrigger
+        placement="top"
+        delay={{ show: 25, hide: 25 }}
+        overlay={<Tooltip id="button-tooltip">
+        Hit Enter to Edit
+      </Tooltip>}
+        >
+                    <input className="admin-subcategory-input" value={editInput} onKeyPress={(e)=> handleOnKeyPressEdit(e.target.value,props.subcategory.name,e, props.subcategory._id)} onChange={(e)=> setEditInput(e.target.value)}/></OverlayTrigger> : <p className="m-0 p-1 ">{props.subcategory.name}</p>}
                     
                   
                   <div className="m-0 p-0 d-flex align-items-center">

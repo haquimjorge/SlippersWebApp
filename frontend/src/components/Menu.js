@@ -49,8 +49,15 @@ function Menu(props) {
                 id="dropdown-basic-button"
                 title={imagenUsuario}
               >
-                {props.user ? (
+                {props.user ? props.user.rol === "Admin" ? (
                   <div className="contenedor-dropdown">
+                      <Dropdown.Item
+                      className="dropdown-item"
+                      as={Link}
+                      to="/admin"
+                    >
+                      Admin Panel
+                    </Dropdown.Item>
                     <Dropdown.Item
                       className="dropdown-item"
                       as={Link}
@@ -65,7 +72,23 @@ function Menu(props) {
                       Sign Out
                     </Dropdown.Item>
                   </div>
-                ) : (
+                ) : ( 
+                    <>
+                    <Dropdown.Item
+                      className="dropdown-item"
+                      as={Link}
+                      to="/account"
+                    >
+                      Account
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      className="dropdown-item"
+                      onClick={() => props.logOut()}
+                    >
+                      Sign Out
+                    </Dropdown.Item>
+                    </>
+                ):(
                   <div className="contenedor-dropdown">
                     <Dropdown.Item
                       className="dropdown-item"
