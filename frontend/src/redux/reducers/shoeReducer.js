@@ -3,12 +3,11 @@ const initialState = {
   filteredShoes: null,
   categories: [],
   subCategories: [],
-  allSubCategories:[],
+  allSubCategories: [],
   category: null,
   oneShoe: {},
-  shoeToDelete:{}
+  shoeToDelete: {},
 };
-
 
 const shoeReducer = (state = initialState, action) => {
   function getUniqueValues(array) {
@@ -40,41 +39,48 @@ const shoeReducer = (state = initialState, action) => {
       };
     case "UPLOAD_SHOE":
       let current = [];
+    let categoryForShoe = state.categories.find(cat=> cat._id === action.payload.category)
+    let subcatForShoe = state.allSubCategories.find(sub=> sub._id === action.payload.subcategory[0])
+    let newShoe = {...action.payload}
+    newShoe.category = categoryForShoe
+    newShoe.subcategory[0] = subcatForShoe
       if (state.shoes !== null) {
-        console.log("se agrega" + JSON.stringify(action.payload));
-        current = state.shoes.concat(action.payload);
+        current = state.shoes.concat(newShoe);
       } else {
         state.shoes = [];
-        current = state.shoes.concat(action.payload);
+        current = state.shoes.concat(newShoe);
       }
       return {
         ...state,
         shoes: getUniqueValues(current),
       };
-      case "MODIFY_SHOE":
-        let currentShoes = state.shoes.map((shoe) => {
-            if (shoe._id === action.payload._id) {
-              shoe = action.payload;
-            }
-            return shoe;
-          });
-          return{
-              ...state,
-              shoes:currentShoes
-          }
-      case "ID_TO_DELETE_SHOE":
-          let shoeToDelete = state.shoes.find(shoe=> shoe._id === action.payload)
-          return{
-              ...state,
-              shoeToDelete:shoeToDelete
-
-          }
-      case "DELETE_SHOE":
-          let deletedShoeList = state.shoes.filter(shoe=>shoe._id !== action.payload._id) 
-          return{
-              ...state,
-              shoes: deletedShoeList
-          }
+    case "MODIFY_SHOE":
+      let currentShoes = state.shoes.map((shoe) => {
+        if (shoe._id === action.payload._id) {
+          shoe = action.payload;
+        }
+        return shoe;
+      });
+      return {
+        ...state,
+        shoes: currentShoes,
+      };
+    case "ID_TO_DELETE_SHOE":
+      let shoeToDelete = state.shoes.find(
+        (shoe) => shoe._id === action.payload
+      );
+      return {
+        ...state,
+        shoeToDelete: shoeToDelete,
+      };
+    case "DELETE_SHOE":
+      let deletedShoeList = state.shoes.filter(
+        (shoe) => shoe._id !== action.payload._id
+      );
+      return {
+        ...state,
+        shoes: deletedShoeList,
+      };
     case "GET_ALL_CATEGORIES":
       return {
         ...state,
@@ -86,12 +92,11 @@ const shoeReducer = (state = initialState, action) => {
         ...state,
         subCategories: getUniqueValues(newSubcategories),
       };
-      case "GET_ALL_SUBCATEGORIES":
-          return{
-              ...state,
-              allSubCategories:action.payload
-
-          }
+    case "GET_ALL_SUBCATEGORIES":
+      return {
+        ...state,
+        allSubCategories: action.payload,
+      };
     case "UPLOAD_CATEGORY":
       console.log(action.payload);
       let newCategories = state.categories.concat(action.payload);
@@ -136,7 +141,7 @@ const shoeReducer = (state = initialState, action) => {
         categories: currentCategories,
       };
     case "DELETE_SUBCATEGORY":
-        console.log(action.payload)
+      console.log(action.payload);
       let actualSubcategories = state.allSubCategories.filter(
         (sub) => sub._id !== action.payload._id
       );
@@ -157,12 +162,12 @@ const shoeReducer = (state = initialState, action) => {
         ...state,
         allSubCategories: currentSubcategories,
       };
-      case "UPLOAD_SUBCATEGORY":
-          let addedSubcategories = state.allSubCategories.concat(action.payload)
-          return{
-              ...state,
-              allSubCategories: getUniqueValues(addedSubcategories)
-          }
+    case "UPLOAD_SUBCATEGORY":
+      let addedSubcategories = state.allSubCategories.concat(action.payload);
+      return {
+        ...state,
+        allSubCategories: getUniqueValues(addedSubcategories),
+      };
     default:
       return state;
   }

@@ -50,8 +50,8 @@ export default class AutoPlay extends Component {
       <div>
         <div className="contenedor-marcasSociales">
           <Slider {...settings}>
-            {marcasSociales.map((elemento) => (
-              <div>
+            {marcasSociales.map((elemento,index) => (
+              <div key={index}>
                 <img
                   className="d-block w-100"
                   src={elemento.imagen}

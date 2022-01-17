@@ -141,12 +141,11 @@ const UploadSchema =
 function AdminUploadShoe(props) {
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
 
+  const {getAllSubCategories}= props
   useEffect(() => {
-    //   if(selectedCategoryId){
-    //       props.getSubCategoriesByParentId(selectedCategoryId)  
-    //   }
-    props.getAllSubCategories()
-  }, [props.getAllSubCategories]);
+
+    getAllSubCategories()
+  }, []);
 
   let properSubcategories =[]
   console.log(props.allSubCategories)
@@ -291,11 +290,11 @@ function AdminUploadShoe(props) {
                 
                 <SelectInput label="Color" name="color">
                   <option value="">Select Color</option>
-                    {DATA.colors.map(color=> <option value={color}>{color}</option> )}
+                    {DATA.colors.map(color=> <option key={color} value={color}>{color}</option> )}
                 </SelectInput>
                 <SelectInput label="Size (USA)" name="size">
                   <option value="">Select Size</option>
-                  {DATA.sizes.map(size=>  <option value={size}>{size}</option>)}
+                  {DATA.sizes.map(size=>  <option key={size} value={size}>{size}</option>)}
                 </SelectInput>
                 </div>
                 <div className="d-flex align-items-center">

@@ -59,6 +59,7 @@ function handleOnKeyPressEdit(editedMessage, message,event, categoryId){
     </OverlayTrigger>
         )   
     }
+    console.log("sub category")
     
     const DeleteIcon =(props)=>{
         const renderEdit = (props) => (
@@ -81,7 +82,7 @@ function handleOnKeyPressEdit(editedMessage, message,event, categoryId){
 
     return(
         <ListGroup.Item
-                key={props.subcategory._id}
+              
                 className="admin-subcategory-container text-light">
 
                 <div className="d-flex justify-content-between align-items-center">

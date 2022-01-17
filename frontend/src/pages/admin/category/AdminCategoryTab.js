@@ -42,6 +42,7 @@ function AdminCategoryTab(props) {
       getAllCategories()
   },[getAllCategories])
 
+  console.log('category tab')
   return (
     <>
       <Container fluid>

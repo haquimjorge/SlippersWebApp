@@ -17,21 +17,22 @@ import CenterModalShoe from './CenterModalShoe'
 import DATA from '../utilities/hardData'
 import categoryActionsRedux from '../redux/actions/categoryActionsRedux'
 import _ from 'lodash';
+import AdminSingleShoe from './AdminSingleShoe'
 
 function AdminShoes(props) {
 
-    const [modalShow, setModalShow] = useState(false);
+    // const [modalShow, setModalShow] = useState(false);
     const {getShoes, getAllSubCategories } = props
-    const [needSave, setNeedSave] = useState(false)
+    // const [needSave, setNeedSave] = useState(false)
     useEffect(()=>{
         getShoes()
         getAllSubCategories()
 
-    },[getShoes,getAllSubCategories])
+    },[getShoes])
     console.log(props.shoes)
 
     function handleIdToDelete(id){
-        setModalShow(true)
+        // setModalShow(true)
         props.sendIdtoDeleteShoe(id)
 
     }
@@ -40,7 +41,7 @@ function AdminShoes(props) {
             id:shoe._id,
             [attribute]: input
         }
-        showSaveButton(shoe,attribute,input)
+        // showSaveButton(shoe,attribute,input)
         // console.log(data)
     }
 
@@ -60,18 +61,26 @@ function AdminShoes(props) {
 
         }
     }
+    
+
+
+
+
     let modifiedStash = {}
     function showSaveButton(dbShoe, attribute,input){   
         if( dbShoe.subcategory[0] && dbShoe.subcategory[0]._id.toString() === input){
-            delete modifiedStash[attribute]
+            props.deleteStash(attribute)
+            // delete modifiedStash[attribute]
         }else if(dbShoe[attribute] === input){
-            delete modifiedStash[attribute]
+            props.deleteStash(attribute)
+            // delete modifiedStash[attribute]
         }else if (dbShoe[attribute] !== input){
             let aux = {[attribute]:input}
-            modifiedStash = {...modifiedStash,...aux }
+            props.addStash(aux)
+            // modifiedStash = {...modifiedStash,...aux }
         }
         let booleanSave = Object.keys(modifiedStash).length === 0? false: true
-        setNeedSave(booleanSave)
+        // setNeedSave(booleanSave)
     }
 
   
@@ -186,67 +195,55 @@ function handleKeyEdit(e,message,editedMessage,shoeId){
                 <p>All Shoes</p>
                 
                 <div className="d-flex flex-wrap">
-                <CenterModalShoe type="shoe" show={modalShow} onHide={() => setModalShow(false)} />
 
                     {props.shoes && props.shoes.map(shoe=>(
-                <Card key={shoe._id} className="col-12 col-md-6 col-xxl-4 col-xl-4 col-lg-6 col-sm-12 col-xs-12">
-           <Card.Img className="card-admin-items" variant="top" style={{backgroundImage:`url(${shoe.image})`}} />
-           <Card.Body className="admin-card-body d-flex flex-column align-items-around justify-content-between">
-               <RowInputText input={shoe.name} id={shoe._id} identifier={'name'} />
-               <RowInputText input={shoe.price} id={shoe._id} identifier={'price'} />
-               <RowInputText input={shoe.lastPrice} id={shoe._id} identifier={'lastPrice'} />
-               <RowInputText input={shoe.description} id={shoe._id} identifier={'description'} />
-               {/* https://d3ugyf2ht6aenh.cloudfront.net/stores/090/848/products/d3e818fa-a0bb-4a82-a140-8c94511add5a-140d647c17846e264816343175673058-320-0.jpg */}
-               <RowInputText input={shoe.image} id={shoe._id} identifier={'image'} />
+                    <AdminSingleShoe key={shoe._id} shoe={shoe} />    
+//                 <Card key={shoe._id} className="col-12 col-md-6 col-xxl-4 col-xl-4 col-lg-6 col-sm-12 col-xs-12">
+//            <Card.Img className="card-admin-items" variant="top" style={{backgroundImage:`url(${shoe.image})`}} />
+//            <Card.Body className="admin-card-body d-flex flex-column align-items-around justify-content-between">
+//                <RowInputText input={shoe.name} id={shoe._id} identifier={'name'} />
+//                <RowInputText input={shoe.price} id={shoe._id} identifier={'price'} />
+//                <RowInputText input={shoe.lastPrice} id={shoe._id} identifier={'lastPrice'} />
+//                <RowInputText input={shoe.description} id={shoe._id} identifier={'description'} />
+//                {/* https://d3ugyf2ht6aenh.cloudfront.net/stores/090/848/products/d3e818fa-a0bb-4a82-a140-8c94511add5a-140d647c17846e264816343175673058-320-0.jpg */}
+//                <RowInputText input={shoe.image} id={shoe._id} identifier={'image'} />
                
-               <RowInputSelect label="Shipping" onChange={(e)=>handleModify(e.target.value,'shipping',shoe)}>
-               <option value={shoe.shipping}>{shoe.shipping}</option>
-                   {exceptInput(shoe.shipping,DATA.shipping).map(e=> <option value={e}>{e}</option> )}
-               </RowInputSelect>
+//                <RowInputSelect label="Shipping" onChange={(e)=>handleModify(e.target.value,'shipping',shoe)}>
+//                <option value={shoe.shipping}>{shoe.shipping}</option>
+//                    {exceptInput(shoe.shipping,DATA.shipping).map(e=> <option value={e}>{e}</option> )}
+//                </RowInputSelect>
 
-               <RowInputSelect label="Gender" onChange={(e)=>handleModify(e.target.value,'gender',shoe)} >
-               <option value={shoe.gender}>{shoe.gender}</option>
-                   {exceptInput(shoe.gender,DATA.gender).map(e=><option value={e}>{e}</option>)}
-               </RowInputSelect>
+//                <RowInputSelect label="Gender" onChange={(e)=>handleModify(e.target.value,'gender',shoe)} >
+//                <option value={shoe.gender}>{shoe.gender}</option>
+//                    {exceptInput(shoe.gender,DATA.gender).map(e=><option value={e}>{e}</option>)}
+//                </RowInputSelect>
 
-<RowInputSelect label="Season" onChange={(e)=>handleModify(e.target.value,'season',shoe)} >
-<option value={shoe.season}>{shoe.season}</option>
-{exceptInput(shoe.season,DATA.seasons).map(e=><option value={e}>{e}</option>)}
-</RowInputSelect>
+// <RowInputSelect label="Season" onChange={(e)=>handleModify(e.target.value,'season',shoe)} >
+// <option value={shoe.season}>{shoe.season}</option>
+// {exceptInput(shoe.season,DATA.seasons).map(e=><option value={e}>{e}</option>)}
+// </RowInputSelect>
 
-<RowInputSelect label="Category" onChange={(e)=>handleModifyCategory(e.target.value,'category',shoe)}>
-<option value={shoe.category && shoe.category._id}>{shoe.category && shoe.category.name}</option>
-{exceptInput(shoe.category && shoe.category.name,props.categories,true).map(e=><option value={e._id}>{e.name}</option> )}
+// <RowInputSelect label="Category" onChange={(e)=>handleModifyCategory(e.target.value,'category',shoe)}>
+// <option value={shoe.category && shoe.category._id}>{shoe.category && shoe.category.name}</option>
+// {exceptInput(shoe.category && shoe.category.name,props.categories,true).map(e=><option value={e._id}>{e.name}</option> )}
 
-</RowInputSelect>
+// </RowInputSelect>
 
-<RowInputSelect label="Sub Category" onChange={(e)=>handleModify(e.target.value,'subcategory',shoe)} >
-<option value={shoe.subcategory && shoe.subcategory[0] && shoe.subcategory[0]._id}>{shoe.subcategory && shoe.subcategory[0] && shoe.subcategory[0].name}</option>
-{shoe.category && exceptInput(shoe.subcategory && shoe.subcategory[0] && shoe.subcategory[0].name,props.allSubCategories.filter(sub=> sub.parent === shoe.category._id),true).map(e=><option value={e._id}>{e.name}</option> )}
-</RowInputSelect>
+// <RowInputSelect label="Sub Category" onChange={(e)=>handleModify(e.target.value,'subcategory',shoe)} >
+// <option value={shoe.subcategory && shoe.subcategory[0] && shoe.subcategory[0]._id}>{shoe.subcategory && shoe.subcategory[0] && shoe.subcategory[0].name}</option>
+// {shoe.category && exceptInput(shoe.subcategory && shoe.subcategory[0] && shoe.subcategory[0].name,props.allSubCategories.filter(sub=> sub.parent === shoe.category._id),true).map(e=><option value={e._id}>{e.name}</option> )}
+// </RowInputSelect>
 
                
-               
-               
-              
-               {/* <Row>
-                   <Col xs={1} sm={1} lg={1} md={1}  className="p-0">{editPencil()}</Col>
-                   <Col xs={11} sm={11} lg={11} md={11} className="p-0">{edit?  <OverlayTrigger
-                              key="1"
-                              placement="top"
-                              overlay={
-                                <Tooltip id="key">Presiona enter para editar</Tooltip>
-                              }
-                            ><input onKeyPress={(e)=> console.log('keypress')} value={editInput} onChange={(e) => setEditInput(e.target.value)} /></OverlayTrigger> : <Card.Text className="text-dark">{shoe.subcategory && shoe.subcategory.map((subcategory)=>subcategory.name)}</Card.Text>}</Col>
-               </Row> */}
-           </Card.Body>
-           {needSave && <button className="admin-shoes-save-button" >Save</button>}
+//            </Card.Body>
+//            {needSave && <button className="admin-shoes-save-button" >Save</button>}
            
-           <Card.Footer className="admin-shoes-card-footer">
-             <button onClick={()=>handleIdToDelete(shoe._id)} className="d-flex justify-content-center admin-delete-shoe-button w-100">Delete</button>
-           </Card.Footer>
+//            <Card.Footer className="admin-shoes-card-footer">
+//              <button onClick={()=>handleIdToDelete(shoe._id)} className="d-flex justify-content-center admin-delete-shoe-button w-100">Delete</button>
+//            </Card.Footer>
           
-         </Card> 
+//          </Card> 
+
          ))}
 
                 </div>
@@ -274,8 +271,9 @@ function handleKeyEdit(e,message,editedMessage,shoeId){
 const mapStateToProps = (state) => {
     return {
         shoes : state.shoeReducer.shoes,
-        categories: state.shoeReducer.categories,
-        allSubCategories:state.shoeReducer.allSubCategories,
+        
+        // categories: state.shoeReducer.categories,
+        // allSubCategories:state.shoeReducer.allSubCategories,
     };
   };
   
@@ -284,7 +282,8 @@ const mapStateToProps = (state) => {
     getShoes : shoeActions.getShoes,
     modifyShoe: shoeActions.modifyShoe,
     sendIdtoDeleteShoe: shoeActions.sendIdtoDeleteShoe,
-    getAllSubCategories: categoryActionsRedux.getAllSubCategories
+    getAllSubCategories: categoryActionsRedux.getAllSubCategories,
+    
 
   };
   export default connect(mapStateToProps, mapDispatchToProps)(AdminShoes);

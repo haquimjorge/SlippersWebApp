@@ -34,7 +34,7 @@ function AdminCategories(props) {
 
   function handleCategoryClick() {
     setOpen(!open);
-    getSubCategoriesByParentId(category._id);
+    // getSubCategoriesByParentId(category._id);
   }
 
   function handleEditClick(name){
@@ -177,8 +177,8 @@ const DeleteIcon =(props)=>{
       <Collapse in={open}>
         <ListGroup className="ps-2 pe-2">
           {properSubcategories.length ? (
-            properSubcategories.map((sub) => (
-                <SubCategoryItem subcategory={sub} />
+            properSubcategories.map((sub,index) => (
+                <SubCategoryItem key={index} subcategory={sub} />
             ))
           ) : (
             <ListGroup.Item className="admin-subcategory-container text-light">

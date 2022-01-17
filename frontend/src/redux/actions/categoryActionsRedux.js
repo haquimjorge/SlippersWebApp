@@ -52,6 +52,7 @@ const categoryActionsRedux = {
     },
     getAllSubCategories : ()=>{
         return async (dispatch)=>{
+            console.log('get all subcartegorise')
             let response = await axios.get(`http://localhost:4000/api/allsubcategories`)
             dispatch({type: "GET_ALL_SUBCATEGORIES", payload: response.data.response})
         }

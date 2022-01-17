@@ -5,7 +5,6 @@ const shoeControllers = {
   modifyShoe: async (req, res) => {
     try {
       const { id } = req.body;
-      console.log(req.body)
       const modifiedShoe = await Shoe.findOneAndUpdate(
         { _id: id },
         { ...req.body },
@@ -83,7 +82,8 @@ const shoeControllers = {
     try {
       const shoes = await Shoe.find()
         .populate("subcategory")
-        .populate("category");
+        .populate("category")
+        .exec();
       res.json({ success: true, response: shoes, error: null });
     } catch (err) {
       res.json({ success: false, error: e, response: null });
