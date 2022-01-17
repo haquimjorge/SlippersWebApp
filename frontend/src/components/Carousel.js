@@ -13,12 +13,6 @@ import SwiperCore, {
   Navigation,
 } from "swiper/core";
 import Logo from "../assets/logo2.png";
-// import Img1 from "../assets/img1.jpg";
-// import Img2 from "../assets/img2.jpg";
-// import Img3 from "../assets/img3.jpg";
-// import Img4 from "../assets/img4.jpg";
-// import Img5 from "../assets/img5.jpg";
-// import Img6 from "../assets/img6.jpg";
 
 SwiperCore.use([EffectCoverflow, Pagination, Navigation]);
 
@@ -54,23 +48,24 @@ function Carousel(props) {
       >
         {console.log(props.allShoes)}
         <div className="shoes-container-card">
-          {props.allShoes ? (props.allShoes.map((elem) => {
-            return (
-              <SwiperSlide>
-                <div className="card-shoe">
-                  <div className="img-div">
-                    <img src={elem.image} />
-                    <p className="name-shoe">{elem.name}</p>
+          {props.allShoes ? (
+            props.allShoes.map((elem) => {
+              return (
+                <SwiperSlide>
+                  <div className="card-shoe">
+                    <div className="img-div">
+                      <img src={elem.image} />
+                      <p className="name-shoe">{elem.name}</p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            )
-          }))
-            :
+                </SwiperSlide>
+              );
+            })
+          ) : (
             <SwiperSlide>
               <img src={Logo} />
             </SwiperSlide>
-          }
+          )}
         </div>
       </Swiper>
     </div>

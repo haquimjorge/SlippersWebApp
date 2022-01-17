@@ -4,8 +4,6 @@ import Typewriter from "typewriter-effect";
 import { getShoesCount } from "../redux/actions/categoryActions";
 
 const MainShop = ({ shoes }) => {
-  
-
   const [shoesCount, setShoesCount] = useState(0);
   const [page, setPage] = useState(1);
 
@@ -16,6 +14,12 @@ const MainShop = ({ shoes }) => {
   return (
     <>
       <main>
+        <h4
+          style={{ backgroundColor: "black" }}
+          className="titulo-mainShop text-center display-4"
+        >
+          Our shoes!
+        </h4>
         <div
           style={{ fontWeight: "bold", fontSize: "3.5rem" }}
           className="div-titulo"
@@ -29,24 +33,18 @@ const MainShop = ({ shoes }) => {
           />
         </div>
 
-        <h4
-          style={{ backgroundColor: "black", color: "white" }}
-          className="text-center display-4"
-        >
-          Our shoes!
-        </h4>
-
         <div className="container">
           <div className="row">
-            {shoes && shoes.map((shoe) => (
-              <div
-                key={shoe._id}
-                style={{ marginTop: "1rem" }}
-                className="col-lg-4"
-              >
-                <ProductCard shoe={shoe} />
-              </div>
-            ))}
+            {shoes &&
+              shoes.map((shoe) => (
+                <div
+                  key={shoe._id}
+                  style={{ marginTop: "1rem" }}
+                  className="col-lg-4"
+                >
+                  <ProductCard shoe={shoe} />
+                </div>
+              ))}
           </div>
         </div>
       </main>

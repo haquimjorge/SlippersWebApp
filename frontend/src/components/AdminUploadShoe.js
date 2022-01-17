@@ -35,7 +35,9 @@ const StringInput = ({ label, ...props }) => {
 
       {meta.touched && meta.error ? (
         <p className="text-danger mb-1">{meta.error}</p>
-      ) : <p className="invisible mb-1">mock</p>}
+      ) : (
+        <p className="invisible mb-1">mock</p>
+      )}
     </div>
   );
 };
@@ -44,14 +46,19 @@ const SelectInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <div className="mb-3 d-flex justify-content-center w-100">
-      <label className="text-light text-center pe-2" htmlFor={props.id || props.name}>
+      <label
+        className="text-light text-center pe-2"
+        htmlFor={props.id || props.name}
+      >
         {label}
       </label>
       <div className="mb-3 d-flex justify-content-center flex-column w-100">
         <select {...field} {...props} className="" />
         {meta.touched && meta.error ? (
           <div className="error text-danger text-start">{meta.error}</div>
-        ) : <p className="invisible p-0 m-0">mock</p>}
+        ) : (
+          <p className="invisible p-0 m-0">mock</p>
+        )}
       </div>
     </div>
   );
@@ -88,10 +95,10 @@ function AdminUploadShoe(props) {
 
   console.log(props.categories);
   useEffect(() => {
-      if(selectedCategoryId){
-
-          loadSubcategories();
-      }
+    if (selectedCategoryId) {
+      loadSubcategories();
+    }
+    console.log(selectedCategoryId);
   }, [selectedCategoryId]);
 
   const loadSubcategories = () =>
@@ -99,7 +106,9 @@ function AdminUploadShoe(props) {
       .getSubcategoriesByParentId(selectedCategoryId)
       .then((category) => setSubCategories(category.data));
 
-      
+  const subCategorias = (e) => {
+    setSelectedCategoryId(e.target.value);
+  };
 
   return (
     <>
@@ -175,12 +184,11 @@ function AdminUploadShoe(props) {
                   )
                   .required("Required"),
               })}
-              onSubmit={(values, {resetForm}) => {
+              onSubmit={(values, { resetForm }) => {
                 props.uploadShoe(values);
-                
+
                 console.log(values);
-                resetForm({values:''})
-                
+                resetForm({ values: "" });
               }}
             >
               <Form>
@@ -206,50 +214,45 @@ function AdminUploadShoe(props) {
                   placeholder="kevin"
                 />
                 <div className="d-flex">
-                <StringInput
-                  label="Price"
-                  name="price"
-                  type="number"
-                  placeholder="kevin"
-                  className="w-100"
-                />
-                <StringInput
-                  label="Last Price"
-                  name="lastPrice"
-                  type="number"
-                  placeholder="kevin"
-                  className="w-100 ps-2"
-                />
+                  <StringInput
+                    label="Price"
+                    name="price"
+                    type="number"
+                    placeholder="kevin"
+                    className="w-100"
+                  />
+                  <StringInput
+                    label="Last Price"
+                    name="lastPrice"
+                    type="number"
+                    placeholder="kevin"
+                    className="w-100 ps-2"
+                  />
                 </div>
-                <div className="d-flex  align-items-center">
-                <SelectInput label="Category" name="category">
-                  <option value="Select Category">Select Category</option>
-                  {props.categories.length !== 0 &&
-                    props.categories.map((category) => (
-                        
-                      <option
-                        key={category.slug}
-                        onClick={(e) => setSelectedCategoryId(category._id)}
-                        value={category._id}
-                      >
-                        {category.name}
-                      </option>
-                    ))}
-                </SelectInput>
+                <div className="d-flex align-items-center">
+                  <SelectInput label="Category" name="category">
+                    <option value="Select Category">Select Category</option>
+                    {props.categories.length !== 0 &&
+                      props.categories.map((category) => (
+                        <option key={category.slug} value={category._id}>
+                          {category.name}
+                        </option>
+                      ))}
+                  </SelectInput>
 
-                <SelectInput label="Sub Category" name="subCategory">
-                  <option value="Select Sub Category">
-                    Select Sub Category
-                  </option>
-                  {subCategories.length !== 0 &&
-                    subCategories.map((subCategory) => (
-                      <option key={subCategory.slug} value={subCategory._id}>
-                        {subCategory.name}
-                      </option>
-                    ))}
-                </SelectInput>
+                  <SelectInput label="Sub Category" name="subCategory">
+                    <option value="Select Sub Category">
+                      Select Sub Category
+                    </option>
+                    {subCategories.length !== 0 &&
+                      subCategories.map((subCategory) => (
+                        <option key={subCategory.slug} value={subCategory._id}>
+                          {subCategory.name}
+                        </option>
+                      ))}
+                  </SelectInput>
                 </div>
-                
+
                 <RadioInput name="shipping" />
 
                 <SelectInput label="Season" name="season">

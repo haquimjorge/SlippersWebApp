@@ -18,15 +18,19 @@ const ProductCard = ({ shoe }) => {
             style={{ height: "20rem", objectFit: "cover" }}
           />
         </div>
-        <div
-          style={{ padding: "1rem", borderTop: "1px solid black" }}
-          className="shoe-card-info"
-        >
-          <h5 style={{ textAlign: "left" }}>{shoe.name}</h5>
-          <h6>${shoe.price}</h6>
+        <div style={{ padding: "1rem" }} className="shoe-card-info">
+          <h5 style={{ textAlign: "left" }} className="shoe-name">
+            {shoe.name}
+          </h5>
+          <h6 className="shoe-price">${shoe.price}</h6>
           <div
             className="shoe-card-icons"
-            style={{ display: "flex", justifyContent: "space-around" }}
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              borderTop: "1px solid black",
+              padding: "10px",
+            }}
           >
             <Link
               style={{ textDecoration: "none", color: "black" }}
@@ -43,7 +47,7 @@ const ProductCard = ({ shoe }) => {
                     alignSelf: "center",
                     justifyContent: "center",
                   }}
-                  src="../assets/eye-read.png"
+                  src="../assets/view.png"
                 />
               </div>
             </Link>

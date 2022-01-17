@@ -12,7 +12,6 @@ const Home = () => {
       <div className="portada">
         <Menu />
       </div>
-      <Input />
       <MainHome />
       <PromoHome />
       <CarouselMarcas />
