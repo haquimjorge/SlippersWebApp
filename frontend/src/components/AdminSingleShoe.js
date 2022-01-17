@@ -40,7 +40,7 @@ function AdminSingleShoe(props) {
     let aid = { id };
     currentStash = { ...currentStash, ...aid };
     props.modifyShoe(currentStash);
-    toastr.success("Shoe edited!", `id: (${id})`);
+    toastr.success("Shoe edited!");
     setStash({});
   }
 
