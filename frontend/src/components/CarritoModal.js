@@ -44,7 +44,7 @@ const CarritoModal = (props) => {
                                 return (
                                     <tr className="cart-row">
                                         <td className="product-cart">
-                                            <img src={shoe.image} className="image-cart" /><p className="product-name">{shoe.name}</p>
+                                            <img src={shoe.image} className="image-cart" alt="cart" /><p className="product-name">{shoe.name}</p>
                                         </td>
                                         <td className="product-price">
                                             ${shoe.price}
