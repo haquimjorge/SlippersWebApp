@@ -13,7 +13,7 @@ const Home = () => {
       <div className="portada">
         <Menu />
       </div>
-      <CarritoModal/>
+      {/* <CarritoModal/> */}
       <Input/>
       <MainHome />
       <PromoHome />

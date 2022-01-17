@@ -4,10 +4,15 @@ import { connect } from "react-redux";
 import userActions from "../redux/actions/userActions";
 import { useEffect } from "react";
 import { propTypes } from "react-bootstrap/esm/Image";
+import { toastr } from "react-redux-toastr";
 
 const ProductCard = ({ shoe, ...props }) => {
 
-  
+
+    function addToCart(shoe){
+        toastr.success("Item Added!", shoe.name )
+        props.addToCart(props.cart, true, shoe)
+    }
 
   return (
     <>
@@ -59,7 +64,7 @@ const ProductCard = ({ shoe, ...props }) => {
               className="add-cart"
             >
               <p style={{ fontWeight: "bold" }}> ADD TO CART </p>
-              <button onClick={()=>props.addToCart(props.cart, true, shoe)} disabled={props.user?false:true}>
+              <button onClick={()=>addToCart(shoe)} disabled={props.user?false:true}>
                 <img
                   style={{
                     width: "2rem",

@@ -9,6 +9,7 @@ import OffcanvasBody from 'react-bootstrap/OffcanvasBody'
 import { Button } from 'react-bootstrap'
 import Cart from "../assets/carrito-de-compras.png"
 import shoeActions from "../redux/actions/shoeActions";
+import { toastr } from "react-redux-toastr";
 
 const CarritoModal = (props) => {
     const [show, setShow] = useState(false);
@@ -19,6 +20,13 @@ const CarritoModal = (props) => {
     useEffect(() => {
         console.log(props.cart)
     }, [props.cart])
+
+
+    function addToCart(shoe){
+        toastr.error("Item Deleted from Cart!", shoe.name)
+        props.addToCart(props.cart, false, shoe)
+    }
+
 
 
     return (
@@ -49,7 +57,7 @@ const CarritoModal = (props) => {
                                         <td className="product-price">
                                             ${shoe.price}
                                         </td>
-                                        <td><button className="delete-button" onClick={() => props.addToCart(props.cart, false, shoe)}>X</button></td>
+                                        <td><button className="delete-button" onClick={() =>addToCart(shoe) }>X</button></td>
                                     </tr>
                                 )
                             })}

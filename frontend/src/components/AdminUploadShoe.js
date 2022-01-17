@@ -103,7 +103,7 @@ const UploadSchema =
           .required("Must be a number"),
           color: Yup.string().required("Required"),
           size: Yup.number().required("Required"),
-          stock: Yup.number().required("Required"),
+          stock: Yup.number().min(1, "Can not be zero or less").max(10000, "Can not exceed 10000").required("Required"),
         lastPrice: Yup.number()
           .min(1, "Can not be zero")
           .max(1000000, "Can not exceed 1000000")
