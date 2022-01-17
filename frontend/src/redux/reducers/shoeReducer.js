@@ -21,6 +21,7 @@ const shoeReducer = (state = initialState, action) => {
     }
     return result;
   }
+  
   switch (action.type) {
     case "getShoes":
       return {
@@ -55,12 +56,22 @@ const shoeReducer = (state = initialState, action) => {
         shoes: getUniqueValues(current),
       };
     case "MODIFY_SHOE":
+        console.log(state.shoes)
+
+        let subcat = state.allSubCategories.find(sub=> sub._id === action.payload.subcategory[0])
+        let catForshoe = state.categories.find(cat=> cat._id === action.payload.category)
+        let modifiedShoe = {...action.payload}
+        modifiedShoe.category = catForshoe
+        modifiedShoe.subcategory[0] = subcat
+
       let currentShoes = state.shoes.map((shoe) => {
-        if (shoe._id === action.payload._id) {
-          shoe = action.payload;
+        if (shoe._id === modifiedShoe._id) {
+          shoe = modifiedShoe;
         }
         return shoe;
       });
+
+      console.log(currentShoes)
       return {
         ...state,
         shoes: currentShoes,

@@ -4,6 +4,7 @@ const slugify = require("slugify");
 const shoeControllers = {
   modifyShoe: async (req, res) => {
     try {
+        console.log(req.body)
       const { id } = req.body;
       const modifiedShoe = await Shoe.findOneAndUpdate(
         { _id: id },
