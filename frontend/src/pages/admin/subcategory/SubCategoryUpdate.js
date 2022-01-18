@@ -7,35 +7,53 @@ import {
   removeCategory,
   getCategories,
 } from "../../../redux/actions/categoryActions";
+import {
+  getSubCategories,
+  getSubCategory,
+  removeSubCategory,
+  updateSubCategory,
+  createSubCategory,
+} from "../../../redux/actions/subCategoryActions";
 import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import CategoryForm from "../../../components/CategoryForm";
 import LocalSearch from "../../../components/LocalSearch";
+import { useParams } from "react-router-dom";
 
-const CategoryCreate = () => {
+const SubCategoryUpdate = () => {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [keyword, setKeyword] = useState("");
+  const [category, setCategory] = useState("");
+  const [subCategories, setSubCategories] = useState([]);
+  const [parent, setParent] = useState("");
+
+  let { slug } = useParams();
 
   useEffect(() => {
     loadCategories();
+    loadSubCategory();
   }, []);
 
   const loadCategories = () =>
     getCategories().then((category) => setCategories(category.data));
 
+  const loadSubCategory = () =>
+    getSubCategory(slug).then((subcategory) => {
+      setName(subcategory.data.name);
+      setParent(subcategory.data.parent);
+    });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(name)
     setLoading(true);
-    createCategory({ name })
+    updateSubCategory(slug, { name, parent })
       .then((res) => {
         console.log(res);
         setLoading(false);
         setName("");
-        toast.success(`${res.data.name} is created! `);
-        loadCategories();
+        toast.success(`${res.data.name} is updated! `);
       })
       .catch((err) => {
         console.log(err);
@@ -43,29 +61,6 @@ const CategoryCreate = () => {
         if (err.response.status === 400) toast.error(err.response.data);
       });
   };
-
-  const handleRemove = async (slug) => {
-    // let answer = window.confirm("Delete?");
-    // console.log(answer, slug);
-    if (window.confirm("Are you sure you want to delete?")) {
-      setLoading(true);
-      removeCategory(slug)
-        .then((res) => {
-          setLoading(false);
-          toast.error(`${res.data.name} deleted`);
-          loadCategories();
-        })
-        .catch((err) => {
-          if (err.response.status === 400) {
-            setLoading(false);
-            toast.error(err.response.data);
-          }
-        });
-    }
-  };
-
-  const searched = (keyword) => (category) =>
-    category.name.toLowerCase().includes(keyword);
 
   return (
     <div className="container-fluid">
@@ -77,8 +72,30 @@ const CategoryCreate = () => {
           {loading ? (
             <h4 className="text-danger">Loading...</h4>
           ) : (
-            <h4>Create Category</h4>
+            <h4>Update Sub-Category</h4>
           )}
+
+          <div className="form-group">
+            <label>Parent Category</label>
+            <select
+              name="category"
+              className="form-control"
+              onChange={(e) => setParent(e.target.value)}
+            >
+              <option value="">Select a Category</option>
+              {categories.length > 0 &&
+                categories.map((category) => (
+                  <option
+                    key={category._id}
+                    value={category._id}
+                    selected={category._id === parent}
+                  >
+                    {category.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+
           <CategoryForm
             handleSubmit={handleSubmit}
             name={name}
@@ -96,37 +113,10 @@ const CategoryCreate = () => {
             draggable
             pauseOnHover
           />
-          <LocalSearch keyword={keyword} setKeyword={setKeyword} />
-          <hr />
-          <h4>List of Categories</h4>
-          {categories.filter(searched(keyword)).map((category) => (
-            <div className="alert alert-secondary" key={category._id}>
-              {category.name}{" "}
-              <span
-                onClick={() => handleRemove(category.slug)}
-                className="btn btn-sm"
-              >
-                <Image
-                  className="usuario"
-                  src="../../assets/deletecross.png"
-                  style={{ width: "2rem" }}
-                ></Image>
-              </span>
-              <Link to={`/admin/category/${category.slug}`}>
-                <span className="btn btn-sm">
-                  <Image
-                    className="usuario"
-                    src="../../assets/editpencil.png"
-                    style={{ width: "2rem" }}
-                  ></Image>
-                </span>
-              </Link>
-            </div>
-          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default CategoryCreate;
+export default SubCategoryUpdate;

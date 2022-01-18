@@ -4,9 +4,10 @@ const slugify = require("slugify");
 const subCategoryControllers = {
   createSubCategory: async (req, res) => {
     try {
-      const { name } = req.body;
+      const { name, parent } = req.body;
       const subCategory = await new SubCategory({
         name,
+        parent,
         slug: slugify(name),
       }).save();
       res.json(subCategory);
@@ -19,6 +20,7 @@ const subCategoryControllers = {
     res.json(await SubCategory.find({}).sort({ createdAt: -1 }).exec());
   },
   readSubCategory: async (req, res) => {
+      console.log(req.params)
     let subCategory = await SubCategory.findOne({
       slug: req.params.slug,
     }).exec();
@@ -35,11 +37,11 @@ const subCategoryControllers = {
     }
   },
   updateSubCategory: async (req, res) => {
-    const { name } = req.body;
+    const { name, parent } = req.body;
     try {
       const updated = await SubCategory.findOneAndUpdate(
         { slug: req.params.slug },
-        { name, slug: slugify(name) },
+        { name, parent, slug: slugify(name) },
         { new: true }
       );
       res.json(updated);
@@ -47,6 +49,17 @@ const subCategoryControllers = {
       res.status(400).send("Update sub category failed");
     }
   },
+  getSubcategoryByParent: async(req,res)=>{
+      try{
+          const subCategories = await SubCategory.find({parent:req.params.parentId}).exec()
+          res.json(subCategories)
+
+
+
+      }catch(e){
+        res.status(400).send("Cannot find subcategory with that id" + req.params.parentId);
+      }
+  }
 };
 
 module.exports = subCategoryControllers;

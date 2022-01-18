@@ -88,6 +88,7 @@ const userControllers = {
           password: passwordHashed,
           image,
           googleUser,
+          emailVerified:true,
         }).save();
         const token = jwt.sign({ user }, process.env.SECRET_KEY);
         
@@ -99,17 +100,17 @@ const userControllers = {
       console.log(e)
     }
   },
-  signUpUser: async (req, res) => { // creamos una funcion para registrar un usuario
+  signUpUser: async (req, res) => {
     const {name, lastName, email,password,image,gender} = req.body
   
     try{
-      const user = await User.findOne({email}) //user del nombre del modelo
+      const user = await User.findOne({email})
       if(user){
-        res.json({success:false, error:"Email already registered", response: null}) //si el usuario ya existe
+        res.json({success:false, error:"Email already registered", response: null})
       }else{
-        const passwordHashed = bcryptjs.hashSync(password,10) //salt = string o num. 10 x defecto. num de pasos para encriptar 
+        const passwordHashed = bcryptjs.hashSync(password,10)
         var uniqueString = crypto.randomBytes(15).toString('hex')
-        const user = await new User( //creamos un nuevo usuario
+        const user = await new User(
         {name, 
           lastName, 
           email, 
@@ -122,8 +123,8 @@ const userControllers = {
         res.json({success:true, message:"Verification sent. Please check your email", response:null,error:null})
       }
 
-      }catch(error){ //si hay un error
-        res.json({success:false, response:null, error:error}) //si hay un error en el registro de usuario 
+      }catch(error){
+        res.json({success:false, response:null, error:error})
         console.log(error)
       }
     },

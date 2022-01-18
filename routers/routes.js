@@ -6,10 +6,10 @@ const userControllers = require("../controllers/userControllers");
 const categoryControllers = require("../controllers/categoryControllers")
 const subCategoryControllers = require("../controllers/subCategoryControllers")
 const passport = require("../config/passport");
-const {uploadShoe, getShoes, modifyShoe, deleteShoe} = shoeControllers
+const {uploadShoe, getShoes, modifyShoe, deleteShoe, shoesCount, getShoeById} = shoeControllers
 const {googleLogin,signUpUser, signInUser,authUser, verifyEmail} = userControllers
-const {createCategory, listCategory, readCategory, updateCategory, removeCategory} = categoryControllers
-const {createSubCategory, listSubCategory, readSubCategory, updateSubCategory, removeSubCategory} = subCategoryControllers
+const {createCategory, listCategory, readCategory, updateCategory, removeCategory, getAllCategories} = categoryControllers
+const {createSubCategory, listSubCategory, readSubCategory, updateSubCategory, removeSubCategory,getSubcategoryByParent } = subCategoryControllers
 
 // Rutas para el controlador de zapatos
 
@@ -18,8 +18,13 @@ Router.route("/shoes")
 .get(getShoes)
 .put(modifyShoe)
 
+
 Router.route("/shoe/:shoeId")
-.delete(deleteShoe);
+.delete(deleteShoe)
+.get(getShoeById)
+
+Router.route("/shoes/total")
+.get(shoesCount)
 
 
 // Rutas para el controlador de usuarios
@@ -45,6 +50,9 @@ Router.route("/category")
 Router.route("/categories")
 .get(listCategory)
 
+Router.route("/allcategories")
+.get(getAllCategories)
+
 Router.route("/category/:slug")
 .get(readCategory)
 .put(updateCategory)
@@ -61,6 +69,9 @@ Router.route("/subcategory/:slug")
 .get(readSubCategory)
 .put(updateSubCategory)
 .delete(removeSubCategory)
+
+Router.route("/subcategories/:parentId")
+.get(getSubcategoryByParent)
 
 
 
