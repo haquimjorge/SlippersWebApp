@@ -5,6 +5,7 @@ import userActions from "../redux/actions/userActions";
 import { useEffect } from "react";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { toastr } from "react-redux-toastr";
+import { Navigate } from "react-router-dom";
 
 const ProductCard = ({ shoe, ...props }) => {
   function addToCart(shoe) {
@@ -23,10 +24,19 @@ const ProductCard = ({ shoe, ...props }) => {
             justifyContent: "center",
           }}
         >
-          <img
-            src={shoe.image}
-            style={{ height: "20rem", objectFit: "cover" }}
-          />
+
+          
+          <Link
+            style={{ textDecoration: "none", color: "black" }}
+            to={`/shoe/${shoe._id}`}
+          >
+
+            <img
+              src={shoe.image}
+              style={{ height: "20rem", objectFit: "cover" }}
+            />
+
+          </Link>
         </div>
         <div style={{ padding: "1rem" }} className="shoe-card-info">
           <h5 style={{ textAlign: "left" }} className="shoe-name">
@@ -68,7 +78,7 @@ const ProductCard = ({ shoe, ...props }) => {
               <p style={{ fontWeight: "bold" }}> ADD TO CART </p>
               <button
                 className="boton-carritoShop"
-                onClick={() => addToCart(shoe)}
+                onClick={() => addToCart(props.cart, true, shoe)}
                 disabled={props.user ? false : true}
               >
                 <img
