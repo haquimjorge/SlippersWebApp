@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import CarouselMarcas from "../components/CarouselMarcas";
 import "../shoeDetails.scss";
 import userActions from "../redux/actions/userActions";
+import Paypal from '../components/Paypal';
 
 const ShoeProduct = (props) => {
   useEffect(() => {
@@ -90,7 +91,7 @@ const ShoeProduct = (props) => {
                 Add to Cart
               </button>
               <button className="like">♥</button>
-              <button className="paypal">PayPal</button>
+              <Paypal/>
             </div>
           </div>
         </div>

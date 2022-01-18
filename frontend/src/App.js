@@ -18,7 +18,7 @@ import SubCategoryUpdate from "./pages/admin/subcategory/SubCategoryUpdate";
 import ShoeProduct from "./pages/ShoeProduct";
 import Checkout from "./pages/Checkout";
 import ReduxToastr from "react-redux-toastr";
-// import PayPalCheckOutButton from "./components/PaypalCheckOutButton";
+
 
 const VerifyDinamic = withRouter(Verify);
 const ShoeProductDinamic = withRouter(ShoeProduct);
