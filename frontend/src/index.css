@@ -726,6 +726,18 @@ animation: shadowGlow infinite 2s;
   background-repeat: no-repeat;
   background-size: cover;
 }
+.admin-variaton-color-box{
+    width: 4rem;
+    height: 4rem;
+}
+
+.admin-variation-shoe-image{
+    width: 5rem;
+    height: 5rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
   .admin-input-category{
       padding: 6px;
       border-radius: 10px !important;
