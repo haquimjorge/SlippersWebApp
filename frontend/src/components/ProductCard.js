@@ -7,12 +7,10 @@ import { propTypes } from "react-bootstrap/esm/Image";
 import { toastr } from "react-redux-toastr";
 
 const ProductCard = ({ shoe, ...props }) => {
-
-
-    function addToCart(shoe){
-        toastr.success("Item Added!", shoe.name )
-        props.addToCart(props.cart, true, shoe)
-    }
+  function addToCart(shoe) {
+    toastr.success("Item Added!", shoe.name);
+    props.addToCart(props.cart, true, shoe);
+  }
 
   return (
     <>
@@ -30,15 +28,19 @@ const ProductCard = ({ shoe, ...props }) => {
             style={{ height: "20rem", objectFit: "cover" }}
           />
         </div>
-        <div
-          style={{ padding: "1rem", borderTop: "1px solid black" }}
-          className="shoe-card-info"
-        >
-          <h5 style={{ textAlign: "left" }}>{shoe.name}</h5>
-          <h6>${shoe.price}</h6>
+        <div style={{ padding: "1rem" }} className="shoe-card-info">
+          <h5 style={{ textAlign: "left" }} className="shoe-name">
+            {shoe.name}
+          </h5>
+          <h6 className="shoe-price">${shoe.price}</h6>
           <div
             className="shoe-card-icons"
-            style={{ display: "flex", justifyContent: "space-around" }}
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              borderTop: "1px solid black",
+              padding: "10px",
+            }}
           >
             <Link
               style={{ textDecoration: "none", color: "black" }}
@@ -55,7 +57,7 @@ const ProductCard = ({ shoe, ...props }) => {
                     alignSelf: "center",
                     justifyContent: "center",
                   }}
-                  src="../assets/eye-read.png"
+                  src="../assets/view.png"
                 />
               </div>
             </Link>
@@ -64,17 +66,19 @@ const ProductCard = ({ shoe, ...props }) => {
               className="add-cart"
             >
               <p style={{ fontWeight: "bold" }}> ADD TO CART </p>
-              <button onClick={()=>addToCart(shoe)} disabled={props.user?false:true}>
+              <button
+                className="boton-carritoShop"
+                onClick={() => addToCart(shoe)}
+                disabled={props.user ? false : true}
+              >
                 <img
                   style={{
                     width: "2rem",
                     alignSelf: "center",
                     justifyContent: "center",
                   }}
-
                   src="../assets/carrito-de-compras.png"
                   alt="shopping cart"
-                  
                 />
               </button>
             </div>
@@ -85,15 +89,14 @@ const ProductCard = ({ shoe, ...props }) => {
   );
 };
 
-
 const mapStateToProps = (state) => {
   return {
     cart: state.userReducer.cart,
-    user: state.userReducer.user
+    user: state.userReducer.user,
   };
 };
 const mapDispatchToProps = {
-  addToCart: userActions.addToCart
+  addToCart: userActions.addToCart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);

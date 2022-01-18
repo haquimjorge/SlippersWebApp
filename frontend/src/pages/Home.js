@@ -14,7 +14,7 @@ const Home = () => {
         <Menu />
       </div>
       {/* <CarritoModal/> */}
-      <Input/>
+      <Input />
       <MainHome />
       <PromoHome />
       <CarouselMarcas />
