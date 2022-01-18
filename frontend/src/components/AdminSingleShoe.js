@@ -108,7 +108,7 @@ function AdminSingleShoe(props) {
       />
       <Card
         key={props.shoe._id}
-        className="col-12 col-md-6 col-xxl-4 col-xl-4 col-lg-6 col-sm-12 col-xs-12"
+        className="col-12 col-md-6 col-xxl-4 col-xl-4 col-lg-6 col-sm-12 col-xs-12 admin-single-shoe-card p-2"
       >
         <Card.Img
           className="card-admin-items"
@@ -270,7 +270,7 @@ function AdminSingleShoe(props) {
         <Card.Footer className="admin-shoes-card-footer">
           <button
             onClick={() => handleIdToDelete(props.shoe._id)}
-            className="d-flex justify-content-center admin-delete-shoe-button w-100"
+            className="d-flex justify-content-center sign-button w-100"
           >
             Delete
           </button>

@@ -49,6 +49,8 @@ const Shop = (props) => {
   }, [colors])
 
 
+  console.log(props.cart)
+  
   const handleChange = (e) => {
     const searchValue = e.target.value;
     setSearch(searchValue)
