@@ -978,5 +978,29 @@ h1 {
   
 }
 
+.filters{
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-style:solid;
+  border-color: transparent black transparent;
+  width:15vw;
+  height: fit-content;
+}
+.filter{
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-style:solid;
+  border-color: transparent transparent black;
+}
+
+.shop-body{
+  display: flex;
+  flex-direction: row;
+}
+.css-187mznn-MuiSlider-root{
+  color:#a87d0f!important;
+}
 
 
