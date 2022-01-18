@@ -39,10 +39,16 @@ ul {
 }
 
 .botones-menu {
+    transition: .2s;
   text-shadow: 1px 1px 1px gold;
   font-size: 20px;
   text-decoration: none;
 }
+.botones-menu:hover {
+    transition: .2s;
+    color: gold !important;
+    text-shadow: 0px 0px 0px gold !important;
+  }
 
 .hamburguesa {
   background-color: rgba(255, 217, 0, 0.418);
@@ -50,9 +56,17 @@ ul {
 }
 
 .carrito img {
+    transition: .2s;
   object-fit: cover;
   width: 35px;
 }
+.carrito img:hover {
+    transition: .4s;
+    filter: invert(23%) sepia(6%) saturate(19%) hue-rotate(191deg) brightness(96%) contrast(91%);
+  }
+  .colored-image-button:hover{
+    filter: invert(123%) sepia(6%) saturate(19%) hue-rotate(191deg) brightness(96%) contrast(91%);
+  }
 
 .usuario img {
   object-fit: cover;
@@ -87,7 +101,7 @@ main {
 
 .div-titulo .titulo {
   color: rgba(0, 0, 0, 0.952);
-  text-shadow: 1px 1px 2px orangered;
+  text-shadow: 2px 4px  rgba(48, 41, 2, 0.301);
   font-size: 45px;
 }
 
@@ -116,7 +130,7 @@ main {
 
 .descripcion-promoHome h1 {
   padding-bottom: 2%;
-  text-shadow: 1px 1px 2px orangered;
+  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.205);
   text-transform: uppercase;
   font-size: 25px;
 }
@@ -470,11 +484,33 @@ main {
   text-shadow: 0px -1px 0px #7a2a1d;
   width: 220px;
 }
+
+.home-action-call{
+    animation: neon 7s infinite;
+}
+
+
+.cart-checkout-button{
+    transition: 0.1s;
+  box-shadow: inset 0px 34px 0px -15px #252525;
+  background: linear-gradient(to bottom, #1f190a 5%, #000000 100%);
+  background-color: #000000;
+  border: 1px solid #241d13;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 9px 23px;
+  text-decoration: none;
+  text-shadow: 0px -1px 0px #7a2a1d;
+}
+
 .sign-button:hover {
   transition: 0.1s;
-  background: linear-gradient(to bottom, #d4a327 5%, #c79216 100%);
-  box-shadow: inset 0px 34px 0px -15px #d1a841;
-  text-shadow: 0px 1px 0px #7a2a1d;
+  background: linear-gradient(to bottom, #d4a327 5%, #c79216 100%) !important;
+  box-shadow: inset 0px 34px 0px -15px #d1a841 !important;
+  text-shadow: 0px 1px 0px #7a2a1d !important;
+  color:white !important
 }
 .sign-button:active {
   position: relative;
@@ -584,9 +620,17 @@ main {
 /* CAROUSEL MARCAS */
 
 .contenedor-carouselMarcas {
-  padding: 0 1% 0 1%;
   width: 100%;
 }
+.slick-prev {
+    left: 0px;
+position: absolute;
+  }
+
+  .slick-next {
+    left: 0px;
+position: absolute;
+  }
 
 .contenedor-marcasSociales {
   border-top: double black;
@@ -1090,11 +1134,12 @@ h1 {
 
 .shoe-name {
   color: rgba(0, 0, 0, 0.952);
-  text-shadow: 1px 1px 2px orangered;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.199);
 }
 
 .shoe-price {
   font-size: 25px;
+  font-weight: bold;
 }
 
 .contenedor-range {
@@ -1136,7 +1181,7 @@ h1 {
 .contenedor-mainCheck h1 {
   padding: 5% 0 1% 0;
   color: black;
-  text-shadow: 1px 1px 2px orangered;
+  text-shadow: 1px 1px 0px rgba(252, 252, 252, 0.199);
 }
 
 .contenedor-check {
@@ -1313,3 +1358,19 @@ h1 {
 .css-187mznn-MuiSlider-root {
   color: #a87d0f !important;
 }
+
+
+@keyframes neon {
+    0% {
+      background-color: #0000001c;
+
+    }
+    50% {
+      background-color: rgba(0, 0, 0, 0.301);
+
+    }
+    100% {
+        background-color: #0000001c;
+
+    }
+  }

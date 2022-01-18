@@ -1,4 +1,5 @@
 import axios from "axios";
+import {toastr} from 'react-redux-toastr'
 
 const userActions ={
     googleLogin: (user) => {
@@ -9,6 +10,8 @@ const userActions ={
           );
           if (response.data.response) {
             localStorage.setItem("token", response.data.token);
+            console.log(response.data.response)
+            toastr.success("Logged In!" , `Welcome, ${response.data.response.name}`)
           }
           console.log(response)
     
@@ -47,7 +50,7 @@ const userActions ={
       logOut: () => {
         return (dispatch) => {
           localStorage.clear();
-          alert("Logging out...")
+          toastr.error("Logged Out!")
           dispatch({ type: "LOG_OUT", payload: {} });
         };
       },
@@ -116,6 +119,12 @@ const userActions ={
         }
 
         }
+      },
+      emptyCart : () =>{
+          return (dispatch)=> {
+              dispatch({type:"EMPTY_CART", payload:{}})
+
+          }
       }
 }
 

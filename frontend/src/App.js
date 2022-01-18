@@ -59,7 +59,6 @@ function App(props) {
       <ReduxToastr
         timeOut={4000}
         newestOnTop={false}
-        preventDuplicates
         position="bottom-center"
         getState={(state) => state.toastr} // This is the default
         transitionIn="fadeIn"
