@@ -53,9 +53,10 @@ const CarritoModal = (props) => {
                                     <tr className="cart-row">
                                         <td className="product-cart">
                                             <img src={shoe.image} className="image-cart" alt="cart" /><p className="product-name">{shoe.name}</p>
+                                            <p className="product-quantity">({shoe.quantity})</p>
                                         </td>
                                         <td className="product-price">
-                                            ${shoe.price}
+                                            ${shoe.price*shoe.quantity}
                                         </td>
                                         <td><button className="delete-button" onClick={() =>addToCart(shoe) }>X</button></td>
                                     </tr>
@@ -65,7 +66,7 @@ const CarritoModal = (props) => {
                                 <tr>
                                     <td>Total</td>
                                     <td>${
-                                        props.cart.reduce((total, item) => total + (item.price), 0)
+                                        props.cart.reduce((total, item) => total + (item.price*item.quantity), 0)
                                         //data.reduce((total, item)=>total+(item.aprice*item.quantity),0)
                                     }
                                     </td>

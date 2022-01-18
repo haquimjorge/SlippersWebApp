@@ -8,6 +8,7 @@ import CenterModalShoe from "./CenterModalShoe";
 import DATA from "../utilities/hardData";
 import AdminRowInputText from "./AdminRowInputText";
 import { toastr } from "react-redux-toastr";
+import RowInputSelect from "./RowInputSelect"
 
 function AdminSingleShoe(props) {
   const [modalShow, setModalShow] = useState(false);
@@ -90,13 +91,13 @@ function AdminSingleShoe(props) {
     }
   }
 
-  function RowInputSelect({ label, ...props }) {
-    return (
-      <FloatingLabel label={label}>
-        <FormR.Select {...props} size="sm" />
-      </FloatingLabel>
-    );
-  }
+//   function RowInputSelect({ label, ...props }) {
+//     return (
+//       <FloatingLabel label={label}>
+//         <FormR.Select {...props} size="sm" />
+//       </FloatingLabel>
+//     );
+//   }
 
   return (
     <>

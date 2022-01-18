@@ -12,9 +12,28 @@ function valuetext(value) {
   return `$${value}`;
 }
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const Shop = (props) => {
+  const colors = [
+    "black",
+    "blue",
+    "brown",
+    "gray",
+    "green",
+    "orange",
+    "pink",
+    "purple",
+    "red",
+    "teal",
+    "violet",
+    "white",
+    "yellow",
+  ];
   const [search, setSearch] = useState("");
-  const [value, setValue] = useState([0, 300]);
+  const [value, setValue] = useState([0, 100000]);
   const [checked, setChecked] = useState([
     { type: "gender", value: [] },
     { type: "color", value: [] },
@@ -25,11 +44,15 @@ const Shop = (props) => {
   const checkedRef = useRef(checked);
 
   useEffect(() => {
+    console.log(props.shoes);
+    console.log(props.filteredShoes);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.shoes, props.filteredShoes]);
 
   useEffect(() => {
     if (!props.shoes) props.getShoes();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -37,6 +60,10 @@ const Shop = (props) => {
     console.log(props.cart);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.cart]);
+
+  useEffect(() => {
+    console.log(checked);
+  }, [colors]);
 
   const handleChange = (e) => {
     const searchValue = e.target.value;
@@ -90,7 +117,7 @@ const Shop = (props) => {
       <div className="fondo-menu-sign pb-5">
         <Menu />
       </div>
-      {/* <div className="input-contenedor-home pt-5">
+      <div className="input-contenedor-home pt-5">
         <label htmlFor="search">Search :</label>
         <input
           type="text"
@@ -102,7 +129,7 @@ const Shop = (props) => {
         />
         <button type="submit">Ok</button>
       </div>
-      <div className="contenedor-inputcheck-shop">
+      {/* <div className="contenedor-inputcheck-shop">
         <div className="item-inputcheck-shop">
           <label htmlFor="season1"> Spring-Summer</label>
           <input
@@ -179,32 +206,131 @@ const Shop = (props) => {
             }
           />
         </div>
-      </div>
-
-      <div className="contenedor-range">
-        <div className="range-maxPrice">
-          <p>Max Price</p>
-        </div>
-        <Slider
-          getAriaLabel={() => "Price"}
-          value={value}
-          onChange={handleSlider}
-          valueLabelDisplay="auto"
-          getAriaValueText={valuetext}
-          min={0}
-          max={300}
-        />
       </div> */}
 
-      <MainShop
-        shoes={
-          props.filteredShoes
-            ? props.filteredShoes
-            : props.shoes
-            ? props.shoes
-            : []
-        }
-      />
+      <div className="shop-body">
+        <div className="filters">
+          <div className="filter">
+            <h5>Color</h5>
+            {colors.map((color, index) => {
+              return (
+                <div>
+                  <input
+                    type="checkbox"
+                    id={"color" + (index + 1)}
+                    value={color}
+                    onChange={(e) =>
+                      handleCheck(e, { type: "color", value: color })
+                    }
+                  />
+                  <label htmlFor={"color" + (index + 1)}>
+                    {" "}
+                    {capitalizeFirstLetter(color)}{" "}
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="filter">
+            <h5>Gender</h5>
+            <div>
+              <input
+                type="checkbox"
+                id="gender1"
+                value="male"
+                onChange={(e) =>
+                  handleCheck(e, { type: "gender", value: "female" })
+                }
+              />
+              <label htmlFor="gender1"> Female</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="gender2"
+                value="female"
+                onChange={(e) =>
+                  handleCheck(e, { type: "gender", value: "male" })
+                }
+              />
+              <label htmlFor="gender2"> Male</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="gender3"
+                value="unisex"
+                onChange={(e) =>
+                  handleCheck(e, { type: "gender", value: "unisex" })
+                }
+              />
+              <label htmlFor="gender3"> Unisex</label>
+            </div>
+          </div>
+
+          <div className="filter">
+            <h5>Season</h5>
+            <div>
+              <input
+                type="checkbox"
+                id="season1"
+                value="spring-summer"
+                onChange={(e) =>
+                  handleCheck(e, { type: "season", value: "spring/summer" })
+                }
+              />
+              <label htmlFor="season1"> Spring-Summer</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="season2"
+                value="winter-autum"
+                onChange={(e) =>
+                  handleCheck(e, { type: "season", value: "winter/autumn" })
+                }
+              />
+              <label htmlFor="season2"> Winter-Autum</label>
+            </div>
+          </div>
+          <div className="filter">
+            <h5>Price</h5>
+            <div className="w-75 ps-3">
+              <Slider
+                getAriaLabel={() => "Price"}
+                value={value}
+                onChange={handleSlider}
+                valueLabelDisplay="auto"
+                getAriaValueText={valuetext}
+                min={0}
+                max={
+                  props.shoes
+                    ? Math.max.apply(
+                        Math,
+                        props.shoes.map((shoe) => {
+                          return shoe.price;
+                        })
+                      )
+                    : 300
+                }
+              />
+            </div>
+          </div>
+        </div>
+        <div style={{ width: "85vw" }}>
+          <MainShop
+            shoes={
+              props.filteredShoes
+                ? props.filteredShoes
+                : props.shoes
+                ? props.shoes
+                : []
+            }
+          />
+        </div>
+      </div>
+
       <CarouselMarcas />
       <Footer />
     </>

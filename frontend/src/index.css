@@ -883,6 +883,18 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.admin-variaton-color-box {
+  width: 4rem;
+  height: 4rem;
+}
+
+.admin-variation-shoe-image {
+  width: 5rem;
+  height: 5rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 .admin-input-category {
   padding: 6px;
   border-radius: 10px !important;
@@ -1252,6 +1264,10 @@ h1 {
   text-overflow: ellipsis;
   margin: 0;
 }
+.product-quantity {
+  margin: 0;
+  padding-left: 3px;
+}
 
 .delete-button {
   border-radius: 10px;
@@ -1264,4 +1280,29 @@ h1 {
 .delete-button:hover {
   color: #7a2a1d;
   background-color: #a87d0f;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-style: solid;
+  border-color: transparent black transparent;
+  width: 15vw;
+  height: fit-content;
+}
+.filter {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-style: solid;
+  border-color: transparent transparent black;
+}
+
+.shop-body {
+  display: flex;
+  flex-direction: row;
+}
+.css-187mznn-MuiSlider-root {
+  color: #a87d0f !important;
 }
