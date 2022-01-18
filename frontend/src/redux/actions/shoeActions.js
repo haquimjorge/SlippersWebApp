@@ -29,6 +29,7 @@ const shoeActions = {
                   : (element.type === 'gender') ? element.value.includes(searchShoes.gender.toLowerCase().trim())
                     : (element.type === 'color') ? element.value.includes(searchShoes.color.toLowerCase().trim())
                       : (element.type === 'season') ? element.value.includes(searchShoes.season.toLowerCase().trim())
+                      : (element.type === 'price') ? (searchShoes.price>element.value[0] && searchShoes.price<element.value[1])
                         : (element.type === 'text') && (
                           searchShoes.name.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())
                           || searchShoes.gender.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())
@@ -55,7 +56,7 @@ const shoeActions = {
       dispatch({ type: 'filterShoes', payload: filteredShoes })
     }
   },
-  modifyshoe: (data) => {
+  modifyShoe: (data) => {
     return async (dispatch) => {
       let response = await axios.put("http://localhost:4000/api/shoes", data)
       dispatch({ type: "MODIFY_SHOE", payload: response.data.response })
@@ -73,6 +74,17 @@ const shoeActions = {
       let response = await axios.get(`http://localhost:4000/api/shoe/${id.toString()}`)
       dispatch({type: "getShoe", payload: response.data.response})
     }
+  },
+  deleteShoe : (id)=>{
+      return async (dispatch)=>{
+          let response = await axios.delete(`http://localhost:4000/api/shoe/${id}`)
+          dispatch({type: "DELETE_SHOE", payload: response.data.response})
+      }
+  },
+  sendIdtoDeleteShoe : (id)=>{
+      return (dispatch)=>{
+          dispatch({type: "ID_TO_DELETE_SHOE", payload:id})
+      }
   }
 
 }

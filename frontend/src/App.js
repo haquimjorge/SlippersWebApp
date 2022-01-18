@@ -17,6 +17,7 @@ import withRouter from "./utilities/withRouter";
 import SubCategoryUpdate from "./pages/admin/subcategory/SubCategoryUpdate";
 import ShoeProduct from "./pages/ShoeProduct";
 import Checkout from "./pages/Checkout";
+import ReduxToastr from "react-redux-toastr";
 // import PayPalCheckOutButton from "./components/PaypalCheckOutButton";
 
 const VerifyDinamic = withRouter(Verify);
@@ -31,38 +32,42 @@ function App(props) {
     }
   }, [authUser, token]);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} exact />
-        <Route path="/admin" element={<AdminDashboard />} exact />
-        {/* <Route path="/admin/category" element={<CategoryCreate/>} exact /> */}
-        <Route
-          path="/admin/category/:slug"
-          element={<CategoryUpdate />}
-          exact
-        />
-        <Route
-          path="/admin/subcategory/:slug"
-          element={<SubCategoryUpdate />}
-          exact
-        />
-        {!token ? (
-          <>
-            <Route path="/signin" element={<SignIn />} exact />
-            <Route path="/signup" element={<SignUp />} exact />
-            <Route path="/check" element={<Checkout />} exact />
-          </>
-        ) : (
-          <Route path="/account" element={<Account />} />
-        )}
-        <Route path="/shop" element={<Shop />} exact />
-        <Route path="/shoe/:shoesId" element={<ShoeProductDinamic />} exact />
-        <Route path="/contacts" element={<Contacts />} exact />
-        <Route path="/verify/:uniqueString" element={<VerifyDinamic />} />
-        <Route path="*" element={<Home />} />
-        <Route path="shoeproduct" element={<ShoeProduct />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/check" element={<Checkout />} exact />
+          <Route path="/" element={<Home />} exact />
+          {props.user && props.user.rol === "Admin" && (
+            <Route path="/admin" element={<AdminDashboard />} />
+          )}
+          {!token ? (
+            <>
+              <Route path="/signin" element={<SignIn />} exact />
+              <Route path="/signup" element={<SignUp />} exact />
+            </>
+          ) : (
+            <Route path="/account" element={<Account />} />
+          )}
+          <Route path="/shop" element={<Shop />} exact />
+          <Route path="/shoe/:shoesId" element={<ShoeProductDinamic />} exact />
+          <Route path="/contacts" element={<Contacts />} exact />
+          <Route path="/verify/:uniqueString" element={<VerifyDinamic />} />
+          <Route path="*" element={<Home />} />
+          <Route path="shoeproduct" element={<ShoeProduct />} />
+        </Routes>
+      </BrowserRouter>
+      <ReduxToastr
+        timeOut={4000}
+        newestOnTop={false}
+        preventDuplicates
+        position="bottom-center"
+        getState={(state) => state.toastr} // This is the default
+        transitionIn="fadeIn"
+        transitionOut="fadeOut"
+        progressBar
+        closeOnToastrClick
+      />
+    </>
   );
 }
 

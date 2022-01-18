@@ -23,17 +23,18 @@ import Button from "react-bootstrap/Button";
 import categoryActionsRedux from "../../../redux/actions/categoryActionsRedux";
 import CenterModal from "../../../components/CenterModal";
 import SubCategoryItem from "../subcategory/SubCategoryItem"
+import {toastr} from 'react-redux-toastr'
 
 function AdminCategories(props) {
   const [open, setOpen] = useState(false);
-  const { getSubCategoriesByParentId, category, subCategories } = props;
+  const { getSubCategoriesByParentId, category, allSubCategories } = props;
   const [modalShow, setModalShow] = useState(false);
   const [edit, setEdit] = useState(false)
   const [editInput, setEditInput] = useState("")
 
   function handleCategoryClick() {
     setOpen(!open);
-    getSubCategoriesByParentId(category._id);
+    // getSubCategoriesByParentId(category._id);
   }
 
   function handleEditClick(name){
@@ -93,18 +94,23 @@ overlay={renderEdit}
 }
 function handlePlus(parent){
     let randomString = Math.random().toString(36).substring(2, 4) + Math.random().toString(36).substring(2, 4);
+    const toastrOptions ={
+        preventDuplicates: false,
+        showCloseButton:false,
+        closeOnToastrClick: true
+    }
     
     let data = {
         name: "New Subcategory ("+ randomString +")",
         parent
     }
     props.createSubCategory(data)
-    console.log(data)
+    toastr.success('Sub Category Added!', data.name, toastrOptions)
+    setOpen(true)
 
 }
 
 function handleDelete(slug){
-    console.log(slug)
     setModalShow(true)
       props.sendDeleteSlug(slug)
 }
@@ -127,7 +133,7 @@ const DeleteIcon =(props)=>{
             )  
 }
 
-  let properSubcategories = subCategories.filter(
+  let properSubcategories = allSubCategories.filter(
     (sub) => sub.parent === category._id
   );
 
@@ -171,8 +177,8 @@ const DeleteIcon =(props)=>{
       <Collapse in={open}>
         <ListGroup className="ps-2 pe-2">
           {properSubcategories.length ? (
-            properSubcategories.map((sub) => (
-                <SubCategoryItem subcategory={sub} />
+            properSubcategories.map((sub,index) => (
+                <SubCategoryItem key={index} subcategory={sub} />
             ))
           ) : (
             <ListGroup.Item className="admin-subcategory-container text-light">
@@ -187,12 +193,11 @@ const DeleteIcon =(props)=>{
 
 const mapStateToProps = (state) => {
   return {
-    subCategories: state.shoeReducer.subCategories,
+    allSubCategories: state.shoeReducer.allSubCategories
   };
 };
 
 const mapDispatchToProps = {
-  getSubCategoriesByParentId: categoryActionsRedux.getSubCategoriesByParentId,
   sendDeleteSlug : categoryActionsRedux.sendDeleteSlug,
   modifycategory : categoryActionsRedux.modifyCategory,
   createSubCategory: categoryActionsRedux.createSubCategory

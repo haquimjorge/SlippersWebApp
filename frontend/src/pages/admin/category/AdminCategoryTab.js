@@ -20,6 +20,7 @@ import Collapse from "react-bootstrap/Collapse";
 import Button from "react-bootstrap/Button";
 import AdminCategories from "./AdminCategories";
 import categoryActionsRedux from "../../../redux/actions/categoryActionsRedux";
+import {toastr} from 'react-redux-toastr'
 
 function AdminCategoryTab(props) {
   const MyTextInput = ({ label, ...props }) => {
@@ -41,6 +42,7 @@ function AdminCategoryTab(props) {
       getAllCategories()
   },[getAllCategories])
 
+  console.log('category tab')
   return (
     <>
       <Container fluid>
@@ -57,9 +59,9 @@ function AdminCategoryTab(props) {
               .required("Required")
           })}
           onSubmit={(values, actions) => {
-            console.log(values.category)
             actions.resetForm()
             uploadCategory(values.category.toString())
+            toastr.success('Category Uploaded!', values.category)
           }}
         >
           <Form className="p-2 admin-newcategory-container">

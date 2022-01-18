@@ -41,7 +41,7 @@ const categoryControllers = {
       );
       res.json(updated);
     } catch (err) {
-      res.status(400).send("Update category failed (same name not allowed)");
+      res.json({error:err, success:false,response:null})
     }
   },
   getAllCategories : async (req,res)=>{
@@ -61,7 +61,6 @@ const categoryControllers = {
 
       }catch(e){
           console.log(e)
-          res.status(400).send(`Update category failed (${e.codeName})`);
         res.json({ success: false, error: e,respose:null });
       }
   }

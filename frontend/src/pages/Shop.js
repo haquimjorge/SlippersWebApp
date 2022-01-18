@@ -6,27 +6,37 @@ import MainShop from "../components/MainShop";
 import shoeActions from "../redux/actions/shoeActions";
 import { connect } from "react-redux";
 import { useState, useEffect, useRef } from "react";
-import { process_params } from "express/lib/router";
+import Slider from "@mui/material/Slider";
+
+function valuetext(value) {
+  return `$${value}`;
+}
 
 const Shop = (props) => {
   const [search, setSearch] = useState("");
+  const [value, setValue] = useState([0, 300]);
   const [checked, setChecked] = useState([
     { type: "gender", value: [] },
     { type: "color", value: [] },
     { type: "season", value: [] },
     { type: "text", value: "" },
+    { type: "price", value: value },
   ]);
-  const [filtered, setFiltered] = useState(false);
   const checkedRef = useRef(checked);
 
   useEffect(() => {
-    console.log(props.filteredShoes);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.shoes, props.filteredShoes]);
+
   useEffect(() => {
     if (!props.shoes) props.getShoes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    console.log(props.cart);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.cart]);
 
   const handleChange = (e) => {
     const searchValue = e.target.value;
@@ -38,7 +48,7 @@ const Shop = (props) => {
     list[index].value = searchValue;
     checkedRef.current = [...list];
     setChecked([...list]);
-    console.log(checkedRef.current);
+
     props.filterShoes(props.shoes, checkedRef.current);
   };
   const handleCheck = (e, data) => {
@@ -59,33 +69,28 @@ const Shop = (props) => {
       }
     }
 
-    //console.log(checkedRef.current)
-    //checkedRef.current.forEach((element,index)=>console.log(index,"-",element))
-    //console.log(checkedRef.current)
-    //if(props.filteredShoes) props.filterShoes(props.filteredShoes, checkedRef.current)
     props.filterShoes(props.shoes, checkedRef.current);
   };
 
-  // useEffect(() => {
-  //   if (!props.shoes) props.getShoes();
-  //   console.log(props.shoes)
-  //   console.log(props.filteredShoes);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [props.shoes, props.filteredShoes]);
+  const handleSlider = (e, newValue) => {
+    setValue(newValue);
+    const list = checked;
+    let newData = list.filter((element) => element.type === "price");
+    const index = list.indexOf(newData[0]);
 
-  // const handleChange = (e) => {
-  //   const searchValue = e.target.value;
-  //   setSearch(searchValue);
-  //   props.filterShoes(props.shoes, searchValue);
-  //   console.log(props.filteredShoes);
-  // };
+    list[index].value = newValue;
+    checkedRef.current = [...list];
+    setChecked([...list]);
+    props.filterShoes(props.shoes, checkedRef.current);
+    //console.log(checkedRef.current)
+  };
 
   return (
     <>
       <div className="fondo-menu-sign pb-5">
         <Menu />
       </div>
-      <div className="input-contenedor-home pt-5">
+      {/* <div className="input-contenedor-home pt-5">
         <label htmlFor="search">Search :</label>
         <input
           type="text"
@@ -176,6 +181,21 @@ const Shop = (props) => {
         </div>
       </div>
 
+      <div className="contenedor-range">
+        <div className="range-maxPrice">
+          <p>Max Price</p>
+        </div>
+        <Slider
+          getAriaLabel={() => "Price"}
+          value={value}
+          onChange={handleSlider}
+          valueLabelDisplay="auto"
+          getAriaValueText={valuetext}
+          min={0}
+          max={300}
+        />
+      </div> */}
+
       <MainShop
         shoes={
           props.filteredShoes
@@ -197,6 +217,7 @@ const mapDispatchToProps = {
 };
 const mapStateToProps = (state) => {
   return {
+    cart: state.userReducer.cart,
     shoes: state.shoeReducer.shoes,
     filteredShoes: state.shoeReducer.filteredShoes,
   };

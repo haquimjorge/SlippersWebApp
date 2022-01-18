@@ -20,7 +20,7 @@ function Carousel(props) {
   const { arrayShoes } = props;
 
   useEffect(() => {
-    props.arrayShoes();
+    arrayShoes();
   }, [arrayShoes]);
 
   return (
@@ -49,12 +49,12 @@ function Carousel(props) {
         {console.log(props.allShoes)}
         <div className="shoes-container-card">
           {props.allShoes ? (
-            props.allShoes.map((elem) => {
+            props.allShoes.map((elem, i) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide key={i}>
                   <div className="card-shoe">
                     <div className="img-div">
-                      <img src={elem.image} />
+                      <img src={elem.image} alt={elem.name} />
                       <p className="name-shoe">{elem.name}</p>
                     </div>
                   </div>
@@ -63,7 +63,7 @@ function Carousel(props) {
             })
           ) : (
             <SwiperSlide>
-              <img src={Logo} />
+              <img src={Logo} alt="placeholder logo" />
             </SwiperSlide>
           )}
         </div>

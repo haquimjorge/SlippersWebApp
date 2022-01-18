@@ -2,15 +2,15 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import Carrito from "./Carrito";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import { connect } from "react-redux";
 import userActions from "../redux/actions/userActions";
 import Image from "react-bootstrap/Image";
-import Logo from "../assets/logo3.png"
-import User from "../assets/usuario1.png"
+import Logo from "../assets/logo3.png";
+import User from "../assets/usuario1.png";
 import "../index.css";
+import CarritoModal from "./CarritoModal";
 
 function Menu(props) {
   let imagenUsuario = props.user ? (
@@ -50,21 +50,60 @@ function Menu(props) {
                 title={imagenUsuario}
               >
                 {props.user ? (
-                  <div className="contenedor-dropdown">
-                    <Dropdown.Item
-                      className="dropdown-item"
-                      as={Link}
-                      to="/account"
-                    >
-                      Account
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      className="dropdown-item"
-                      onClick={() => props.logOut()}
-                    >
-                      Sign Out
-                    </Dropdown.Item>
-                  </div>
+                  props.user.rol === "Admin" ? (
+                    <div className="contenedor-dropdown">
+                      <Dropdown.Item
+                        className="dropdown-item"
+                        as={Link}
+                        to="/admin"
+                      >
+                        Admin Panel
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        className="dropdown-item"
+                        as={Link}
+                        to="/account"
+                      >
+                        Account
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        className="dropdown-item"
+                        as={Link}
+                        to="/check"
+                      >
+                        Checkout
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        className="dropdown-item"
+                        onClick={() => props.logOut()}
+                      >
+                        Sign Out
+                      </Dropdown.Item>
+                    </div>
+                  ) : (
+                    <>
+                      <Dropdown.Item
+                        className="dropdown-item"
+                        as={Link}
+                        to="/account"
+                      >
+                        Account
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        className="dropdown-item"
+                        as={Link}
+                        to="/check"
+                      >
+                        Checkout
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        className="dropdown-item"
+                        onClick={() => props.logOut()}
+                      >
+                        Sign Out
+                      </Dropdown.Item>
+                    </>
+                  )
                 ) : (
                   <div className="contenedor-dropdown">
                     <Dropdown.Item
@@ -86,9 +125,7 @@ function Menu(props) {
               </DropdownButton>
             </Nav>
           </Navbar.Collapse>
-          <Link to="/cart">
-            <Carrito />
-          </Link>
+          <CarritoModal />
         </Container>
       </Navbar>
     </>
