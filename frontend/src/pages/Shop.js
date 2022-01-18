@@ -120,6 +120,7 @@ const Shop = (props) => {
       <div className="input-contenedor-home pt-5">
         <label htmlFor="search">Search :</label>
         <input
+          className="input-checkShop"
           type="text"
           defaultValue={search}
           placeholder="Search for the shoes you want"
@@ -129,196 +130,125 @@ const Shop = (props) => {
         />
         <button type="submit">Ok</button>
       </div>
-      {/* <div className="contenedor-inputcheck-shop">
-        <div className="item-inputcheck-shop">
-          <label htmlFor="season1"> Spring-Summer</label>
-          <input
-            className="inputcheck-shop"
-            type="checkbox"
-            id="season1"
-            value="spring-summer"
-            onChange={(e) =>
-              handleCheck(e, { type: "season", value: "spring-summer" })
-            }
-          />
-        </div>
-        <div className="item-inputcheck-shop">
-          <label htmlFor="color1"> Blue</label>
-          <input
-            className="inputcheck-shop"
-            type="checkbox"
-            id="color1"
-            value="blue"
-            onChange={(e) => handleCheck(e, { type: "color", value: "blue" })}
-          />
-        </div>
-        <div className="item-inputcheck-shop">
-          <label htmlFor="color2"> Black</label>
-          <input
-            className="inputcheck-shop"
-            type="checkbox"
-            id="color2"
-            value="black"
-            onChange={(e) => handleCheck(e, { type: "color", value: "black" })}
-          />
-        </div>
-        <div className="item-inputcheck-shop">
-          <label htmlFor="color3"> Green</label>
-          <input
-            className="inputcheck-shop"
-            type="checkbox"
-            id="color3"
-            value="green"
-            onChange={(e) => handleCheck(e, { type: "color", value: "green" })}
-          />
-        </div>
-        <div className="item-inputcheck-shop">
-          <label htmlFor="gender1"> Female</label>
-          <input
-            className="inputcheck-shop"
-            type="checkbox"
-            id="gender1"
-            value="male"
-            onChange={(e) =>
-              handleCheck(e, { type: "gender", value: "female" })
-            }
-          />
-        </div>
-        <div className="item-inputcheck-shop">
-          <label htmlFor="gender2"> Male</label>
-          <input
-            className="inputcheck-shop"
-            type="checkbox"
-            id="gender2"
-            value="female"
-            onChange={(e) => handleCheck(e, { type: "gender", value: "male" })}
-          />
-        </div>
-        <div className="item-inputcheck-shop">
-          <label htmlFor="season2">Winter-Autum</label>
-          <input
-            className="inputcheck-shop"
-            type="checkbox"
-            id="season2"
-            value="winter-autum"
-            onChange={(e) =>
-              handleCheck(e, { type: "season", value: "winter-autumn" })
-            }
-          />
-        </div>
-      </div> */}
-
+      <h4
+        style={{ backgroundColor: "black" }}
+        className="titulo-mainShop text-center display-4"
+      >
+        Our shoes!
+      </h4>
       <div className="shop-body">
         <div className="filters">
-          <div className="filter">
-            <h5>Color</h5>
-            {colors.map((color, index) => {
-              return (
-                <div>
-                  <input
-                    type="checkbox"
-                    id={"color" + (index + 1)}
-                    value={color}
-                    onChange={(e) =>
-                      handleCheck(e, { type: "color", value: color })
-                    }
-                  />
-                  <label htmlFor={"color" + (index + 1)}>
-                    {" "}
-                    {capitalizeFirstLetter(color)}{" "}
-                  </label>
-                </div>
-              );
-            })}
+          <h5 className="h5">Color</h5>
+          {colors.map((color, index) => {
+            return (
+              <div>
+                <input
+                  className="input-checkShop"
+                  type="checkbox"
+                  id={"color" + (index + 1)}
+                  value={color}
+                  onChange={(e) =>
+                    handleCheck(e, { type: "color", value: color })
+                  }
+                />
+                <label htmlFor={"color" + (index + 1)}>
+                  {capitalizeFirstLetter(color)}{" "}
+                </label>
+              </div>
+            );
+          })}
+
+          <h5 className="h5">Gender</h5>
+          <div>
+            <input
+              className="input-checkShop"
+              type="checkbox"
+              id="gender1"
+              value="male"
+              onChange={(e) =>
+                handleCheck(e, { type: "gender", value: "female" })
+              }
+            />
+            <label htmlFor="gender1"> Female</label>
+          </div>
+          <div>
+            <input
+              className="input-checkShop"
+              type="checkbox"
+              id="gender2"
+              value="female"
+              onChange={(e) =>
+                handleCheck(e, { type: "gender", value: "male" })
+              }
+            />
+            <label htmlFor="gender2"> Male</label>
+          </div>
+          <div>
+            <input
+              className="input-checkShop"
+              type="checkbox"
+              id="gender3"
+              value="unisex"
+              onChange={(e) =>
+                handleCheck(e, { type: "gender", value: "unisex" })
+              }
+            />
+            <label htmlFor="gender3"> Unisex</label>
           </div>
 
-          <div className="filter">
-            <h5>Gender</h5>
-            <div>
-              <input
-                type="checkbox"
-                id="gender1"
-                value="male"
-                onChange={(e) =>
-                  handleCheck(e, { type: "gender", value: "female" })
-                }
-              />
-              <label htmlFor="gender1"> Female</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="gender2"
-                value="female"
-                onChange={(e) =>
-                  handleCheck(e, { type: "gender", value: "male" })
-                }
-              />
-              <label htmlFor="gender2"> Male</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="gender3"
-                value="unisex"
-                onChange={(e) =>
-                  handleCheck(e, { type: "gender", value: "unisex" })
-                }
-              />
-              <label htmlFor="gender3"> Unisex</label>
-            </div>
+          <h5 className="h5">Season</h5>
+          <div>
+            <input
+              className="input-checkShop"
+              type="checkbox"
+              id="season1"
+              value="spring-summer"
+              onChange={(e) =>
+                handleCheck(e, { type: "season", value: "spring/summer" })
+              }
+            />
+            <label htmlFor="season1"> Spring-Summer</label>
+          </div>
+          <div>
+            <input
+              className="input-checkShop"
+              type="checkbox"
+              id="season2"
+              value="winter-autum"
+              onChange={(e) =>
+                handleCheck(e, { type: "season", value: "winter/autumn" })
+              }
+            />
+            <label htmlFor="season2"> Winter-Autum</label>
           </div>
 
-          <div className="filter">
-            <h5>Season</h5>
-            <div>
-              <input
-                type="checkbox"
-                id="season1"
-                value="spring-summer"
-                onChange={(e) =>
-                  handleCheck(e, { type: "season", value: "spring/summer" })
-                }
-              />
-              <label htmlFor="season1"> Spring-Summer</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="season2"
-                value="winter-autum"
-                onChange={(e) =>
-                  handleCheck(e, { type: "season", value: "winter/autumn" })
-                }
-              />
-              <label htmlFor="season2"> Winter-Autum</label>
-            </div>
+          <h5 className="h5">Price</h5>
+          <div className="minMax d-flex justify-content-between">
+            <h6>Min</h6>
+            <h6>Max</h6>
           </div>
-          <div className="filter">
-            <h5>Price</h5>
-            <div className="w-75 ps-3">
-              <Slider
-                getAriaLabel={() => "Price"}
-                value={value}
-                onChange={handleSlider}
-                valueLabelDisplay="auto"
-                getAriaValueText={valuetext}
-                min={0}
-                max={
-                  props.shoes
-                    ? Math.max.apply(
-                        Math,
-                        props.shoes.map((shoe) => {
-                          return shoe.price;
-                        })
-                      )
-                    : 300
-                }
-              />
-            </div>
+          <div className="w-100">
+            <Slider
+              getAriaLabel={() => "Price"}
+              value={value}
+              onChange={handleSlider}
+              valueLabelDisplay="auto"
+              getAriaValueText={valuetext}
+              min={0}
+              max={
+                props.shoes
+                  ? Math.max.apply(
+                      Math,
+                      props.shoes.map((shoe) => {
+                        return shoe.price;
+                      })
+                    )
+                  : 300
+              }
+            />
           </div>
         </div>
-        <div style={{ width: "85vw" }}>
+        <div>
           <MainShop
             shoes={
               props.filteredShoes

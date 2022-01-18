@@ -14,12 +14,6 @@ const MainShop = ({ shoes }) => {
   return (
     <>
       <main>
-        <h4
-          style={{ backgroundColor: "black" }}
-          className="titulo-mainShop text-center display-4"
-        >
-          Our shoes!
-        </h4>
         <div
           style={{ fontWeight: "bold", fontSize: "3.5rem" }}
           className="div-titulo"
@@ -40,7 +34,7 @@ const MainShop = ({ shoes }) => {
                 <div
                   key={shoe._id}
                   style={{ marginTop: "1rem" }}
-                  className="col-lg-4"
+                  className="productCard col-lg-4"
                 >
                   <ProductCard shoe={shoe} />
                 </div>
