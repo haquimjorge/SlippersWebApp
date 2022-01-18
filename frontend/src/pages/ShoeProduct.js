@@ -14,6 +14,7 @@ const ShoeProduct = (props) => {
     props.getOneShoe(props.params.shoesId);
   }, []);
 
+  console.log(props.oneShoe)
   useEffect(() => {
     console.log(props.cart)
   }, [props.cart]);

@@ -16,6 +16,8 @@ function CenterModalShoe(props) {
         props.onHide()
         toastr.error("Deleted Shoe!", props.shoe.name)
     }
+
+    
     return (
       <Modal
         size="lg"
@@ -67,4 +69,5 @@ function CenterModalShoe(props) {
   const mapDispatchToProps = {
     deleteShoe : shoeActions.deleteShoe,
   };
+
   export default connect(mapStateToProps, mapDispatchToProps)(CenterModalShoe);

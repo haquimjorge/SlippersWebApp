@@ -47,12 +47,14 @@ const SelectInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <div className="mb-3 d-flex flex-column justify-content-center w-100">
-      <label className="text-light text-center pe-2" htmlFor={props.id || props.name}>
+      {/* <label className="text-light text-center pe-2" htmlFor={props.id || props.name}>
         {label}
-      </label>
+      </label> */}
       <div className="mb-3 d-flex justify-content-center flex-column w-100">
-        
-        <select {...field} {...props}  />
+      <FloatingLabel label={label}>
+        <FormR.Select {...field} {...props} size="sm" />
+        </FloatingLabel>
+        {/* <select {...field} {...props}  /> */}
         {meta.touched && meta.error ? (
           <div className="error text-danger text-start">{meta.error}</div>
         ) : <p className="invisible p-0 m-0">mock</p>}
