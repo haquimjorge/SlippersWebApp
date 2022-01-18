@@ -23,6 +23,7 @@ function AdminSingleShoe(props) {
     setModalShow(true);
     props.sendIdtoDeleteShoe(id);
   }
+  
   function handleModify(input, attribute, shoe) {
     if (attribute === "season") {
       setSeason(input);

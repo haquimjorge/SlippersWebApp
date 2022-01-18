@@ -26,6 +26,7 @@ const ProductCard = ({ shoe, ...props }) => {
           <img
             src={shoe.image}
             style={{ height: "20rem", objectFit: "cover" }}
+            alt={shoe.name}
           />
         </div>
         <div style={{ padding: "1rem" }} className="shoe-card-info">
@@ -52,12 +53,14 @@ const ProductCard = ({ shoe, ...props }) => {
               >
                 <p style={{ fontWeight: "bold" }}>MORE INFO</p>
                 <img
+                className="colored-image-button"
                   style={{
                     width: "2rem",
                     alignSelf: "center",
                     justifyContent: "center",
                   }}
                   src="../assets/view.png"
+                  alt="more info"
                 />
               </div>
             </Link>
@@ -77,6 +80,7 @@ const ProductCard = ({ shoe, ...props }) => {
                     alignSelf: "center",
                     justifyContent: "center",
                   }}
+                  className="colored-image-button"
                   src="../assets/carrito-de-compras.png"
                   alt="shopping cart"
                 />
