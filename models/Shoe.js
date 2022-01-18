@@ -3,10 +3,10 @@ const { ObjectId } = mongoose.Schema;
 
 const shoeSchema = new mongoose.Schema(
   {
-    name: { type: String, require: true },
+    name: { type: String, require: true, unique:true,index:true },
     price: { type: Number, require: true },
     lastPrice: { type: Number },
-    stock: { Number, default: 0 },
+    generalStock: { type:Number, default: 0 },
     variations: [
       {
         size: { type: String },

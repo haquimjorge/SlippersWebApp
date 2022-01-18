@@ -2,11 +2,11 @@
 $font: 'Lato', sans-serif;
 
 $white: #f5f5f5de;
-$light: #d49d04d7;
+$light: rgb(166,117,33);;
 $tan: #b18c28;
-$pink: #070706;
-$rose: #856304cc;
-$dark: #0a0909;
+$pink: #070607;
+$rose: #e0a72ccc;
+$dark: #131311;
 
 
 .shoe-body {
@@ -28,7 +28,7 @@ $dark: #0a0909;
   border-radius: 10px;
 }
 
-p {
+.desc {
   font-size: 0.6em;
   color: $rose;
   letter-spacing: 1px;
@@ -45,7 +45,7 @@ h2 {
   margin-top: -5px;
 }
 
-img {
+.zoom {
   width: 28%;
   margin-left: 100px;
   margin-top: 30px;

@@ -8,20 +8,23 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { connect } from "react-redux";
 import userActions from "../redux/actions/userActions";
 import Image from "react-bootstrap/Image";
+import Logo from "../assets/logo3.png"
+import User from "../assets/usuario1.png"
 import "../index.css";
+import CarritoModal from "./CarritoModal";
 
 function Menu(props) {
   let imagenUsuario = props.user ? (
     <Image className="user-icon" src={props.user.image}></Image>
   ) : (
-    <Image className="user-icon" src="./assets/usuario1.png" />
+    <Image className="user-icon" src={User} />
   );
   return (
     <>
       <Navbar className="contenedor-menu bg-dark" expand="lg">
         <Container>
           <div className="logo-menu ms-5">
-            <img src="./assets/logo3.png" />
+            <img src={Logo} alt="logo" />
           </div>
           <Navbar.Toggle
             className="hamburguesa"
@@ -47,8 +50,15 @@ function Menu(props) {
                 id="dropdown-basic-button"
                 title={imagenUsuario}
               >
-                {props.user ? (
+                {props.user ? props.user.rol === "Admin" ? (
                   <div className="contenedor-dropdown">
+                      <Dropdown.Item
+                      className="dropdown-item"
+                      as={Link}
+                      to="/admin"
+                    >
+                      Admin Panel
+                    </Dropdown.Item>
                     <Dropdown.Item
                       className="dropdown-item"
                       as={Link}
@@ -63,7 +73,23 @@ function Menu(props) {
                       Sign Out
                     </Dropdown.Item>
                   </div>
-                ) : (
+                ) : ( 
+                    <>
+                    <Dropdown.Item
+                      className="dropdown-item"
+                      as={Link}
+                      to="/account"
+                    >
+                      Account
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      className="dropdown-item"
+                      onClick={() => props.logOut()}
+                    >
+                      Sign Out
+                    </Dropdown.Item>
+                    </>
+                ):(
                   <div className="contenedor-dropdown">
                     <Dropdown.Item
                       className="dropdown-item"
@@ -84,9 +110,7 @@ function Menu(props) {
               </DropdownButton>
             </Nav>
           </Navbar.Collapse>
-          <Link to="/cart">
-            <Carrito />
-          </Link>
+            <CarritoModal/>
         </Container>
       </Navbar>
     </>

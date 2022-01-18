@@ -14,9 +14,11 @@ import CategoryCreate from "./pages/admin/category/CategoryCreate";
 import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
 import Verify from './pages/Verify'
 import withRouter from "./utilities/withRouter";
-import ShoeDetails from './components/ShoeDetails';
+
 import SubCategoryUpdate from "./pages/admin/subcategory/SubCategoryUpdate";
 import ShoeProduct from "./pages/ShoeProduct";
+import ReduxToastr from 'react-redux-toastr'
+// import PayPalCheckOutButton from "./components/PaypalCheckOutButton";
 
 
 const VerifyDinamic = withRouter(Verify)
@@ -31,13 +33,11 @@ function App(props) {
     }
   }, [authUser, token]);
   return (
+      <>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} exact />
-        <Route path="/admin" element={<AdminDashboard />} exact />
-        {/* <Route path="/admin/category" element={<CategoryCreate/>} exact /> */}
-        <Route path="/admin/category/:slug" element={<CategoryUpdate/>} exact />
-        <Route path="/admin/subcategory/:slug" element={<SubCategoryUpdate/>} exact />
+        {props.user && props.user.rol === "Admin" && <Route path="/admin" element={<AdminDashboard />}/>}
         {!token 
         ? <>
         <Route path="/signin" element={<SignIn />} exact /> 
@@ -50,9 +50,20 @@ function App(props) {
         <Route path="/contacts" element={<Contacts />} exact />
         <Route path="/verify/:uniqueString" element={<VerifyDinamic />}/>
         <Route path="*" element={<Home />} />
-        <Route path="/shoedetails" element={<ShoeDetails />} />
+        <Route path="shoeproduct" element={<ShoeProduct />} />
       </Routes>
     </BrowserRouter>
+    <ReduxToastr
+    timeOut={4000}
+    newestOnTop={false}
+    preventDuplicates
+    position="bottom-center"
+    getState={(state) => state.toastr} // This is the default
+    transitionIn="fadeIn"
+    transitionOut="fadeOut"
+    progressBar
+    closeOnToastrClick/>
+    </>
   );
 }
 
@@ -67,3 +78,5 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+

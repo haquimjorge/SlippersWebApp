@@ -22,15 +22,13 @@ function Carousel(props) {
   const { arrayShoes } = props;
 
   useEffect(() => {
-    props.arrayShoes();
+    arrayShoes();
   }, [arrayShoes]);
 
   return (
     <div className="container-carousel">
       <div className="title_wrapper">
-        <div className="title_">
-          <span>New</span>Models
-        </div>
+        <div className="title_"></div>
       </div>
       <Swiper
         navigation={true}
@@ -52,17 +50,17 @@ function Carousel(props) {
       >
         {console.log(props.allShoes)}
         <div className="shoes-container-card">
-          {props.allShoes ? (props.allShoes.map((elem) => {
+          {props.allShoes ? (props.allShoes.map((elem,i) => {
             return (
-              <SwiperSlide>
+              <SwiperSlide key={i}>
                 <div class="containerr">
                   <div class="card">
                     <div class="imgBx">
-                      <img src={elem.image} />
+                      <img src={elem.image} alt={elem.name}  />
                     </div>
                     <div class="contentBx">
                       <h2 className="name-shoe">{elem.name}</h2>
-                      <a href="#">Buy Now</a>
+                      <a href="/shoe/:shoesId">Buy Now</a>
                     </div>
                   </div>
                 </div>
@@ -71,7 +69,7 @@ function Carousel(props) {
           }))
             :
             <SwiperSlide>
-              <img src={Logo} />
+              <img src={Logo} alt="placeholder logo" />
             </SwiperSlide>
           }
         </div>
@@ -91,13 +89,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Carousel);
-
-
-{/* <SwiperSlide>
-  <div className="card-shoe">
-    <div className="img-div">
-      <img src={elem.image} />
-      <p className="name-shoe">{elem.name}</p>
-    </div>
-  </div>
-</SwiperSlide> */}

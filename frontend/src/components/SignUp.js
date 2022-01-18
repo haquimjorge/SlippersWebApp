@@ -37,19 +37,23 @@ const StringInput = ({ label, ...props }) => {
   );
 };
 
+
+
+
+
 const RadioInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <div className="d-flex flex-column w-100 justify-content-center">
-      <div className=" d-flex justify-content-around align-items-center  signup-radio-container">
-        <h4 className="ps-3 m-0 w-100 text-light ">Gender</h4>
+      <div className=" d-flex justify-content-around align-items-center signup-radio-container">
+        <h4 className="registrate ps-3 m-0 w-100 text-light ">Gender</h4>
         <div className="d-flex justify-content-around w-100 me-2">
-          <label className=" text-center p-2 border text-light mb-3 d-flex flex-column w-100">
-            <Field type="radio" name="gender" value="Male" />
+          <label className="gender-sign text-center p-2 text-light mb-3 d-flex flex-column w-100">
+            <Field id="male" type="radio" name="gender" value="Male" />
             Male
           </label>
-          <label className=" text-center p-2 border mb-3 text-light d-flex flex-column w-100">
-            <Field type="radio" name="gender" value="Female" />
+          <label className="gender-sign text-center p-2 mb-3 text-light d-flex flex-column w-100">
+            <Field id="female" type="radio" name="gender" value="Female" />
             Female
           </label>
         </div>
@@ -168,18 +172,19 @@ const SignUp = (props) => {
           <Form>
             <div className="d-flex gap-2">
               <StringInput
+              
                 label="Name"
                 name="name"
                 type="text"
                 placeholder="kevin"
-                className="w-100"
+                className="input-sign w-100"
               />
               <StringInput
                 label="Last Name"
                 name="lastName"
                 type="text"
                 placeholder="kevin"
-                className="w-100"
+                className="input-sign w-100"
               />
             </div>
 
@@ -188,6 +193,7 @@ const SignUp = (props) => {
               name="email"
               type="email"
               placeholder="kevin"
+              className="input-sign"
             />
             <div>
               <div>
@@ -206,6 +212,7 @@ const SignUp = (props) => {
               </div>
 
               <StringInput
+              className="input-sign"
                 label="Password"
                 name="password"
                 type={showPass ? "text" : "password"}
@@ -215,7 +222,7 @@ const SignUp = (props) => {
             <div className="d-flex sign-radio-container">
               <RadioInput name="gender" />
               <StringInput
-                className="col-6 sign-input-imageurl"
+                className="col-6 sign-input-imageurl input-sign"
                 label="Image Url"
                 name="image"
                 type="text"

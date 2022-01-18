@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 import {React} from 'react'
 import {connect} from 'react-redux'
 import categoryActionsRedux from '../redux/actions/categoryActionsRedux'
+import {toastr} from 'react-redux-toastr'
 
 
 
@@ -11,18 +12,23 @@ function CenterModal(props) {
 
     let category = props.category ? props.category : {name:'',slug:'',createdAt:1,updatedAt:1,_id:1}
 
-    function handleDelete(slug){
-        props.deletecategory(slug)
+    function handleDelete(slug,name){
+        if(props.type){
+            props.deleteSubCategory(slug)
+            toastr.error('Sub Category Deleted!', name)  
+        }else{
+            props.deletecategory(slug)
+            toastr.error('Category Deleted!', name)  
+        }
         props.onHide()
     }
-
-    console.log(props.category)
     return (
       <Modal
-        {...props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        show={props.show}
+        onHide={props.onHide}
         
       >
           
@@ -30,7 +36,8 @@ function CenterModal(props) {
           
         <Modal.Header closeButton className="d-flex admin-modal-header">
           <Modal.Title id="contained-modal-title-vcenter" className="text-dark">
-            ¿Are you sure you want to delete this category and all its sub categories?
+              {props.type ? "¿Are you sure you want to delete this sub category?": "¿Are you sure you want to delete this category and all its sub categories?"}
+            
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="admin-modal-body text-dark">
@@ -49,7 +56,7 @@ function CenterModal(props) {
           
         </Modal.Body>
         <Modal.Footer className="admin-modal-footer bg-dark">
-          <button className="sign-button" onClick={()=> handleDelete(category._id)}>Delete</button>
+          <button className="sign-button" onClick={()=> handleDelete(category._id, category.name)}>Delete</button>
         </Modal.Footer>
       </Modal>
     );
@@ -62,6 +69,7 @@ function CenterModal(props) {
   };
   
   const mapDispatchToProps = {
-      deletecategory : categoryActionsRedux.deleteCategory
+      deletecategory : categoryActionsRedux.deleteCategory,
+      deleteSubCategory : categoryActionsRedux.deleteSubCategory
   };
   export default connect(mapStateToProps, mapDispatchToProps)(CenterModal);
