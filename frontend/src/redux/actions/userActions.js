@@ -85,6 +85,9 @@ const userActions ={
       },
       addToCart : (cart, isAdded, product)=>{
         
+        
+
+
         return async (dispatch)=>{
           //await axios.put("http://localhost:4000/api/cart",{userId, isAdded, product})
           //.then(response=>{
@@ -93,11 +96,22 @@ const userActions ={
           //}).catch(err=>console.error(err))
           let newCart = [...cart] 
           if(isAdded){
-            newCart.push(product)
+            if(!product.quantity){ 
+              product.quantity = 1 
+              newCart.push(product)
+            } 
+            else product.quantity +=1
+            
             dispatch({type:"ADD_PRODUCT", payload: newCart})
           }
           else{
-            newCart = newCart.filter(element => product !== element)
+            product.quantity -=1
+            if (product.quantity<1){
+              
+              newCart = newCart.filter(element => product._id !== element._id)
+            }  
+            
+            //newCart = newCart.filter(element => product !== element)
             dispatch({type:"DELETE_PRODUCT", payload: newCart})
         }
 

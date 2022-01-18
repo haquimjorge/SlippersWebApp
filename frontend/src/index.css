@@ -963,6 +963,10 @@ h1 {
   text-overflow: ellipsis;
   margin:0;
 }
+.product-quantity{
+  margin:0;
+  padding-left: 3px;
+}
 
 .delete-button{
   border-radius:10px;
