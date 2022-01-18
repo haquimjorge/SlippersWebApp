@@ -153,7 +153,7 @@ function CenterModalVariation(props) {
               </Form>
  )}
             </Formik>
-            aca va un dropdown con color y size y stock
+            {/*aca va un dropdown con color y size y stock*/}
           
         </Modal.Body>
       </Modal>

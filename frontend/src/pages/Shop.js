@@ -173,7 +173,7 @@ const Shop = (props) => {
                 valueLabelDisplay="auto"
                 getAriaValueText={valuetext}
                 min={0}
-                max={100000}
+                max={props.shoes?Math.max.apply(Math, props.shoes.map(shoe => { return shoe.price; })):300}
               />
             </div>
           </div>
