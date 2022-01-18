@@ -1,5 +1,6 @@
 import Menu from "../components/Menu";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 import userActions from "../redux/actions/userActions";
 import { connect } from "react-redux";
 
@@ -26,29 +27,44 @@ const Checkout = (props) => {
           <h1 className="pb-5">Chosen products</h1>
           <div className="contenedor-check">
             <div className="item-check">
-              <div className="contenedor-ppCheck">
-                <h2>Products:</h2>
-                <h2>Price:</h2>
-              </div>
-              {props.cart.map((elemento) => {
-                return (
-                  <div className="contenedor-returnCheck d-flex justify-content-between">
-                    <div className="d-flex align-items-center">
-                      <img src={elemento.image} />
-                      <h3 className="ps-4">{elemento.name}</h3>
+              {props.cart.length ? (
+                <div className="contenedor-ppCheck">
+                  <h2>Products:</h2>
+                  <h2>Price:</h2>
+                </div>
+              ) : (
+                ""
+              )}
+              {props.cart.length ? (
+                props.cart.map((elemento) => {
+                  return (
+                    <div className="contenedor-returnCheck d-flex justify-content-between">
+                      <div className="d-flex align-items-center">
+                        <h6
+                          id="button"
+                          onClick={() =>
+                            props.addToCart(props.cart, false, elemento)
+                          }
+                        >
+                          x
+                        </h6>
+                        <img src={elemento.image} />
+                        <h3 className="ps-4">{elemento.name}</h3>
+                      </div>
+                      <h4>{elemento.price} $</h4>
                     </div>
-                    <h6
-                      id="button"
-                      onClick={() =>
-                        props.addToCart(props.cart, false, elemento)
-                      }
-                    >
-                      Delete
-                    </h6>
-                    <h4>{elemento.price} $</h4>
+                  );
+                })
+              ) : (
+                <div>
+                  <div className="contenedor-noItems text-center">
+                    <h2>No Items in cart</h2>
                   </div>
-                );
-              })}
+                  <Link className="link-backShop" to="/shop">
+                    Back to Shop
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
