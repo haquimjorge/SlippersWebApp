@@ -1195,12 +1195,12 @@ h1 {
 
 /* MAIN SHOPP */
 
-/* @media (min-width: 250px) and (max-width: 1400px) {
+@media (min-width: 250px) and (max-width: 1400px) {
   .productCard {
     width: 100%;
     padding: 0 10% 0 10%;
   }
-} */
+}
 
 .titulo-mainShop {
   padding: 1%;
