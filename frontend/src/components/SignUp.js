@@ -18,6 +18,7 @@ import Menu from "../components/Menu";
 import { Link } from "react-router-dom";
 import SignInPic from "../assets/sign-in.jpg";
 import userActions from "../redux/actions/userActions";
+import { toastr } from "react-redux-toastr";
 
 const StringInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -37,8 +38,52 @@ const StringInput = ({ label, ...props }) => {
   );
 };
 
+const FileInput = ({label, ...props})=>{
+    return(
+        <div className="d-flex justify-content-center">
+             <FormR.Label className="d-flex registrate p-2">{label}</FormR.Label>
+             <div className="d-flex flex-column">
+
+            
+    <FormR.Control {...props} type="file" />
+        {/* <input {...field} {...props} type="file"
+                                
+                                id="icon-button-file"
+                                style={{ display: 'none', }}
+                                className="bg-info"
+                                multiple
+                            /> */}
+                            
+                            {/* <label htmlFor="icon-button-file" className="text-light">
+                                {label}
+                            </label> */}
+                           
+       </div>
+                            </div>
+    )
+}
 
 
+// const upload = async (e) => {
+//     e.preventDefault()
+//     let file = await e.target.files[0]
+//     console.log(file)
+//     setFile(file)
+//     let user = userConected.email
+//     const formData = new FormData()
+//     formData.append('user', user)
+//     formData.append('file', file)
+
+//     await uploadFile(formData)
+//         .then(response => {
+
+//             if (response.success) {
+//                 alert("Carga Exitosa")
+//             }
+//             else { alert("archivo ya cargado") }
+//         })
+//     setReload(!reload)
+// }
 
 
 const RadioInput = ({ label, ...props }) => {
@@ -70,6 +115,20 @@ const RadioInput = ({ label, ...props }) => {
 const SignUp = (props) => {
   console.log(props.error);
   YupPassword(Yup);
+  const [file,setFile]= useState({})
+
+
+
+  const upload = async (e) =>{
+    e.preventDefault()
+    let file = await e.target.files[0]
+    setFile(file)
+    console.log(file)
+    // setFile(formData)
+    // props.uploadUserImage(formData)
+}
+
+
   const [showPass, setShowPass] = useState(false);
   const togglePassword = (e) => {
     const checked = e.target.checked;
@@ -130,7 +189,7 @@ const SignUp = (props) => {
             lastName: "",
             email: "",
             password: "",
-            image: "",
+            // image: "",
             gender: "",
           }}
           validationSchema={Yup.object({
@@ -144,6 +203,7 @@ const SignUp = (props) => {
               .matches(/^[aA-zZ\s]+$/, "Alphabet only")
               .trim()
               .required("Required"),
+              
             email: Yup.string()
               .email("Invalid email")
               .matches(/(\W|^)[\w.-]{0,25}@(gmail|google|yahoo|hotmail|live|kevhausen|outlook|).(com|cl|ar|col|pe|ven|br)(\W|$)/, "Invalid email")
@@ -159,14 +219,26 @@ const SignUp = (props) => {
               .minNumbers(1, "At least 1 number")
               .minSymbols(1, "At least 1 symbol")
               .required("Required"),
-            image: Yup.string().required("Required"),
+            // image: Yup.string().required("Required"),
             gender: Yup.string()
               .oneOf(["Male", "Female"], "Invalid gender")
               .required("Required"),
           })}
           onSubmit={(values, { setSubmitting }) => {
-            props.signUp(values)
-            setSubmitting(false);
+              if(file.name){
+                  const formData = new FormData()
+                  formData.append('file', file)
+                  formData.append('user',values.email)
+                  console.log(values)
+                  console.log(file)
+                  console.log(formData)
+                  props.signUp(values, formData)
+                  setSubmitting(false);
+              }else if(Object.keys(file).length===0){
+                  toastr.error("Please upload an Image")
+              }
+              
+
           }}
         >
           <Form>
@@ -219,16 +291,26 @@ const SignUp = (props) => {
                 placeholder="kevin"
               />
             </div>
-            <div className="d-flex sign-radio-container">
-              <RadioInput name="gender" />
-              <StringInput
+            <div className="d-flex p-2">
+            <FormR.Label className="d-flex registrate p-2">Image</FormR.Label>
+            
+
+            
+            <FormR.Control className="bg-dark text-light" type="file" onChange={upload}/>
+            </div>
+            
+             
+              {/* <FileInput label="Image" name="image" className="bg-dark text-light gap-2" /> */}
+              {/* <StringInput
                 className="col-6 sign-input-imageurl input-sign"
                 label="Image Url"
                 name="image"
                 type="text"
                 placeholder="kevin"
-              />
-            </div>
+              /> */}
+              
+           
+            <RadioInput name="gender" />
 
             <div className="btn-container d-flex justify-content-center">
               <button className="text-light p-2 m-2 sign-button" type="submit">

@@ -5,7 +5,9 @@ const shoeControllers = require("../controllers/shoeControllers");
 const userControllers = require("../controllers/userControllers");
 const categoryControllers = require("../controllers/categoryControllers")
 const subCategoryControllers = require("../controllers/subCategoryControllers")
+const filesController = require("../controllers/filesControllers")
 const passport = require("../config/passport");
+const {uploadUserImage} = filesController
 const {uploadShoe, getShoes, modifyShoe, deleteShoe, shoesCount, getShoeById,editVariation} = shoeControllers
 const {googleLogin,signUpUser, signInUser,authUser, verifyEmail, addToCart} = userControllers
 const {createCategory, listCategory, readCategory, updateCategory, removeCategory, getAllCategories,modifyCategory} = categoryControllers
@@ -32,6 +34,9 @@ Router.route("/shoe/:shoeId")
 Router.route("/shoes/total")
 .get(shoesCount)
 
+// rutas para files
+Router.route("/files/upload")
+.post(uploadUserImage)
 
 // Rutas para el controlador de usuarios
 Router.route("/auth/google")
@@ -86,6 +91,8 @@ Router.route("/subcategories/:parentId")
 
 Router.route("/allsubcategories")
 .get(getAllSubCategories)
+
+
 Router.route("/cart")
 .put(addToCart)
 

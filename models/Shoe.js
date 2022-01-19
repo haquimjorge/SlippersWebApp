@@ -16,6 +16,7 @@ const shoeSchema = new mongoose.Schema(
     ],
     description: { type: String, require: true },
     image: { type: String, require: true },
+    files: {type:Array},
     season: { type: String, default: "All Seasons" },
     gender: { type: String, default: "Unisex" },
     slug: {

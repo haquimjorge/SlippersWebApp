@@ -28,7 +28,7 @@ const AdminNav = () => {
         <p>cantidad de cuentas creadas</p>
         <p>cantidad de ventas realizadas (quizas un grafico)</p>
       </Tab>
-      <Tab eventKey="shoes" title="Shoes">
+      <Tab eventKey="shoes" title="Shoes" className="admin-tab-shoes">
       <p>Here you can delete, edit and upload shoes. To edit, simply click on pencil icon. To delete, click "Delete" button (This action is permanent). To upload, go to "Upload Shoe" tab and fill the form.</p>
       <AdminShoes />
       </Tab>

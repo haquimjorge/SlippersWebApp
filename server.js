@@ -6,6 +6,7 @@ require("./config/database.js");
 const passport = require('passport')
 const app = express();
 const path = require('path')
+const fileUpload = require('express-fileupload')
 const engines = require("consolidate");
 const paypal = require("paypal-rest-sdk");
 
@@ -15,6 +16,7 @@ const paypal = require("paypal-rest-sdk");
 
 app.use(cors());
 app.use(express.json());
+app.use(fileUpload())
 app.use(passport.initialize())
 
 app.use("/api", router);

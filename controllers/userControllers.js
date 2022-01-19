@@ -108,6 +108,7 @@ const userControllers = {
       if(user){
         res.json({success:false, error:"Email already registered", response: null})
       }else{
+
         const passwordHashed = bcryptjs.hashSync(password,10)
         var uniqueString = crypto.randomBytes(15).toString('hex')
         const user = await new User(
@@ -115,15 +116,18 @@ const userControllers = {
           lastName, 
           email, 
           password: passwordHashed, 
-          image,
+          image:"url",
           gender,
           uniqueString
         }).save()
+        console.log(user)
         await sendEmail(email,uniqueString)
+
         res.json({success:true, message:"Verification sent. Please check your email", response:null,error:null})
       }
 
       }catch(error){
+          console.log(error)
         res.json({success:false, response:null, error:error})
         
       }
