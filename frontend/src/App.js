@@ -19,6 +19,7 @@ import SubCategoryUpdate from "./pages/admin/subcategory/SubCategoryUpdate";
 import ShoeProduct from "./pages/ShoeProduct";
 import Checkout from "./pages/Checkout";
 import ReduxToastr from "react-redux-toastr";
+import UploadTest from "./pages/UploadTest";
 // import PayPalCheckOutButton from "./components/PaypalCheckOutButton";
 
 const VerifyDinamic = withRouter(Verify);
@@ -38,6 +39,7 @@ function App(props) {
         <Routes>
           <Route path="/check" element={<Checkout />} exact />
           <Route path="/" element={<Home />} exact />
+          <Route path="/upload" element={<UploadTest />} exact />
           {props.user && props.user.rol === "Admin" && (
             <Route path="/admin" element={<AdminDashboard />} />
           )}
@@ -82,3 +84,5 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+

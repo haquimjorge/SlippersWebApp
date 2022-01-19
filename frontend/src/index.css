@@ -423,6 +423,7 @@ main {
 .input-sign input {
   border: none;
   box-shadow: 1px 1px whitesmoke;
+  color:white;
   background-color: rgba(245, 245, 245, 0.034);
 }
 

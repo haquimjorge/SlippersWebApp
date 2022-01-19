@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
   gender: { type: String, require: true, enum: ["Male", "Female", "Other"] },
   favorites: { type: [String], default: [] },
   googleUser: { type: Boolean, default: false },
-  cart: {type: [Object], default: [], required:false}
+  cart: {type: [Object], default: [], required:false},
+  files: {type:Array}
 });
 
 const User = mongoose.model("user", userSchema);

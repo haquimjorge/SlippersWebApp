@@ -12,9 +12,11 @@ import User from "../assets/usuario1.png";
 import "../index.css";
 import CarritoModal from "./CarritoModal";
 
+
 function Menu(props) {
+    console.log(props.user)
   let imagenUsuario = props.user ? (
-    <Image className="user-icon" src={props.user.image}></Image>
+    <Image className="user-icon" src={props.user.googleUser ? props.user.image : `./files/${props.user.image}` }></Image>
   ) : (
     <Image className="user-icon" src={User} />
   );
