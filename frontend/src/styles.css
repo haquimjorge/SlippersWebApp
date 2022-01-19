@@ -118,7 +118,11 @@
 
 .name-shoe {
   text-align: center;
-  font-size: 23px;
+  font-size: 20px;
   color: rgba(0, 0, 0, 0.952);
   text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.233);
+}
+
+.carousel-img {
+  border-radius: 30%;
 }

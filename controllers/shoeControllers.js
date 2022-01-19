@@ -111,6 +111,7 @@ const shoeControllers = {
   },
   getShoeById: async (req, res) => {
     try {
+      console.log(req.params)
       const newShoe = await Shoe.findOne({ _id: req.params.shoeId }).populate("category").populate("subcategory").exec();
       res.json({ success: true, response: newShoe, error: null });
     } catch (e) {

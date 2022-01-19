@@ -14,6 +14,7 @@ import CategoryCreate from "./pages/admin/category/CategoryCreate";
 import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
 import Verify from "./pages/Verify";
 import withRouter from "./utilities/withRouter";
+
 import SubCategoryUpdate from "./pages/admin/subcategory/SubCategoryUpdate";
 import ShoeProduct from "./pages/ShoeProduct";
 import Checkout from "./pages/Checkout";

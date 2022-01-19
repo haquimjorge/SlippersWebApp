@@ -67,6 +67,7 @@ const shoeActions = {
   },
   getOneShoe: (id) => {
     return async (dispatch) => {
+      console.log(id)
       let response = await axios.get(`http://localhost:4000/api/shoe/${id.toString()}`)
       dispatch({type: "getShoe", payload: response.data.response})
     }
