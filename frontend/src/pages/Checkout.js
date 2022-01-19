@@ -1,10 +1,41 @@
+/* eslint-disable jsx-a11y/alt-text */
 import Menu from "../components/Menu";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import userActions from "../redux/actions/userActions";
 import { connect } from "react-redux";
+import Paypal from '../components/Paypal';
+import Axios from "axios";
 
 const Checkout = (props) => {
+
+
+
+  const transactionSuccess = (data) => {
+
+    let variables={
+      cartDetail: props.user.cartDetail, paymentData: data
+    }
+    Axios.post('/api/users/successBuy', variables)
+    .then(response => {
+      if (response.data.success) {
+       
+      }else{
+        alert('Failed to process your payment')
+      }
+    
+    })
+  }
+
+  const transactionError = () => {
+    console.log("err");
+
+  }
+
+  const transactionCanceled = () => {
+    console.log("canceled");
+
+  }
 
   return (
     <>
@@ -63,9 +94,18 @@ const Checkout = (props) => {
             <div className="item-check">
               <h1>Confirm Your Purchase</h1>
               <div className="contenedor-compra">
+             
                 <h2>Total: {props.cart.length && props.cart.reduce((total, item) => total + (item.price*item.quantity), 0)} $</h2>
               </div>
-              <button>FINALIZE PURCHASE</button>
+              <Paypal
+                // toPay={props.cart.length && props.cart.reduce((total, item) => total + (item.price*item.quantity), 0)}
+                onSuccess={transactionSuccess}
+                transactionsError={transactionError}
+                transactionsCanceled={transactionCanceled}
+
+
+
+              />
             </div>
           </div>
         </div>
