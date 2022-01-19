@@ -6,7 +6,7 @@ import PromoHome from "../components/PromoHome";
 import Footer from "../components/Footer";
 import CarouselMarcas from "../components/CarouselMarcas";
 import CarritoModal from "../components/CarritoModal";
-import Container from 'react-bootstrap/Container'
+import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -14,14 +14,16 @@ const Home = () => {
     <>
       <div className="portada">
         <Menu />
-        <Container fluid className="h-100 d-flex justify-content-center align-items-center">
-        
-           <div className="home-action-call p-3 rounded d-flex flex-column justify-content-center align-items-center">
-
-            <h3 className="display-6 text-white">Check our new shoes!</h3>
-            <Link className="sign-button text-center" to="/shop">Go to shop</Link>
-            </div> 
-
+        <Container
+          fluid
+          className="h-100 d-flex justify-content-center align-items-center"
+        >
+          <div className="home-action-call p-3 rounded d-flex flex-column justify-content-center align-items-center">
+            <h3 className="display-6">Check our new shoes!</h3>
+            <Link className="callToAction text-center" to="/shop">
+              Go to shop
+            </Link>
+          </div>
         </Container>
       </div>
       {/* <CarritoModal/> */}
@@ -30,7 +32,6 @@ const Home = () => {
       <PromoHome />
       <CarouselMarcas />
       <Footer />
-      
     </>
   );
 };
