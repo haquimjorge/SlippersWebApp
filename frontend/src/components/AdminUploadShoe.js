@@ -96,7 +96,7 @@ const RadioInput = ({ label, ...props }) => {
       <div className=" d-flex flex-column justify-content-around align-items-center  signup-radio-container">
         <h4 className="m-0 w-100 text-light text-center mb-1">Shipping</h4>
         <div className="d-flex justify-content-around w-100 pe-2 m-0">
-          <label className="text-center p-2 border text-light mb-3 d-flex flex-column align-items-center w-100">
+          <label className="admin-radioinput-yes text-center p-2 border text-light mb-3 d-flex flex-column align-items-center w-100">
             <Field type="radio" name="shipping" value="Yes" />
             Yes
           </label>
@@ -257,7 +257,7 @@ function AdminUploadShoe(props) {
                     type="textarea"
                     as="textarea"
                     placeholder="kevin"
-                    className="w-100"
+                    className="w-100 admin-textarea-input"
                   />
               
 
@@ -292,6 +292,7 @@ function AdminUploadShoe(props) {
                       name="category"
                       onChange={handleChange("category")}
                       onClick={() => setSelectedCategoryId(values.category)}
+                      className="admin-select-category"
                       value={values.category}
                     >
                       <option value="Select Category">Select Category</option>
@@ -303,7 +304,7 @@ function AdminUploadShoe(props) {
                         ))}
                     </SelectInput>
 
-                    <SelectInput label="Sub Category" name="subCategory">
+                    <SelectInput label="Sub Category" name="subCategory"  className="admin-select-subcategory">
                       <option value="Select Sub Category">
                         Select Sub Category
                       </option>
@@ -319,14 +320,14 @@ function AdminUploadShoe(props) {
                     </SelectInput>
                   </div>
                   <div className="d-flex ">
-                    <SelectInput label="Gender" name="gender">
+                    <SelectInput label="Gender" name="gender"  className="admin-select-gender">
                       <option value="">Select Gender</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
                       <option value="Unisex">Unisex</option>
                     </SelectInput>
 
-                    <SelectInput label="Season" name="season">
+                    <SelectInput label="Season" name="season"  className="admin-select-season">
                       <option value="">Select Season</option>
                       <option value="Winter/Autumn">Winter/Autumn</option>
                       <option value="Spring/Summer">Spring/Summer</option>
@@ -334,7 +335,7 @@ function AdminUploadShoe(props) {
                   </div>
 
                   <div className="d-flex">
-                    <SelectInput label="Color" name="color">
+                    <SelectInput label="Color" name="color"  className="admin-select-color">
                       <option value="">Select Color</option>
                       {DATA.colors.map((color) => (
                         <option key={color} value={color}>
@@ -342,7 +343,7 @@ function AdminUploadShoe(props) {
                         </option>
                       ))}
                     </SelectInput>
-                    <SelectInput label="Size (USA)" name="size">
+                    <SelectInput label="Size (USA)" name="size"  className="admin-select-size">
                       <option value="">Select Size</option>
                       {DATA.sizes.map((size) => (
                         <option key={size} value={size}>
@@ -358,7 +359,7 @@ function AdminUploadShoe(props) {
                       name="stock"
                       type="number"
                       placeholder="kevin"
-                      className="mt-3"
+                      className="mt-3 admin-select-stock"
                     />
                   </div>
 

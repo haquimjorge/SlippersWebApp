@@ -39,7 +39,7 @@ function AdminShoes(props) {
           <Col sm={3}>
             <Nav className="admin-shoe-side-navtab flex-column" variant="pills" >
               <Nav.Item>
-                <Nav.Link eventKey="all">All Shoes</Nav.Link>
+                <Nav.Link className="admin-nav-allshoes" eventKey="all">All Shoes</Nav.Link>
               </Nav.Item>
               <div className='ps-3'>
               <Nav.Item>

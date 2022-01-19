@@ -47,6 +47,7 @@ const userActions ={
           if (response.data.response) {
             localStorage.setItem("token", response.data.token);
           }
+          console.log(response.data)
           dispatch({
             type: "SAVE_USER",
             payload: { info: response.data, loading: false },
