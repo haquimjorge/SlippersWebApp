@@ -126,6 +126,7 @@ const Shop = (props) => {
           defaultValue={search}
           placeholder="Search for the shoes you want"
           autoComplete="off"
+          className="text-light"
           onChange={handleChange}
           id="search"
         />
