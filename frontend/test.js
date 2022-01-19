@@ -21,9 +21,12 @@ const user= {
 }
 const expectedErrorToast = "Image URL required"
 
-function uploadShoeTest(){
-    describe('Testing function to upload shoes from Admin Panel', function (){
+function uploadCategoryTest(){
+    describe('Testing function to upload category from admin panel - ', function (){
         this.timeout(35000)
+
+        let randomString = Math.random().toString(36).substring(2, 4) + Math.random().toString(36).substring(2, 4);
+        const categoryRandom = `Category Test ${randomString}`
 
 
         
@@ -71,7 +74,7 @@ function uploadShoeTest(){
 
         // })
 
-        it('uploading category from admin - Must find created category from list', async()=>{
+        it('uploading category from admin - Name of created category must match with name captured and uploaded by input on category component', async()=>{
             await webDriver.get('http://localhost:3000/signin')
             await webDriver.sleep(500)
             await webDriver.findElement(By.name('email')).sendKeys(user.email)
@@ -84,23 +87,18 @@ function uploadShoeTest(){
             await webDriver.sleep(1000)
             await webDriver.findElement(By.className('text-input w-100 mt-2')).click()
             await webDriver.sleep(1000)
-            await webDriver.findElement(By.className('text-input w-100 mt-2')).sendKeys("Category Test")
+            await webDriver.findElement(By.className('text-input w-100 mt-2')).sendKeys(categoryRandom)
             await webDriver.sleep(1000)
             await webDriver.findElement(By.className('text-input w-100 mt-2')).clear()
             await webDriver.sleep(1000)
-            // await webDriver.findElement(By.className('text-input w-100 mt-2')).sendKeys(Key.TAB)
-            // await webDriver.findElement(By.xpath(`//button[@class='w-100 sign-button']`)).click()
             await webDriver.findElement(By.className('admin-category-upload-button')).click()
             await webDriver.sleep(1000)
-
-            // let categoryList = await webDriver.findElements(By.xpath(`//div[@class='admin-category-tab-container']`))
-            // let lastItem = categoryList[categoryList-1]
-            let result = await webDriver.findElement(By.xpath(`//div[@class='mt-4 admin-category-tab-container container']`)).getText()
-            assert.strictEqual(result,"Category Test")
+            let result = await webDriver.findElement(By.xpath(`//div[@class='mt-4 admin-category-tab-container container']/div[last()]`)).getText()
+            assert.strictEqual(result,categoryRandom)
 
         })
 
 
     })
 }
-uploadShoeTest()
+uploadCategoryTest()
