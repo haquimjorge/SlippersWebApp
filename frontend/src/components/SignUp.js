@@ -237,6 +237,7 @@ const SignUp = (props) => {
               }else if(Object.keys(file).length===0){
                   toastr.error("Please upload an Image")
               }
+              setSubmitting(false);
               
 
           }}
