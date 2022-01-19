@@ -35,7 +35,7 @@ function AdminRowInputText(props){
     delay={{ show: 25, hide: 25 }}
     overlay={renderEdit}
   >
-    <img onClick={()=>handlePencilEdit()} src={Pencil} alt='pencil' className="admin-whites-interaction-icon"/>
+    <img onClick={()=>handlePencilEdit()} src={Pencil} alt='pencil' className="admin-black-interaction-icon"/>
 </OverlayTrigger>
 
 function handlePencilEdit(){
@@ -66,7 +66,7 @@ useEffect(()=>{
                <Col xs={1} sm={1} lg={1} md={1}  className="p-0">{editPencil()}</Col>
                <Col xs={11} sm={11} lg={11} md={11} className="pe-1 ps-0 ">
                    <div className="d-flex flex-column">
-                       <p className="shadow text-light text-shadow-slipper p-1 mb-1 mt-0 ms-0 me-0 fw-bold admin-shoes-card-footer rounded">{props.identifier}</p>
+                       <p className="shadow text-light text-shadow-slipper p-1 mb-1 mt-0 ms-0 me-0 fw-bold admin-singleshoe-identifier rounded">{props.identifier}</p>
 
                   
                    

@@ -15,19 +15,26 @@ const ProductCard = ({ shoe, ...props }) => {
   return (
     <>
       <div className="shoe-card-container">
-        <div
-          className="shoe-card-image"
-          style={{
-            display: "flex",
-            alignSelf: "center",
-            justifyContent: "center",
-          }}
+
+        <Link
+          style={{ textDecoration: "none", color: "black" }}
+          to={`/shoe/${shoe._id}`}
         >
-          <img
-            src={shoe.image}
-            style={{ height: "20rem", objectFit: "cover" }}
-          />
-        </div>
+          <div
+            className="shoe-card-image"
+            style={{
+              display: "flex",
+              alignSelf: "center",
+              justifyContent: "center",
+            }}
+          >
+            <img
+              src={shoe.image}
+              style={{ height: "20rem", objectFit: "cover" }}
+              alt={shoe.name}
+            />
+          </div>
+        </Link>
         <div style={{ padding: "1rem" }} className="shoe-card-info">
           <h5 style={{ textAlign: "left" }} className="shoe-name">
             {shoe.name}
@@ -52,12 +59,14 @@ const ProductCard = ({ shoe, ...props }) => {
               >
                 <p style={{ fontWeight: "bold" }}>MORE INFO</p>
                 <img
+                  className="colored-image-button"
                   style={{
                     width: "2rem",
                     alignSelf: "center",
                     justifyContent: "center",
                   }}
                   src="../assets/view.png"
+                  alt="more info"
                 />
               </div>
             </Link>
@@ -77,6 +86,7 @@ const ProductCard = ({ shoe, ...props }) => {
                     alignSelf: "center",
                     justifyContent: "center",
                   }}
+                  className="colored-image-button"
                   src="../assets/carrito-de-compras.png"
                   alt="shopping cart"
                 />

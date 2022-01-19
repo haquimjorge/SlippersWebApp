@@ -39,10 +39,16 @@ ul {
 }
 
 .botones-menu {
+    transition: .2s;
   text-shadow: 1px 1px 1px gold;
   font-size: 20px;
   text-decoration: none;
 }
+.botones-menu:hover {
+    transition: .2s;
+    color: gold !important;
+    text-shadow: 0px 0px 0px gold !important;
+  }
 
 .hamburguesa {
   background-color: rgba(255, 217, 0, 0.418);
@@ -50,9 +56,17 @@ ul {
 }
 
 .carrito img {
+    transition: .2s;
   object-fit: cover;
   width: 35px;
 }
+.carrito img:hover {
+    transition: .4s;
+    filter: invert(23%) sepia(6%) saturate(19%) hue-rotate(191deg) brightness(96%) contrast(91%);
+  }
+  .colored-image-button:hover{
+    filter: invert(123%) sepia(6%) saturate(19%) hue-rotate(191deg) brightness(96%) contrast(91%);
+  }
 
 .usuario img {
   object-fit: cover;
@@ -87,7 +101,7 @@ main {
 
 .div-titulo .titulo {
   color: rgba(0, 0, 0, 0.952);
-  text-shadow: 1px 1px 2px orangered;
+  text-shadow: 2px 4px  rgba(48, 41, 2, 0.301);
   font-size: 45px;
 }
 
@@ -116,7 +130,7 @@ main {
 
 .descripcion-promoHome h1 {
   padding-bottom: 2%;
-  text-shadow: 1px 1px 2px orangered;
+  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.205);
   text-transform: uppercase;
   font-size: 25px;
 }
@@ -370,6 +384,7 @@ main {
 .input-sign input {
   border: none;
   box-shadow: 1px 1px whitesmoke;
+  color:white;
   background-color: rgba(245, 245, 245, 0.034);
 }
 
@@ -413,7 +428,7 @@ main {
   height: 40rem;
 }
 .text-shadow-slipper {
-  text-shadow: 2px 2px 5px black;
+  text-shadow: 2px 2px 5px black !important;
 }
 
 .sign-button {
@@ -431,11 +446,33 @@ main {
   text-shadow: 0px -1px 0px #7a2a1d;
   width: 220px;
 }
+
+.home-action-call{
+    animation: neon 7s infinite;
+}
+
+
+.cart-checkout-button{
+    transition: 0.1s;
+  box-shadow: inset 0px 34px 0px -15px #252525;
+  background: linear-gradient(to bottom, #1f190a 5%, #000000 100%);
+  background-color: #000000;
+  border: 1px solid #241d13;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 9px 23px;
+  text-decoration: none;
+  text-shadow: 0px -1px 0px #7a2a1d;
+}
+
 .sign-button:hover {
   transition: 0.1s;
-  background: linear-gradient(to bottom, #d4a327 5%, #c79216 100%);
-  box-shadow: inset 0px 34px 0px -15px #d1a841;
-  text-shadow: 0px 1px 0px #7a2a1d;
+  background: linear-gradient(to bottom, #d4a327 5%, #c79216 100%) !important;
+  box-shadow: inset 0px 34px 0px -15px #d1a841 !important;
+  text-shadow: 0px 1px 0px #7a2a1d !important;
+  color:white !important
 }
 .sign-button:active {
   position: relative;
@@ -545,135 +582,120 @@ main {
 /* CAROUSEL MARCAS */
 
 .contenedor-carouselMarcas {
-  padding: 0 1% 0 1%;
   width: 100%;
 }
+.slick-prev {
+    left: 0px;
+position: absolute;
+  }
+
+  .slick-next {
+    left: 0px;
+position: absolute;
+  }
 
 .contenedor-marcasSociales {
   border-top: double black;
 }
-.card-admin-items {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 15rem;
-}
-.admin-edit-icon {
-  transition: 0.5s;
+
+  
+ 
+  .admin-upload-shoe-img{
+      height: 20rem;
+      background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .admin-interaction-icon:hover{
+    filter: invert(23%) sepia(26%) saturate(459%) hue-rotate(191deg) brightness(96%) contrast(91%);
+    cursor: pointer;
+  }
+
+  .admin-category-subcontainer{
+      transition: .2s;
+    background: rgb(189,146,38);
+background: radial-gradient(circle, rgba(189,146,38,1) 0%, rgba(200,178,123,1) 43%, rgba(172,150,92,1) 100%);
+border-radius: 10px;
+  }
+  .admin-category-subcontainer:hover{
+      transition: .2s;
+    background: rgb(145, 105, 6);
+    background: radial-gradient(circle, rgb(167, 123, 14) 0%, rgb(163, 141, 84) 43%, rgba(172,150,92,1) 100%);
+  }
+  .admin-subcategory-container{
+      transition: .2s;
+    background-color: #be952d;
+  }
+  .admin-subcategory-container:hover{
+      transition: .2s;
+    background-color: #a87d0f;
+  }
+  .admin-uploadshoe-container{
+    background: linear-gradient(to bottom, #2e2e2e 5%, #000000 100%);
+  }
+  .admin-whites-interaction-icon{
+      transition: .1s;
+    width: 1rem;
+    filter: invert(1123%) sepia(26%) saturate(459%) hue-rotate(191deg) brightness(96%) contrast(91%);
+    cursor: pointer;
+  }
+  .admin-whites-interaction-icon:hover{
+      transition: .1s;
+    filter: invert(3%) sepia(26%) saturate(459%) hue-rotate(191deg) brightness(96%) contrast(91%);
+  }
+  .admin-black-interaction-icon{
+    transition: .1s;
   width: 1rem;
+  filter: invert(23%) sepia(26%) saturate(459%) hue-rotate(191deg) brightness(96%) contrast(91%);
   cursor: pointer;
 }
-.admin-edit-icon:hover {
-  transition: 0.2s;
-  filter: invert(26%) sepia(55%) saturate(1670%) hue-rotate(329deg)
-    brightness(105%) contrast(105%);
+.admin-black-interaction-icon:hover{
+    transition: .1s;
+  filter: invert(1%) sepia(26%) saturate(459%) hue-rotate(191deg) brightness(96%) contrast(91%);
 }
-.admin-shoes-card-footer {
-  background-color: #e2c272;
-}
-.admin-delete-shoe-button {
-  background-color: #c3993f;
-  color: white;
-  text-shadow: 1px 1px 2px black;
-}
-.admin-delete-shoe-button:hover {
-  background-color: #aa8025;
-}
-.admin-upload-shoe-img {
-  height: 20rem;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-.admin-newcategory-container {
-  background-color: #0e0e0e;
-}
-.admin-interaction-icon {
-  width: 1.2rem;
-}
-.admin-interaction-icon:hover {
-  filter: invert(23%) sepia(26%) saturate(459%) hue-rotate(191deg)
-    brightness(96%) contrast(91%);
-  cursor: pointer;
-}
-.admin-category-container {
-  background: linear-gradient(to bottom, #2e2e2e 5%, #000000 100%);
-}
-.admin-category-subcontainer {
-  transition: 0.2s;
-  background: rgb(189, 146, 38);
-  background: radial-gradient(
-    circle,
-    rgba(189, 146, 38, 1) 0%,
-    rgba(200, 178, 123, 1) 43%,
-    rgba(172, 150, 92, 1) 100%
-  );
-  border-radius: 10px;
-}
-.admin-category-subcontainer:hover {
-  transition: 0.2s;
-  background: rgb(145, 105, 6);
-  background: radial-gradient(
-    circle,
-    rgb(167, 123, 14) 0%,
-    rgb(163, 141, 84) 43%,
-    rgba(172, 150, 92, 1) 100%
-  );
-}
-.admin-subcategory-container {
-  transition: 0.2s;
-  background-color: #be952d;
-}
-.admin-subcategory-container:hover {
-  transition: 0.2s;
-  background-color: #a87d0f;
-}
-.admin-uploadshoe-container {
-  background: linear-gradient(to bottom, #2e2e2e 5%, #000000 100%);
-}
-.admin-whites-interaction-icon {
-  transition: 0.1s;
-  width: 1rem;
-  filter: invert(1123%) sepia(26%) saturate(459%) hue-rotate(191deg)
-    brightness(96%) contrast(91%);
-  cursor: pointer;
-}
-.admin-whites-interaction-icon:hover {
-  transition: 0.1s;
-  filter: invert(3%) sepia(26%) saturate(459%) hue-rotate(191deg)
-    brightness(96%) contrast(91%);
-}
-.admin-shoe-side-navtab .nav-item {
-  padding-bottom: 2px;
-}
+  .admin-shoe-side-navtab .nav-item{
+    padding-bottom: 2px;
+  }
+
+  .admin-shoe-side-navtab .nav-item a{
+      transition: .2s;
+      
+   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#aebcbf+0,6e7774+50,0a0e0a+51,0a0809+100;Black+Gloss */
+background: rgb(0, 0, 0); /* Old browsers */
+background: -moz-linear-gradient(top,  rgb(64, 70, 71) 0%, rgba(110,119,116,1) 50%, rgba(10,14,10,1) 51%, rgba(10,8,9,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgb(71, 77, 78) 0%,rgba(110,119,116,1) 50%,rgba(10,14,10,1) 51%,rgba(10,8,9,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgb(81, 87, 88) 0%,rgb(9, 10, 10) 50%,rgb(14, 13, 10) 51%,rgb(0, 0, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aebcbf', endColorstr='#0a0809',GradientType=0 ); /* IE6-9 */
+  }
+
 
 .admin-shoe-side-navtab .nav-item a {
   transition: 0.2s;
 
-  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#aebcbf+0,6e7774+50,0a0e0a+51,0a0809+100;Black+Gloss */
-  background: rgb(0, 0, 0); /* Old browsers */
+  background: rgb(0, 0, 0); 
   background: -moz-linear-gradient(
     top,
     rgb(64, 70, 71) 0%,
     rgba(110, 119, 116, 1) 50%,
     rgba(10, 14, 10, 1) 51%,
     rgba(10, 8, 9, 1) 100%
-  ); /* FF3.6-15 */
+  ); 
   background: -webkit-linear-gradient(
     top,
     rgb(71, 77, 78) 0%,
     rgba(110, 119, 116, 1) 50%,
     rgba(10, 14, 10, 1) 51%,
     rgba(10, 8, 9, 1) 100%
-  ); /* Chrome10-25,Safari5.1-6 */
+  );
   background: linear-gradient(
     to bottom,
     rgb(81, 87, 88) 0%,
     rgb(9, 10, 10) 50%,
     rgb(14, 13, 10) 51%,
     rgb(0, 0, 0) 100%
-  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aebcbf', endColorstr='#0a0809',GradientType=0 ); /* IE6-9 */
+  ); 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aebcbf', endColorstr='#0a0809',GradientType=0 ); 
 
   color: rgb(255, 255, 255) !important;
   cursor: pointer;
@@ -848,18 +870,51 @@ main {
   width: 4rem;
   height: 4rem;
 }
-
-.admin-variation-shoe-image {
-  width: 5rem;
-  height: 5rem;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+.admin-variaton-shoe-container{
+    border-radius: 8px;
+background: linear-gradient(145deg, #f0f0f0, #cacaca);
+box-shadow:  5px 5px 10px #afafaf,
+             -5px -5px 10px #ffffff;
+             margin-bottom: 5%;
 }
-.admin-input-category {
-  padding: 6px;
-  border-radius: 10px !important;
-  width: 90% !important ;
+.admin-singleshoe-identifier{
+    background: linear-gradient(145deg, #2c2c2c, #444444);
+}
+.admin-single-shoe-card{
+    border-radius: 8px;
+background: linear-gradient(145deg, #f1f1f1, #ebebeb);
+box-shadow:  5px 5px 10px #acacac;
+             padding: 10px;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: #000000;
+    border-color: #dee2e6 #dee2e6 #fff;
+  }
+  .nav-tabs .nav-link {
+    color: black;
+  }
+
+.admin-variaton-color-box{
+    transition: .2s;
+    border: 1px solid rgb(131, 131, 131);
+}
+
+.admin-variaton-color-box:hover{
+    transition: .2s;
+    background-color: rgb(143, 143, 143);
+    border-radius: 10px;
+    cursor: default;
+
+}
+
+.admin-variation-shoe-image{
+    width: 5rem;
+    height: 5rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
 }
 
 .contenedor-marcasSociales img {
@@ -923,7 +978,7 @@ main {
     brightness(105%) contrast(105%);
 }
 .admin-shoes-card-footer {
-  background-color: #e2c272;
+  background-color: #2e2e2e;
 }
 .admin-delete-shoe-button {
   background-color: #c3993f;
@@ -933,12 +988,7 @@ main {
 .admin-delete-shoe-button:hover {
   background-color: #aa8025;
 }
-.admin-upload-shoe-img {
-  height: 20rem;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
+
 .admin-newcategory-container {
   background-color: #0e0e0e;
 }
@@ -953,27 +1003,7 @@ main {
 .admin-category-container {
   background: linear-gradient(to bottom, #2e2e2e 5%, #000000 100%);
 }
-.admin-category-subcontainer {
-  transition: 0.2s;
-  background: rgb(189, 146, 38);
-  background: radial-gradient(
-    circle,
-    rgba(189, 146, 38, 1) 0%,
-    rgba(200, 178, 123, 1) 43%,
-    rgba(172, 150, 92, 1) 100%
-  );
-  border-radius: 10px;
-}
-.admin-category-subcontainer:hover {
-  transition: 0.2s;
-  background: rgb(145, 105, 6);
-  background: radial-gradient(
-    circle,
-    rgb(167, 123, 14) 0%,
-    rgb(163, 141, 84) 43%,
-    rgba(172, 150, 92, 1) 100%
-  );
-}
+
 .admin-subcategory-container {
   transition: 0.2s;
   background-color: #be952d;
@@ -1079,11 +1109,12 @@ h1 {
 
 .shoe-name {
   color: rgba(0, 0, 0, 0.952);
-  text-shadow: 1px 1px 2px orangered;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.199);
 }
 
 .shoe-price {
   font-size: 25px;
+  font-weight: bold;
 }
 
 .boton-carritoShop {
@@ -1145,7 +1176,7 @@ h1 {
 .contenedor-mainCheck h1 {
   padding: 5% 0 1% 0;
   color: black;
-  text-shadow: 1px 1px 2px orangered;
+  text-shadow: 1px 1px 0px rgba(252, 252, 252, 0.199);
 }
 
 .contenedor-check {
@@ -1301,3 +1332,19 @@ h1 {
 .css-187mznn-MuiSlider-root {
   color: #a87d0f !important;
 }
+
+
+@keyframes neon {
+    0% {
+      background-color: #0000001c;
+
+    }
+    50% {
+      background-color: rgba(0, 0, 0, 0.301);
+
+    }
+    100% {
+        background-color: #0000001c;
+
+    }
+  }

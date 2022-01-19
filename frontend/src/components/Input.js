@@ -10,6 +10,7 @@ function Input() {
           value={searchInput}
           type="text"
           id="search"
+          className="text-light"
           onChange={(e) => setSearchInput(e.target.value)}
         />
         <button type="submit" value="">

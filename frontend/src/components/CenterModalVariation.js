@@ -18,7 +18,6 @@ import * as Yup from "yup";
 
 const StringInput = ({ label, ...props }) => {
     const [field, meta] = useField(props);
-  
     return (
       <div className={props.className}>
         <FloatingLabel label={label} className="mb-2 text-dark">
@@ -41,6 +40,7 @@ const StringInput = ({ label, ...props }) => {
       </div>
     );
   };
+  
 
   const SelectInput = ({ label, ...props }) => {
     const [field, meta] = useField(props);
@@ -67,17 +67,30 @@ const StringInput = ({ label, ...props }) => {
 
 
 function CenterModalVariation(props) {
-    const [color, setColor] = useState('')
-    const [size, setSize] = useState('')
 
-    function handleEdit(){
+    let shoe =props.shoes && props.shoes.find(shoe=> shoe._id === props.id)
+    console.log(shoe)
+
+    function handleEdit(values){
         var data={
-            id:props.shoe._id,
+            id:shoe._id,
             variation: {
-                color,
-                size,
+                color:values.color,
+                size:values.size,
+                stock:values.stock
             }
         }
+        let variation ={
+            color:values.color,
+                size:values.size,
+                stock:values.stock
+        }
+        let generalStock = shoe.generalStock
+        let stockAdd = values.stock
+        let newStock = generalStock + stockAdd
+        console.log(`se suma ${generalStock} con ${stockAdd}:` + newStock)
+        props.editVariation(shoe._id,variation, newStock,false)
+        console.log(data)
     }
 
 
@@ -95,7 +108,7 @@ function CenterModalVariation(props) {
           
         <Modal.Header closeButton className="d-flex admin-modal-header">
           <Modal.Title id="contained-modal-title-vcenter" className="text-dark">
-              Add Variation to  <strong>{props.shoe && props.shoe.name}</strong> 
+              Add Variation to  <strong>{shoe && shoe.name}</strong> 
             
           </Modal.Title>
         </Modal.Header>
@@ -115,9 +128,9 @@ function CenterModalVariation(props) {
               }}
               validationSchema={uploadSchema}
               onSubmit={(values, {resetForm}) => {
-                console.log(values);
+                handleEdit(values)
                 resetForm({values:''})
-                toastr.success(`Variation Uploaded for ${props.shoe.name} !`, `(Color: ${values.color}, Size: ${values.size}, Stock:${values.stock})`)  
+                toastr.success(`Variation Uploaded for ${shoe.name} !`, `(Color: ${values.color}, Size: ${values.size}, Stock:${values.stock})`)  
               }}
             >
  {({handleChange,values,}) =>(
@@ -162,12 +175,13 @@ function CenterModalVariation(props) {
 
   const mapStateToProps = (state) => {
     return {
-        shoe : state.shoeReducer.shoeToDelete
+        id : state.shoeReducer.id,
+        shoes: state.shoeReducer.shoes
     };
   };
   
   const mapDispatchToProps = {
-    //   action para modificar variation
+   editVariation: shoeActions.editVariation
 
   };
   export default connect(mapStateToProps, mapDispatchToProps)(CenterModalVariation);

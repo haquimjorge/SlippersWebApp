@@ -81,7 +81,18 @@ const shoeActions = {
       return (dispatch)=>{
           dispatch({type: "ID_TO_DELETE_SHOE", payload:id})
       }
-  }
+  },
+  editVariation : (id, variation,generalStock,variationExist)=>{
+      return async (dispatch)=>{
+          let response = await axios.put("http://localhost:4000/api/shoe", {id,variation,generalStock, variationExist})
+          dispatch({type:"MODIFY_SHOE", payload: response.data.response})
+      }
+  },
+  sendIdtoEdit : (id)=>{
+    return (dispatch)=>{
+        dispatch({type: "ID_TO_EDIT", payload:id})
+    }
+},
 
 }
 

@@ -17,6 +17,14 @@ function MainContacts() {
     setMensaje("");
   };
 
+  function handleContactMock(e){
+      if(nombre !== "" && email !== "" && mensaje !== ""){
+          vaciarNombre(e)
+          setShow(true);
+
+      }
+  }
+
   return (
     <>
       <div className="contenedor-contacts">
@@ -28,7 +36,7 @@ function MainContacts() {
           <h4>From 12:00 a.m. to 20:30 p.m.</h4>
           <h5>From monday to sunday</h5>
           <p>Phone - (54 11) 4831 7264</p>
-          <form onSubmit={(e) => vaciarNombre(e)}>
+          <form onSubmit={(e) => handleContactMock(e)}>
             <div className="formulario-contacts">
               <p>Full Name: </p>
               <input
@@ -58,7 +66,6 @@ function MainContacts() {
 
             <Button
               type="submit"
-              onClick={handleShow}
               className="button-sendform"
             >
               Send

@@ -65,6 +65,8 @@ const Shop = (props) => {
     console.log(checked);
   }, [colors]);
 
+  console.log(props.cart)
+  
   const handleChange = (e) => {
     const searchValue = e.target.value;
     setSearch(searchValue);
@@ -125,6 +127,7 @@ const Shop = (props) => {
           defaultValue={search}
           placeholder="Search for the shoes you want"
           autoComplete="off"
+          className="text-light"
           onChange={handleChange}
           id="search"
         />
