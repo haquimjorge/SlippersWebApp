@@ -11,6 +11,10 @@ const {googleLogin,signUpUser, signInUser,authUser, verifyEmail, addToCart} = us
 const {createCategory, listCategory, readCategory, updateCategory, removeCategory, getAllCategories,modifyCategory} = categoryControllers
 const {createSubCategory, listSubCategory, readSubCategory, updateSubCategory, removeSubCategory,getSubcategoryByParent, modifySubCategory,deleteSubCategory,getAllSubCategories } = subCategoryControllers
 
+// const Payment = require("../models/payment")
+// const {auth} = require("../middleware/auth")
+
+
 // Rutas para el controlador de zapatos
 
 Router.route("/shoes")
@@ -86,39 +90,8 @@ Router.route("/cart")
 .put(addToCart)
 
 
-Router.get("/success", (req, res) => {
-    var PayerID = req.query.PayerID;
-    var paymentId = req.query.paymentId;
-    var execute_payment_json = {
-        payer_id: PayerID,
-        transactions: [
-            {
-                amount: {
-                    currency: "USD",
-                    total: "1.00"
-                }
-            }
-        ]
-    };
 
-    paypal.payment.execute(paymentId, execute_payment_json, function(
-        error,
-        payment
-    ) {
-        if (error) {
-            console.log(error.response);
-            throw error;
-        } else {
-            console.log("Get Payment Response");
-            console.log(JSON.stringify(payment));
-            res.render("success");
-        }
-    });
-});
 
-Router.get("cancel", (req, res) => {
-    res.render("cancel");
-});
 
 
 

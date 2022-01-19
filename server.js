@@ -9,6 +9,7 @@ const path = require('path')
 const engines = require("consolidate");
 const paypal = require("paypal-rest-sdk");
 
+
 // var distDir = __dirname + "/dist/";
 // app.use(express.static(distDir));
 
@@ -86,6 +87,39 @@ app.get("/paypal", (req, res) => {
   });
 });
 
+app.get("/success", (req, res) => {
+  var PayerID = req.query.PayerID;
+  var paymentId = req.query.paymentId;
+  var execute_payment_json = {
+      payer_id: PayerID,
+      transactions: [
+          {
+              amount: {
+                  currency: "USD",
+                  total: "1.00"
+              }
+          }
+      ]
+  };
+
+  paypal.payment.execute(paymentId, execute_payment_json, function(
+      error,
+      payment
+  ) {
+      if (error) {
+          console.log(error.response);
+          throw error;
+      } else {
+          console.log("Get Payment Response");
+          console.log(JSON.stringify(payment));
+          res.render("success");
+      }
+  });
+});
+
+app.get("cancel", (req, res) => {
+  res.render("cancel");
+});
 
 
 const PORT = process.env.PORT || 4000
