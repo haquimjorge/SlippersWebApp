@@ -229,14 +229,12 @@ const SignUp = (props) => {
                   const formData = new FormData()
                   formData.append('file', file)
                   formData.append('user',values.email)
-                  console.log(values)
-                  console.log(file)
-                  console.log(formData)
                   props.signUp(values, formData)
-                  setSubmitting(false);
+                  //setSubmitting(false);
               }else if(Object.keys(file).length===0){
                   toastr.error("Please upload an Image")
               }
+              setSubmitting(false);
               
 
           }}
