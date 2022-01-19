@@ -45,6 +45,29 @@ const StringInput = ({ label, ...props }) => {
   );
 };
 
+const FileInput = ({label, ...props})=>{
+    const [field, meta] = useField(props);
+    return(
+        <div className="d-flex flex-column">
+        <input {...field} {...props} type="file"
+                                
+                                id="icon-button-file"
+                                style={{ display: 'none', }}
+                                className="bg-info"
+                                multiple
+                            />
+                            <label htmlFor="icon-button-file" className="text-light">
+                                {label}
+                            </label>
+                            {meta.touched && meta.error ? (
+        <p className="text-danger mb-1">{meta.error}</p>
+      ) : (
+        <p className="invisible mb-1">mock</p>
+      )}
+                            </div>
+    )
+}
+
 const SelectInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
@@ -101,7 +124,7 @@ const UploadSchema = Yup.object({
     .max(350, "Can not exceed 350 characters")
     .trim()
     .required("Required"),
-  image: Yup.string().required("Required"),
+//   image: Yup.string().required("Required"),
   price: Yup.number()
     .min(1, "Can not be zero")
     .max(1000000, "Can not exceed 1000000")
@@ -146,6 +169,7 @@ const UploadSchema = Yup.object({
 
 function AdminUploadShoe(props) {
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
+  const [image,setImage] = useState('')
 
   const { getAllSubCategories } = props;
   useEffect(() => {
@@ -171,10 +195,17 @@ function AdminUploadShoe(props) {
           <Col
             sm={4}
             className="bg-warning admin-upload-shoe-img"
-            style={{ backgroundImage: `url(${Logo})` }}
+            style={{ backgroundImage: `url(${image})` }}
           >
-            upload image
+          <FloatingLabel label="Image URL" className="mb-2 text-dark">
+       
+          
+            <FormR.Control className="text-input" onChange={(e)=> setImage(e.target.value)} value={image} />
+         
+        
+      </FloatingLabel>
           </Col>
+
           <Col sm={8} className="admin-uploadshoe-container p-3">
             {props.categories.length ? (
               <h2 className="text-light text-center mb-5">Upload Shoe</h2>
@@ -185,7 +216,7 @@ function AdminUploadShoe(props) {
               initialValues={{
                 name: "",
                 description: "",
-                image: "",
+                // image: "",
                 price: "",
                 lastPrice: "",
                 category: "",
@@ -199,13 +230,18 @@ function AdminUploadShoe(props) {
               }}
               validationSchema={UploadSchema}
               onSubmit={(values, { resetForm }) => {
-                console.log(values);
-                props.uploadShoe(values);
-                resetForm({ values: "" });
-                toastr.success("Shoe Uploaded!", values.name);
+                if(!image){
+                    toastr.error("Image URL required")
+                }else{
+                    values.image=image
+                    props.uploadShoe(values);
+                    resetForm({ values: "" });
+                    setImage("")
+                    toastr.success("Shoe Uploaded!", values.name);
+                }
               }}
             >
-              {({ handleChange, values }) => (
+              {({ handleChange, values }) =>  (                
                 <Form>
                   <StringInput
                     label="Shoe Name"
@@ -223,12 +259,17 @@ function AdminUploadShoe(props) {
                     placeholder="kevin"
                     className="w-100"
                   />
-                  <StringInput
+              
+
+                   {/* <StringInput
                     label="Image URL"
                     name="image"
                     type="text"
-                    placeholder="kevin"
-                  />
+                    placeholder="kevin" 
+                  /> */}
+                  {/* <FileInput label="Upload Image" name="localImage" onChange={(e)=> console.log(e.target.value)} /> */}
+                  
+               
                   <div className="d-flex">
                     <StringInput
                       label="Price"

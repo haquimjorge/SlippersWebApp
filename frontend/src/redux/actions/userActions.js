@@ -21,9 +21,15 @@ const userActions ={
           });
         };
       },
-      signUpUser:(user)=>{
+      signUpUser:(user, data)=>{
           return async (dispatch)=>{
+              console.log(user)
+              console.log(data)
               let response = await axios.post("http://localhost:4000/api/auth/signup",user)
+              let fileResponse = await axios.post("http://localhost:4000/api/files/upload", data)
+              if(fileResponse.data.error){
+                  toastr.error(fileResponse.data.error)
+              }
               if (response.data.response) {
                 localStorage.setItem("token", response.data.token);
               }

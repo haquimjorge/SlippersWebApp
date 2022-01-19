@@ -41,8 +41,8 @@ const validator = (req, res, next) => {
       "string.max": "Password cannot exceed 30 characters long",
       "string.empty": "Password cannot be empty",
     }),
-    image: joi.required(),
     gender:joi.string(),
+    image:joi.string(),
     googleUser: joi.boolean(),
   });
   const validation = schema.validate(req.body, {
@@ -54,12 +54,14 @@ const validator = (req, res, next) => {
   }
   );
   if (validation.error) {
+      console.log(validation.error)
     return res.json({
       success: false,
       error: validation.error.details,
       response: null,
     });
   } else if (passwordValidation.error) {
+    console.log(passwordValidation.error)
     return res.json({
       success: false,
       error: passwordValidation.error.details,
