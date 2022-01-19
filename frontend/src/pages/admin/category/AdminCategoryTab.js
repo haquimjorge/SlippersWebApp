@@ -72,11 +72,11 @@ function AdminCategoryTab(props) {
             />
             <div className="bg-dark d-flex justify-content-center">
 
-            <button className="w-100 sign-button"  type="submit">Save</button>
+            <button className="w-100 sign-button admin-category-upload-button"  type="submit">Save</button>
             </div>
           </Form>
         </Formik>
-<Container className="mt-4">
+<Container className="mt-4 admin-category-tab-container">
 
 
 <h4 className="text-center fw-bold">Current categories</h4>
