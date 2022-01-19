@@ -6,6 +6,8 @@ require("./config/database.js");
 const passport = require('passport')
 const app = express();
 const path = require('path')
+const engines = require("consolidate");
+const paypal = require("paypal-rest-sdk");
 
 // var distDir = __dirname + "/dist/";
 // app.use(express.static(distDir));
@@ -23,6 +25,66 @@ app.use("/api", router);
 //     });
 //   }
 
+
+
+
+app.engine("ejs", engines.ejs);
+app.set("views", "./views");
+app.set("view engine", "ejs");
+paypal.configure({
+  mode: "sandbox", //sandbox or live
+  client_id:
+      "ASmh7ARZ-3oamcpSZaPIkhVS30Sn44DzOSQDUiVPrSoT4piOoAYbRM_pJKPRl4fc0fLjcpP6eV1UGXPd",
+  client_secret:
+      "EIFjNB7C3ndEN0R6adMzl7_adFtDXOZ_jPH9IbFgcb06e7yE-GQ3EynsWYjGvID0tJN4G9bT36KrGSkBE"
+});
+
+app.get("/", (req, res) => {
+    res.render("index");
+});
+
+app.get("/paypal", (req, res) => {
+  var create_payment_json = {
+      intent: "sale",
+      payer: {
+          payment_method: "paypal"
+      },
+      redirect_urls: {
+          return_url: "http://localhost:3000/success",
+          cancel_url: "http://localhost:3000/cancel"
+      },
+      transactions: [
+          {
+              item_list: {
+                  items: [
+                      {
+                          name: "item",
+                          sku: "item",
+                          price: "1.00",
+                          currency: "USD",
+                          quantity: 1
+                      }
+                  ]
+              },
+              amount: {
+                  currency: "USD",
+                  total: "1.00"
+              },
+              description: "This is the payment description."
+          }
+      ]
+  };
+
+  paypal.payment.create(create_payment_json, function(error, payment) {
+      if (error) {
+          throw error;
+      } else {
+          console.log("Create Payment Response");
+          console.log(payment);
+          res.redirect(payment.links[1].href);
+      }
+  });
+});
 
 
 
