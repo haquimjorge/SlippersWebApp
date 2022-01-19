@@ -7,6 +7,7 @@ const initialState = {
   category: null,
   oneShoe: {},
   shoeToDelete: {},
+  id:""
 };
 
 const shoeReducer = (state = initialState, action) => {
@@ -83,6 +84,12 @@ const shoeReducer = (state = initialState, action) => {
       return {
         ...state,
         shoeToDelete: shoeToDelete,
+      };
+      case "ID_TO_EDIT":
+      return{
+          ...state,
+          id:action.payload
+
       };
     case "DELETE_SHOE":
       let deletedShoeList = state.shoes.filter(

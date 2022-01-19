@@ -18,6 +18,24 @@ const shoeControllers = {
       console.error(e);
     }
   },
+  editVariation : async(req,res)=>{
+    try{
+      //   let shoeVariation = await Shoe.findOne({_id:req.body.id})
+      //   let variationExist = shoeVariation.variations.some(v=> v.color === req.body.color && v.size === req.body.size) // entrega true si la variacion ya existe
+      //   if(variationExist){
+      //       res.json({success:false, error: "Duplicated variation detected.", response:null})
+      //   } se puede hacer en front, usando los datos de los zapatos que ya tengo en redux
+      let variationExist = req.body.variationExist
+      let action = variationExist? "$pull" : "$push"
+      let addedShoe = await Shoe.findOneAndUpdate({_id: req.body.id},{[action]: {variations: req.body.variation}, generalStock : req.body.generalStock }, {new:true}).lean()
+      console.log(addedShoe)
+      res.json({success:true,error:null,response:addedShoe})
+
+    }catch(e){
+      res.json({ success: false, error: e, response: null });
+      console.error(e);
+    }
+},
   deleteShoe: async (req, res) => {
     try {
       const deletedShoe = await Shoe.findOneAndDelete({
@@ -93,6 +111,7 @@ const shoeControllers = {
   },
   getShoeById: async (req, res) => {
     try {
+      console.log(req.params)
       const newShoe = await Shoe.findOne({ _id: req.params.shoeId }).populate("category").populate("subcategory").exec();
       res.json({ success: true, response: newShoe, error: null });
     } catch (e) {

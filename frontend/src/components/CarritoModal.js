@@ -10,6 +10,7 @@ import { Button } from 'react-bootstrap'
 import Cart from "../assets/carrito-de-compras.png"
 import shoeActions from "../redux/actions/shoeActions";
 import { toastr } from "react-redux-toastr";
+import { Link } from "react-router-dom";
 
 const CarritoModal = (props) => {
     const [show, setShow] = useState(false);
@@ -53,9 +54,10 @@ const CarritoModal = (props) => {
                                     <tr className="cart-row">
                                         <td className="product-cart">
                                             <img src={shoe.image} className="image-cart" alt="cart" /><p className="product-name">{shoe.name}</p>
+                                            <p className="product-quantity">({shoe.quantity})</p>
                                         </td>
                                         <td className="product-price">
-                                            ${shoe.price}
+                                            ${shoe.price*shoe.quantity}
                                         </td>
                                         <td><button className="delete-button" onClick={() =>addToCart(shoe) }>X</button></td>
                                     </tr>
@@ -65,7 +67,7 @@ const CarritoModal = (props) => {
                                 <tr>
                                     <td>Total</td>
                                     <td>${
-                                        props.cart.reduce((total, item) => total + (item.price), 0)
+                                        props.cart.reduce((total, item) => total + (item.price*item.quantity), 0)
                                         //data.reduce((total, item)=>total+(item.aprice*item.quantity),0)
                                     }
                                     </td>
@@ -75,13 +77,24 @@ const CarritoModal = (props) => {
                         : <h2>There are no products added to the cart</h2>
                     }
                 </Offcanvas.Body>
+                <Offcanvas.Body>
+                    <div className="d-flex flex-column gap-4 justify-content-center align-items-center"  >
+                    <Link className="sign-button  text-center" to="/check">
+                    Checkout
+                  </Link> 
+                    <button className="cart-checkout-button" onClick={(e)=>  props.emptyCart() } >Clean Cart</button>
+
+                    </div>
+                </Offcanvas.Body>
+              
             </Offcanvas>
         </>
     )
 }
 
 const mapDispatchToProps = {
-    addToCart: userActions.addToCart
+    addToCart: userActions.addToCart,
+    emptyCart : userActions.emptyCart
 };
 
 const mapStateToProps = (state) => {

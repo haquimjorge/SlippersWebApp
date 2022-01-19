@@ -18,6 +18,7 @@ import DATA from '../utilities/hardData'
 import categoryActionsRedux from '../redux/actions/categoryActionsRedux'
 import _ from 'lodash';
 import AdminSingleShoe from './AdminSingleShoe'
+import AdminVariations from './AdminVariations'
 
 function AdminShoes(props) {
 
@@ -40,6 +41,7 @@ function AdminShoes(props) {
               <Nav.Item>
                 <Nav.Link eventKey="all">All Shoes</Nav.Link>
               </Nav.Item>
+              <div className='ps-3'>
               <Nav.Item>
                 <Nav.Link eventKey="Male">Male</Nav.Link>
               </Nav.Item>
@@ -49,8 +51,13 @@ function AdminShoes(props) {
               <Nav.Item>
                 <Nav.Link eventKey="Unisex">Unisex</Nav.Link>
               </Nav.Item>
+              </div>
+              
               <Nav.Item>
                 <Nav.Link eventKey="upload">Upload Shoe</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="variation">Variations</Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>
@@ -69,16 +76,42 @@ function AdminShoes(props) {
               </Tab.Pane>
               <Tab.Pane eventKey="Male">
               <p>Male</p>
+              <div className="d-flex flex-wrap">
+
+                    {props.shoes && props.shoes.filter(shoe=> shoe.gender === "Male").map(shoe=>(
+                    <AdminSingleShoe key={shoe._id} shoe={shoe} />    
+         ))}
+
+                </div>
               </Tab.Pane>
               <Tab.Pane eventKey="Female">
               <p>Female</p>
+              <div className="d-flex flex-wrap">
+
+                    {props.shoes && props.shoes.filter(shoe=> shoe.gender === "Female").map(shoe=>(
+                    <AdminSingleShoe key={shoe._id} shoe={shoe} />    
+         ))}
+
+                </div>
               </Tab.Pane>
               <Tab.Pane eventKey="Unisex">
               <p>Unisex</p>
+              <div className="d-flex flex-wrap">
+
+                    {props.shoes && props.shoes.filter(shoe=> shoe.gender === "Unisex").map(shoe=>(
+                    <AdminSingleShoe key={shoe._id} shoe={shoe} />    
+         ))}
+
+                </div>
               </Tab.Pane>
               <Tab.Pane eventKey="upload">
               <p>Upload Shoe</p>
               <AdminUploadShoe />
+              </Tab.Pane>
+              <Tab.Pane eventKey="variation">
+              <p>Variations</p>
+              <AdminVariations />
+
               </Tab.Pane>
             </Tab.Content>
           </Col>

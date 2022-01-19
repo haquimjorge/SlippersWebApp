@@ -27,14 +27,17 @@ const shoeActions = {
               return (
                 !element.value.length > 0 ? true
                   : (element.type === 'gender') ? element.value.includes(searchShoes.gender.toLowerCase().trim())
-                    : (element.type === 'color') ? element.value.includes(searchShoes.color.toLowerCase().trim())
+                    : (element.type === 'color' && searchShoes.color) ? element.value.includes(searchShoes.color.toLowerCase().trim())
+                    : (element.type=='color' && searchShoes.variations)? searchShoes.variations.filter(variation=> element.value.includes(variation.color.toLowerCase().trim())).length>0 
                       : (element.type === 'season') ? element.value.includes(searchShoes.season.toLowerCase().trim())
-                      : (element.type === 'price') ? (searchShoes.price>element.value[0] && searchShoes.price<element.value[1])
+                      : (element.type === 'price') ? (searchShoes.price>=element.value[0] && searchShoes.price<=element.value[1])
                         : (element.type === 'text') && (
                           searchShoes.name.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())
                           || searchShoes.gender.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())
-                          || searchShoes.color.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())
+                          || ( searchShoes.variations && searchShoes.variations.length>0 && ( searchShoes.variations.filter(variation=> variation.color.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())).length>0 ) )
                           || searchShoes.season.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())
+                          || ( (searchShoes.category && searchShoes.category.name.toLowerCase().trim().startsWith(element.value.toLowerCase().trim()))  )
+                          || ( (searchShoes.subcategory && searchShoes.subcategory.length>0) && (searchShoes.subcategory.filter(sub=> sub.name.toLowerCase().trim().startsWith(element.value.toLowerCase().trim())).length>0 ) )
                         )
               )
             })
@@ -43,14 +46,7 @@ const shoeActions = {
 
       }
       else {
-        filteredShoes = filteredShoes.filter(searchShoes => {
-          return (
-            searchShoes.name.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())
-            || searchShoes.gender.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())
-            || searchShoes.color.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())
-            || searchShoes.season.toLowerCase().trim().startsWith(searchValue.toLowerCase().trim())
-          )
-        })
+        filteredShoes = []
       }
 
       dispatch({ type: 'filterShoes', payload: filteredShoes })
@@ -71,6 +67,7 @@ const shoeActions = {
   },
   getOneShoe: (id) => {
     return async (dispatch) => {
+      console.log(id)
       let response = await axios.get(`http://localhost:4000/api/shoe/${id.toString()}`)
       dispatch({type: "getShoe", payload: response.data.response})
     }
@@ -85,7 +82,18 @@ const shoeActions = {
       return (dispatch)=>{
           dispatch({type: "ID_TO_DELETE_SHOE", payload:id})
       }
-  }
+  },
+  editVariation : (id, variation,generalStock,variationExist)=>{
+      return async (dispatch)=>{
+          let response = await axios.put("http://localhost:4000/api/shoe", {id,variation,generalStock, variationExist})
+          dispatch({type:"MODIFY_SHOE", payload: response.data.response})
+      }
+  },
+  sendIdtoEdit : (id)=>{
+    return (dispatch)=>{
+        dispatch({type: "ID_TO_EDIT", payload:id})
+    }
+},
 
 }
 

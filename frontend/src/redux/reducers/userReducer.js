@@ -36,6 +36,12 @@ const userReducer = (state = initialState, action) => {
         ...state, 
         cart: action.payload,
       }
+
+      case "EMPTY_CART":
+          return{
+            ...state,
+            cart:[]
+          }
     default:
       return state;
   }

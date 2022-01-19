@@ -1,4 +1,5 @@
 import axios from "axios";
+import {toastr} from 'react-redux-toastr'
 
 const userActions ={
     googleLogin: (user) => {
@@ -9,6 +10,8 @@ const userActions ={
           );
           if (response.data.response) {
             localStorage.setItem("token", response.data.token);
+            console.log(response.data.response)
+            toastr.success("Logged In!" , `Welcome, ${response.data.response.name}`)
           }
           console.log(response)
     
@@ -47,7 +50,7 @@ const userActions ={
       logOut: () => {
         return (dispatch) => {
           localStorage.clear();
-          alert("Logging out...")
+          toastr.error("Logged Out!")
           dispatch({ type: "LOG_OUT", payload: {} });
         };
       },
@@ -85,6 +88,9 @@ const userActions ={
       },
       addToCart : (cart, isAdded, product)=>{
         
+        
+
+
         return async (dispatch)=>{
           //await axios.put("http://localhost:4000/api/cart",{userId, isAdded, product})
           //.then(response=>{
@@ -93,15 +99,32 @@ const userActions ={
           //}).catch(err=>console.error(err))
           let newCart = [...cart] 
           if(isAdded){
-            newCart.push(product)
+            if(!product.quantity){ 
+              product.quantity = 1 
+              newCart.push(product)
+            } 
+            else product.quantity +=1
+            
             dispatch({type:"ADD_PRODUCT", payload: newCart})
           }
           else{
-            newCart = newCart.filter(element => product !== element)
+            product.quantity -=1
+            if (product.quantity<1){
+              
+              newCart = newCart.filter(element => product._id !== element._id)
+            }  
+            
+            //newCart = newCart.filter(element => product !== element)
             dispatch({type:"DELETE_PRODUCT", payload: newCart})
         }
 
         }
+      },
+      emptyCart : () =>{
+          return (dispatch)=> {
+              dispatch({type:"EMPTY_CART", payload:{}})
+
+          }
       }
 }
 

@@ -14,12 +14,15 @@ import SwiperCore, {
   Navigation,
 } from "swiper/core";
 import Logo from "../assets/logo2.png";
+import { Link } from "react-router-dom";
 
 
 SwiperCore.use([EffectCoverflow, Pagination, Navigation]);
 
 function Carousel(props) {
+  
   const { arrayShoes } = props;
+  
 
   useEffect(() => {
     arrayShoes();
@@ -50,28 +53,28 @@ function Carousel(props) {
       >
         {console.log(props.allShoes)}
         <div className="shoes-container-card">
-          {props.allShoes ? (props.allShoes.map((elem,i) => {
+          {props.allShoes ? (props.allShoes.map((elem, i) => {
             return (
               <SwiperSlide key={i}>
                 <div class="containerr">
                   <div class="card">
                     <div class="imgBx">
-                      <img src={elem.image} alt={elem.name}  />
+                      <img className="carousel-img" src={elem.image} alt={elem.name} />
                     </div>
                     <div class="contentBx">
                       <h2 className="name-shoe">{elem.name}</h2>
-                      <a href="/shoe/:shoesId">Buy Now</a>
+                      <Link to={`/shoe/${elem._id}`}>Buy Now</Link>
                     </div>
                   </div>
                 </div>
               </SwiperSlide>
-            )
-          }))
-            :
+            );
+          })
+          ) : (
             <SwiperSlide>
               <img src={Logo} alt="placeholder logo" />
             </SwiperSlide>
-          }
+          )}
         </div>
       </Swiper>
     </div>

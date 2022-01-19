@@ -1,5 +1,4 @@
-
-import Cart from "../assets/carrito-de-compras.png"
+import Cart from "../assets/carrito-de-compras.png";
 function Carrito() {
   return (
     <>
