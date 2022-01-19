@@ -13,8 +13,9 @@ const MainShop = ({ shoes }) => {
 
   return (
     <>
-      <main>
-        <div
+      <main style={{ "min-width": "85vw" }}>
+        
+          <div
           style={{ fontWeight: "bold", fontSize: "3.5rem" }}
           className="div-titulo"
         >
@@ -29,7 +30,7 @@ const MainShop = ({ shoes }) => {
 
         <div className="container">
           <div className="row">
-            {shoes &&
+            {(shoes&&shoes.length>0)  ?
               shoes.map((shoe) => (
                 <div
                   key={shoe._id}
@@ -38,7 +39,7 @@ const MainShop = ({ shoes }) => {
                 >
                   <ProductCard shoe={shoe} />
                 </div>
-              ))}
+              )):<div><h1>There're no products that match what you're looking for</h1></div>}
           </div>
         </div>
       </main>

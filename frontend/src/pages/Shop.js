@@ -253,6 +253,7 @@ const Shop = (props) => {
         </div>
         <div>
           <MainShop
+          style={{"min-width":"85vw"}}
             shoes={
               props.filteredShoes
                 ? props.filteredShoes
