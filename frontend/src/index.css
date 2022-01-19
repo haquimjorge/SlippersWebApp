@@ -453,6 +453,33 @@ main {
   animation: neon 7s infinite;
 }
 
+.home-action-call h3 {
+  text-transform: uppercase;
+  color: whitesmoke;
+  text-shadow: 1px 1px 3px black;
+  font-size: 30px;
+}
+
+.home-action-call .callToAction {
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: blanchedalmond;
+  padding: 3%;
+  background-color: rgba(0, 0, 0, 0.452);
+  box-shadow: 1px 1px 2px black;
+  width: 80%;
+}
+
+.home-action-call .callToAction:hover {
+  transition: 0.3s;
+  text-shadow: none;
+  background-color: rgba(245, 245, 245, 0.116);
+  color: rgba(0, 0, 0, 0.938);
+}
+
 .cart-checkout-button {
   transition: 0.1s;
   box-shadow: inset 0px 34px 0px -15px #252525;
