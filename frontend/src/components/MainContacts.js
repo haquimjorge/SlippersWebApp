@@ -11,13 +11,14 @@ function MainContacts() {
   const [email, setEmail] = useState("");
   const [mensaje, setMensaje] = useState("");
   const vaciarNombre = (e) => {
-    e.preventDefault();
+    
     setNombre("");
     setEmail("");
     setMensaje("");
   };
 
   function handleContactMock(e){
+    e.preventDefault();
       if(nombre !== "" && email !== "" && mensaje !== ""){
           vaciarNombre(e)
           setShow(true);
