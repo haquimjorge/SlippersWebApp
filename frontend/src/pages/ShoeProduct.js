@@ -51,7 +51,7 @@ const ShoeProduct = (props) => {
             <p className="pick">available colors</p>
             <div className="colors">
               {props.oneShoe.variations && props.oneShoe.variations.map((elem) => elem.color).map((elem) =>
-                <div className="color" style={{ backgroundColor: elem.toLowerCase() }}>{elem}</div>
+                <div className="color" style={{ backgroundColor: elem.toLowerCase() }}></div>
               )}
             </div>
           </div>

@@ -671,18 +671,6 @@ h1 {
   margin: 0 0 0.25em;
 }
 
-/* Imagen ShoeDetails Styles */
-
-/* .zoom{
-  transition: 0.2s;
-}
-.zoom:hover{
-  transform: scale(1.5);
-}
-
-.zoom{
-  box-shadow: 5px 5px 8px #d49d04d7;
-} */
 
 /* Admin Styles */
 
@@ -1199,7 +1187,7 @@ h1 {
 }
 
 .zoom {
-  box-shadow: 5px 5px 8px #d49d04d7;
+  box-shadow: 5px 5px 8px #686665c5;
 }
 
 /* MAIN SHOPP */
