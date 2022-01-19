@@ -13,6 +13,9 @@ const {googleLogin,signUpUser, signInUser,authUser, verifyEmail, addToCart} = us
 const {createCategory, listCategory, readCategory, updateCategory, removeCategory, getAllCategories,modifyCategory} = categoryControllers
 const {createSubCategory, listSubCategory, readSubCategory, updateSubCategory, removeSubCategory,getSubcategoryByParent, modifySubCategory,deleteSubCategory,getAllSubCategories } = subCategoryControllers
 
+// const Payment = require("../models/payment")
+// const {auth} = require("../middleware/auth")
+
 
 // Rutas para el controlador de zapatos
 
@@ -92,6 +95,9 @@ Router.route("/allsubcategories")
 
 Router.route("/cart")
 .put(addToCart)
+
+
+
 
 
 

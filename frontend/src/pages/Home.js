@@ -30,6 +30,7 @@ const Home = () => {
       <PromoHome />
       <CarouselMarcas />
       <Footer />
+      
     </>
   );
 };
