@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toastr } from "react-redux-toastr"
 import { connect } from "react-redux";
 import shoeActions from "../redux/actions/shoeActions";
 import Menu from "../components/Menu";
@@ -10,6 +11,15 @@ import userActions from "../redux/actions/userActions";
 import Paypal from '../components/Paypal';
 
 const ShoeProduct = (props) => {
+
+  function addToCart() {
+    if (props.user) {
+      toastr.success("Item Added!", props.oneShoe.name);
+      props.addToCart(props.cart, true, props.oneShoe);
+    }
+    else toastr.error("You can't use the cart","You must log in first")
+  }
+
   useEffect(() => {
     props.getOneShoe(props.params.shoesId);
   }, []);
@@ -85,13 +95,13 @@ const ShoeProduct = (props) => {
             <div className="buttons">
               <button
                 className="add"
-                onClick={() => props.addToCart(props.cart, true, props.oneShoe)}
-                disabled={props.user ? false : true}
+                onClick={() => addToCart()}
+                
               >
                 Add to Cart
               </button>
               <button className="like">♥</button>
-              <Paypal/>
+              <Paypal />
             </div>
           </div>
         </div>
