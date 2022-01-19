@@ -5,6 +5,7 @@ import "../../node_modules/swiper/modules/effect-coverflow/effect-coverflow.min.
 import "../../node_modules/swiper/modules/navigation/navigation.min.css";
 import "../../node_modules/swiper/modules/pagination/pagination.min.css";
 import "../styles.css";
+import './css/carouselstyle.css'
 import { connect } from "react-redux";
 import shoeActions from "../redux/actions/shoeActions";
 import SwiperCore, {
@@ -13,11 +14,15 @@ import SwiperCore, {
   Navigation,
 } from "swiper/core";
 import Logo from "../assets/logo2.png";
+import { Link } from "react-router-dom";
+
 
 SwiperCore.use([EffectCoverflow, Pagination, Navigation]);
 
 function Carousel(props) {
+  
   const { arrayShoes } = props;
+  
 
   useEffect(() => {
     arrayShoes();
@@ -48,19 +53,23 @@ function Carousel(props) {
       >
         {console.log(props.allShoes)}
         <div className="shoes-container-card">
-          {props.allShoes ? (
-            props.allShoes.map((elem, i) => {
-              return (
-                <SwiperSlide key={i}>
-                  <div className="card-shoe">
-                    <div className="img-div">
-                      <img src={elem.image} alt={elem.name} />
-                      <p className="name-shoe">{elem.name}</p>
+          {props.allShoes ? (props.allShoes.map((elem, i) => {
+            return (
+              <SwiperSlide key={i}>
+                <div class="containerr">
+                  <div class="card">
+                    <div class="imgBx">
+                      <img className="carousel-img" src={elem.image} alt={elem.name} />
+                    </div>
+                    <div class="contentBx">
+                      <h2 className="name-shoe">{elem.name}</h2>
+                      <Link to={`/shoe/${elem._id}`}>Buy Now</Link>
                     </div>
                   </div>
-                </SwiperSlide>
-              );
-            })
+                </div>
+              </SwiperSlide>
+            );
+          })
           ) : (
             <SwiperSlide>
               <img src={Logo} alt="placeholder logo" />

@@ -10,6 +10,7 @@ import { Button } from 'react-bootstrap'
 import Cart from "../assets/carrito-de-compras.png"
 import shoeActions from "../redux/actions/shoeActions";
 import { toastr } from "react-redux-toastr";
+import { Link } from "react-router-dom";
 
 const CarritoModal = (props) => {
     const [show, setShow] = useState(false);
@@ -76,13 +77,24 @@ const CarritoModal = (props) => {
                         : <h2>There are no products added to the cart</h2>
                     }
                 </Offcanvas.Body>
+                <Offcanvas.Body>
+                    <div className="d-flex flex-column gap-4 justify-content-center align-items-center"  >
+                    <Link className="sign-button  text-center" to="/check">
+                    Checkout
+                  </Link> 
+                    <button className="cart-checkout-button" onClick={(e)=>  props.emptyCart() } >Clean Cart</button>
+
+                    </div>
+                </Offcanvas.Body>
+              
             </Offcanvas>
         </>
     )
 }
 
 const mapDispatchToProps = {
-    addToCart: userActions.addToCart
+    addToCart: userActions.addToCart,
+    emptyCart : userActions.emptyCart
 };
 
 const mapStateToProps = (state) => {

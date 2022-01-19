@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import {toastr} from "react-redux-toastr"
 import { connect } from "react-redux";
 import shoeActions from "../redux/actions/shoeActions";
 import Menu from "../components/Menu";
@@ -7,17 +8,26 @@ import Footer from "../components/Footer";
 import CarouselMarcas from "../components/CarouselMarcas";
 import "../shoeDetails.scss";
 import userActions from "../redux/actions/userActions";
+import Paypal from '../components/Paypal';
 
 const ShoeProduct = (props) => {
+  
+  function addToCart(shoe) {
+    toastr.success("Item Added!", shoe.name);
+    props.addToCart(props.cart, true, shoe);
+  }
+
   useEffect(() => {
     props.getOneShoe(props.params.shoesId);
   }, []);
 
   console.log(props.oneShoe)
+  console.log(props.getOneShoe)
   useEffect(() => {
     console.log(props.cart);
   }, [props.cart]);
 
+  console.log(props.oneShoe.variations)
   return (
     <>
       <div className="fondo-menu-sign p-4">
@@ -28,7 +38,7 @@ const ShoeProduct = (props) => {
           <div className="images">
             <img
               className="zoom"
-              src="https://d3ugyf2ht6aenh.cloudfront.net/stores/090/848/products/081ddb2b-257b-4145-8dd1-d7a40792be65-c1eac204abe79eb80616190381701708-320-0.jpg"
+              src={props.oneShoe.image}
               alt="zoomed"
             />
           </div>
@@ -38,16 +48,19 @@ const ShoeProduct = (props) => {
             <div className="three"></div>
             <div className="four"></div>
           </div>
-          <p className="pick">choose size</p>
-          <div className="sizes">
-            <div className="size">5</div>
-            <div className="size">6</div>
-            <div className="size">7</div>
-            <div className="size">8</div>
-            <div className="size">9</div>
-            <div className="size">10</div>
-            <div className="size">11</div>
-            <div className="size">12</div>
+          <div className="contenedor-colors-sizes">
+            <p className="pick">available sizes</p>
+            <div className="sizes">
+              {props.oneShoe.variations && props.oneShoe.variations.map((elem) => elem.size).map((elem) =>
+                <div className="size">{elem}</div>
+              )}
+            </div>
+            <p className="pick">available colors</p>
+            <div className="colors">
+              {props.oneShoe.variations && props.oneShoe.variations.map((elem) => elem.color).map((elem) =>
+                <div className="color" style={{ backgroundColor: elem.toLowerCase() }}>{elem}</div>
+              )}
+            </div>
           </div>
           <div className="product">
             <p>Male elegant shoe</p>
@@ -63,34 +76,29 @@ const ShoeProduct = (props) => {
             <div className="select">
               <select className="select-shoes">
                 <option value="1">Choose you size</option>
-                <option value="2">5</option>
-                <option value="3">6</option>
-                <option value="4">8</option>
-                <option value="5">9</option>
-                <option value="6">10</option>
-                <option value="7">11</option>
-                <option value="8">12</option>
+                {props.oneShoe.variations && props.oneShoe.variations.map((elem) => elem.size).map((elem) =>
+                  <option value={elem}>{elem}</option>
+                )}
               </select>
             </div>
             <div className="select">
               <select className="select-shoes">
                 <option value="1">Choose your color</option>
-                <option value="2">Black</option>
-                <option value="3">Grey</option>
-                <option value="4">Brown</option>
-                <option value="5">Gold</option>
+                {props.oneShoe.variations && props.oneShoe.variations.map((elem) => elem.color).map((elem) =>
+                  <option value={elem}>{elem}</option>
+                )}
               </select>
             </div>
             <div className="buttons">
               <button
                 className="add"
-                onClick={() => props.addToCart(props.cart, true, props.oneShoe)}
+                onClick={() => addToCart(props.oneShoe)}
                 disabled={props.user ? false : true}
               >
                 Add to Cart
               </button>
               <button className="like">♥</button>
-              <button className="paypal">PayPal</button>
+              <Paypal/>
             </div>
           </div>
         </div>
