@@ -5,11 +5,15 @@ import userActions from "../redux/actions/userActions";
 import { useEffect } from "react";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { toastr } from "react-redux-toastr";
+import { Navigate } from "react-router-dom";
 
 const ProductCard = ({ shoe, ...props }) => {
   function addToCart(shoe) {
-    toastr.success("Item Added!", shoe.name);
-    props.addToCart(props.cart, true, shoe);
+    if(props.user){
+      toastr.success("Item Added!", shoe.name);
+      props.addToCart(props.cart, true, shoe);
+    }
+    else toastr.error("You can't use the cart","You must log in first")
   }
 
   return (
@@ -78,7 +82,7 @@ const ProductCard = ({ shoe, ...props }) => {
               <button
                 className="boton-carritoShop"
                 onClick={() => addToCart(shoe)}
-                disabled={props.user ? false : true}
+                
               >
                 <img
                   style={{
