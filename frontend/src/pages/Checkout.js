@@ -97,12 +97,13 @@ const Checkout = (props) => {
              
                 <h2>Total: {props.cart.length && props.cart.reduce((total, item) => total + (item.price*item.quantity), 0)} $</h2>
               </div>
+              
               <Paypal
-                // toPay={props.cart.length && props.cart.reduce((total, item) => total + (item.price*item.quantity), 0)}
+                 toPay={props.cart.length && props.cart.reduce((total, item) => total + (item.price*item.quantity), 0)}
                 onSuccess={transactionSuccess}
                 transactionsError={transactionError}
                 transactionsCanceled={transactionCanceled}
-
+               
 
 
               />
