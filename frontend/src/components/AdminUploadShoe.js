@@ -194,7 +194,7 @@ function AdminUploadShoe(props) {
         <Row>
           <Col
             sm={4}
-            className="bg-warning admin-upload-shoe-img"
+            className="admin-upload-shoe-img"
             style={{ backgroundImage: `url(${image})` }}
           >
           <FloatingLabel label="Image URL" className="mb-2 text-dark">
