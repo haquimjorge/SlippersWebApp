@@ -130,6 +130,15 @@ const userActions ={
       dispatch({ type: "EMPTY_CART", payload: {} })
 
     }
+  },
+  getUsers : ()=>{
+      return async (dispatch)=>{
+        let response = await axios.get("http://localhost:4000/api/users")
+      dispatch({
+        type: "GET_ALL_USERS",
+        payload: response.data.response,
+      });
+      }
   }
 }
 

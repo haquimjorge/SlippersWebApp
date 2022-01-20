@@ -61,13 +61,13 @@ function Menu(props) {
                       >
                         Admin Panel
                       </Dropdown.Item>
-                      <Dropdown.Item
+                      {/* <Dropdown.Item
                         className="dropdown-item"
                         as={Link}
                         to="/account"
                       >
                         Account
-                      </Dropdown.Item>
+                      </Dropdown.Item> */}
                       <Dropdown.Item
                         className="dropdown-item"
                         as={Link}
@@ -84,13 +84,13 @@ function Menu(props) {
                     </div>
                   ) : (
                     <>
-                      <Dropdown.Item
+                      {/* <Dropdown.Item
                         className="dropdown-item"
                         as={Link}
                         to="/account"
                       >
                         Account
-                      </Dropdown.Item>
+                      </Dropdown.Item> */}
                       <Dropdown.Item
                         className="dropdown-item"
                         as={Link}

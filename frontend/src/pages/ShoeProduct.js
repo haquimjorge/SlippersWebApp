@@ -101,7 +101,7 @@ const ShoeProduct = (props) => {
                 Add to Cart
               </button>
               <button className="like">♥</button>
-              <Paypal />
+              {/* <Paypal /> */}
             </div>
           </div>
         </div>

@@ -983,6 +983,24 @@ h1 {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.admin-user-card-image{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 10px;
+
+}
+.admin-user-card{
+    border-radius: 32px;
+    background: linear-gradient(145deg, #242424, #0c0c0c);
+    box-shadow:  6px 6px 10px #9d9d9d,
+                 -6px -6px 10px #ffffff;
+}
+.admin-user-name{
+    font-size: 1.5rem
+}
 .admin-variaton-color-box {
   width: 4rem;
   height: 4rem;
@@ -1194,6 +1212,27 @@ h1 {
 h1 {
   margin: 0 0 0.25em;
 }
+.checkout-pickup-button{
+
+   background-color: #2c2e2f !important;
+   color: white;
+   border-radius: 5px;
+}
+.checkout-pickup-button:hover{
+
+    background-color: #444444 !important;
+    color: white;
+ }
+ .checkout-information-modal{
+     background-color: #0000002f;
+     padding: 10px;
+     border-radius: 10px;
+ }
+ .checkout-logoin-button{
+     width: 3rem;
+     height: 3rem;
+     filter: invert(0%) sepia(100%) saturate(10%) hue-rotate(59deg) brightness(105%) contrast(111%);
+ }
 
 /* Imagen ShoeDetails Styles */
 

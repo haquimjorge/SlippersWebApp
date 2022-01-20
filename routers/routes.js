@@ -9,7 +9,7 @@ const filesController = require("../controllers/filesControllers")
 const passport = require("../config/passport");
 const {uploadUserImage} = filesController
 const {uploadShoe, getShoes, modifyShoe, deleteShoe, shoesCount, getShoeById,editVariation} = shoeControllers
-const {googleLogin,signUpUser, signInUser,authUser, verifyEmail, addToCart} = userControllers
+const {googleLogin,signUpUser, signInUser,authUser, verifyEmail, addToCart, getUsers} = userControllers
 const {createCategory, listCategory, readCategory, updateCategory, removeCategory, getAllCategories,modifyCategory} = categoryControllers
 const {createSubCategory, listSubCategory, readSubCategory, updateSubCategory, removeSubCategory,getSubcategoryByParent, modifySubCategory,deleteSubCategory,getAllSubCategories } = subCategoryControllers
 
@@ -41,6 +41,9 @@ Router.route("/files/upload")
 // Rutas para el controlador de usuarios
 Router.route("/auth/google")
 .post(validator, googleLogin)
+
+Router.route("/users")
+.get(getUsers)
 
 Router.route("/auth/signup")
 .post(validator, signUpUser)

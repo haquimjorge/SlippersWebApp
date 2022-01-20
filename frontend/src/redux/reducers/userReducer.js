@@ -3,7 +3,8 @@ const initialState = {
   success: null,
   error: null,
   message: null,
-  cart: []
+  cart: [],
+  users:[]
 }
 
 const userReducer = (state = initialState, action) => {
@@ -16,6 +17,11 @@ const userReducer = (state = initialState, action) => {
         user: action.payload.info.response,
         message: action.payload.info.message
       };
+      case "GET_ALL_USERS":
+          return{
+              ...state,
+              users:action.payload
+          };
     case "LOG_OUT":
       return {
         ...initialState,
