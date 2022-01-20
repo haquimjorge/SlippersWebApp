@@ -243,6 +243,7 @@ main {
   background-repeat: no-repeat;
   background-position: center;
   background-image: url("../public/assets/05.jpg");
+  border: 1px solid red;
 }
 
 .contenedor-contacts {
@@ -1457,5 +1458,87 @@ h1 {
   }
   100% {
     background-color: #0000001c;
+  }
+}
+
+
+/* ACCOUNT */
+
+.account-profile-container{
+  min-height: 80vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.account-info-container{
+  width: 40rem;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.first-info-container{
+  width: 90%;
+  height: 20vh;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+
+
+.input-profile{
+  background-color: rgba(235, 235, 235, 0.103);
+  border-radius: 5rem;
+  width: 18rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.profile-pic{
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: 1px solid yellow;
+  
+}
+
+.user-first-info{
+  width: 27rem;
+}
+
+.second-info-container{
+  width: 90%;
+  min-height: 20vh;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.more-user-info{
+  padding: 2rem;
+}
+
+@media (max-width: 800px) {
+  .first-info-container{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18rem;
+    
+  }
+  .account-info-container{
+    width: 100vw;
+    border: 1px solid red;
+    justify-content: center;
+    align-items: center;
   }
 }
